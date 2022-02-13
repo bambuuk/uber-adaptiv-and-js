@@ -663,6 +663,55 @@ nav {
   border-radius: 5px;
 }
 
+.author {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  margin-bottom: 40px;
+}
+
+.author_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+  font-weight: 400;
+  font-size: 15px;
+  color: #070716;
+}
+
+.author_content a {
+  text-decoration: none;
+  color: #070716;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+
+.author_content a:hover {
+  color: #bb1004;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+
+.author_title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.author_name {
+  margin-top: 10px;
+}
+
 @media (max-width: 1200px) {
   .menu .menu_item {
     padding-right: 20px;
