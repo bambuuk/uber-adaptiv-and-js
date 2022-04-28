@@ -1,0 +1,46 @@
+@import '../../../style/_mixins.sass'
+@import '../../../style/_variables.sass'
+@import '../../../style/_media.sass'
+
+.require
+  padding: 68px 0 84px 0
+  &_block
+    margin: 33px 0
+    &_nmb
+      margin-bottom: 0px
+  &_title
+    font-weight: 400
+    font-size: 22px
+    color: #1CA8C3
+  &_list
+    list-style-type: none
+    padding-left: 50px
+    margin-top: 22px
+    li
+      position: relative
+      font-weight: 300
+      font-size: 17px
+      line-height: 24px
+      margin-bottom: 10px
+      &:before
+        content: ''
+        display: block
+        position: absolute
+        left: -32px
+        top: 3px
+        width: 21px
+        height: 20px
+        background: url('../../../icons/check_blue.png')  center (center / cover) no-repeat
+  &_description
+    margin-top: 25px
+    font-weight: 300
+    font-size: 17px
+    line-height: 24px
+    color: #1CA8C3
+  .warning
+    .require_title
+      color: $text-color-pink
+    .require_list
+      li
+        &:before
+          background: url('../../../icons/check_red.png')  center (center / cover) no-repeat

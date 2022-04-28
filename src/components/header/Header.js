@@ -3,12 +3,27 @@ import uberLogo from '../../img/logo/Uber.png';
 import '../header/header.sass';
 
 class Header extends Component {
+
+    state = {
+        active: false
+    }
+
+    toggleHamburgerMenuActive = () => {
+        this.setState(({active}) => ({active: !active}))
+    }
+
     render() {
+        const {active} = this.state;
+        let styleHamburger = active ? 'hamburger_active' : '';
+        let styleMenu = active ? 'menu_active' : '';
+
         return (
             <header>
                 <nav>
                     <div className="container">
-                        <ul className="menu">
+                        <ul 
+                        className={`menu ${styleMenu}`}
+                        onClick={this.toggleHamburgerMenuActive}>
                             <li className="menu_item"><a href="#main" className="menu_link">Главная</a></li>
                             <li className="menu_item"><a href="#require" className="menu_link">Со своим автомобилем</a></li>
                             <li className="menu_item"><a href="#require" className="menu_link">На автомобиле компании</a></li>
@@ -18,10 +33,12 @@ class Header extends Component {
                         </ul>
                     </div>
 
-                    <div className="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <div 
+                        className={`hamburger ${styleHamburger}`}
+                        onClick={this.toggleHamburgerMenuActive}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                     </div>
                 </nav>
                 <div className="subheader">
