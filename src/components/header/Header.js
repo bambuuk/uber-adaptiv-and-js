@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Link } from 'react-router-dom';
 import uberLogo from '../../img/logo/Uber.png';
 import '../header/header.sass';
 
@@ -24,12 +25,12 @@ class Header extends Component {
                         <ul 
                         className={`menu ${styleMenu}`}
                         onClick={this.toggleHamburgerMenuActive}>
-                            <li className="menu_item"><a href="#main" className="menu_link">Главная</a></li>
+                            <li className="menu_item"><Link to="/" href="#main" className="menu_link">Главная</Link></li>
                             <li className="menu_item"><a href="#require" className="menu_link">Со своим автомобилем</a></li>
                             <li className="menu_item"><a href="#require" className="menu_link">На автомобиле компании</a></li>
                             <li className="menu_item"><a href="#requirement" className="menu_link">Требования</a></li>
                             <li className="menu_item"><a href="#contacts" className="menu_link">Контакты</a></li>
-                            <li className="menu_item"><a href="#contacts" className="menu_link">Оставить заявку</a></li>
+                            <li className="menu_item"><Link className="menu_link" href="#contacts" to="/choise-car">Выбор авто</Link></li>
                         </ul>
                     </div>
 

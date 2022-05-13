@@ -1,13 +1,13 @@
 import { Component } from "react";
 
-import icon_0 from '../../../icons/icon-0.png';
-import icon_1 from '../../../icons/icon-1.png';
-import icon_2 from '../../../icons/icon-2.png';
-import icon_4 from '../../../icons/icon-4.png';
-import icon_3 from '../../../icons/icon-3.png';
-import icon_6 from '../../../icons/icon-6.png';
-import icon_5 from '../../../icons/icon-5.png';
-import icon_7 from '../../../icons/icon-7.png';
+import icon_0 from '../../icons/icon-0.png';
+import icon_1 from '../../icons/icon-1.png';
+import icon_2 from '../../icons/icon-2.png';
+import icon_4 from '../../icons/icon-4.png';
+import icon_3 from '../../icons/icon-3.png';
+import icon_6 from '../../icons/icon-6.png';
+import icon_5 from '../../icons/icon-5.png';
+import icon_7 from '../../icons/icon-7.png';
 import './reasons.sass';
 
 class Reasons extends Component {
