@@ -1,9 +1,7 @@
 import { Component } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
-import ChoiseCarFilters from "../choiseCarFilters/ChoiseCarFilters";
-import CarList from "../carList/CarList";
-import AddCars from "../addCars/AddCars";
+import ChoiseCarView from "./ChoiseCarView";
 
 import sedan from '../../img/cars/sedan.png';
 import pickup from '../../img/cars/pickup.png';
@@ -84,14 +82,11 @@ class ChoiseCar extends Component {
         const visibleCarItems = this.onSortCarItems(this.state);
 
         return (
-            <section className="choiseCar">
-                <div className="container">
-                    <div className="title">Доступные варианты автомобилей</div>
-                    <ChoiseCarFilters onChangeFilter={this.onChangeFilter} toggleAddCarsBlock={this.toggleAddCarsBlock}/>
-                    <CarList data={visibleCarItems} onDelete={this.deleteItem} filter={this.filter} />
-                    <AddCars onAddItem={this.onAddItem} isAddCarsBlock={this.isAddCarsBlock}/>
-                </div>
-            </section>
+            <ChoiseCarView visibleCarItems={visibleCarItems} 
+                       onChangeFilter={this.onChangeFilter} 
+                       deleteItem={this.deleteItem}
+                       onAddItem={this.onAddItem}
+                       filter={this.state.filter}/>
         )
     }
 }
