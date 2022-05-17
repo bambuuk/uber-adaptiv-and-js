@@ -5,6 +5,7 @@ import './carItem.sass';
 class CarItem extends Component {
     render() {
         const { title, typeItem, url, driver } = this.props.data;
+        const {onChangeSelectedCar} = this.props;
         return (
             <div className="card" style={{ "width": "18rem" }}>
                 <img src={url} className="card-img-top car_img" alt={title} style={{ "objectFit": "contain", "width": 400, "height": 200 }} />
@@ -15,9 +16,14 @@ class CarItem extends Component {
                     <div className="btn_group">
                         <button
                             type="button"
-                            className="card_btn"
-                            onClick={this.props.onDelete}>Удалить</button>
-                        <button type="button" className="card_btn">Выбрать</button>
+                            className="btn"
+                            onClick={this.props.onDelete}
+                            tabIndex="0">Удалить</button>
+                        <button 
+                            type="button" 
+                            className=" btn card_btn" 
+                            onClick={onChangeSelectedCar}
+                            tabIndex="0">Выбрать</button>
                     </div>
                 </div>
             </div>

@@ -13,6 +13,7 @@ class CarList extends Component {
                     key={id}
                     data={itemProps}
                     onDelete={() => this.props.onDelete(id)}
+                    onChangeSelectedCar={() => this.props.onChangeSelectedCar(itemProps.title)}
 
                 />
             )

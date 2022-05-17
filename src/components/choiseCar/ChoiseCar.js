@@ -22,6 +22,7 @@ class ChoiseCar extends Component {
                 { title: "Volkswagen Golf", typeItem: { typeCar: "Универсал", classComfort: "Средний" }, driver: "Доминик Торэтто", url: universal, id: uuidv4() },
             ],
             filter: 'all',
+            selectedCar: 'Вы пока не выбрали автомобиль'
         }
     }
 
@@ -78,6 +79,10 @@ class ChoiseCar extends Component {
         }))
     }
 
+    onChangeSelectedCar = (title) => {
+        this.setState({selectedCar: title})
+    }
+
     render() {
         const visibleCarItems = this.onSortCarItems(this.state);
 
@@ -86,7 +91,9 @@ class ChoiseCar extends Component {
                        onChangeFilter={this.onChangeFilter} 
                        deleteItem={this.deleteItem}
                        onAddItem={this.onAddItem}
-                       filter={this.state.filter}/>
+                       filter={this.state.filter}
+                       selectedCar={this.state.selectedCar}
+                       onChangeSelectedCar={this.onChangeSelectedCar}/>
         )
     }
 }
