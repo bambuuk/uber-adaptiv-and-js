@@ -7,7 +7,7 @@ class CarItem extends Component {
         const { title, typeItem, url, driver } = this.props.data;
         const {onChangeSelectedCar} = this.props;
         return (
-            <div className="card" style={{ "width": "18rem" }}>
+            <div className="card">
                 <img src={url} className="card-img-top car_img" alt={title} style={{ "objectFit": "contain", "width": 400, "height": 200 }} />
                 <div className="card-body">
                     <h5 className="card-title">{title}</h5>

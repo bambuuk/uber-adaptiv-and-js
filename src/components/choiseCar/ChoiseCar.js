@@ -50,19 +50,9 @@ class ChoiseCar extends Component {
         } else if (filter === 'universal') {
             return data.filter(item => item.typeItem.typeCar === 'Универсал');
         } else if (filter === 'alphabet') {
-            const arr = [];
-            data.forEach(item => {
-                arr.push(item.title);
-            })
-            const arrSort = arr.sort();
-            const res = [];
-            arrSort.forEach(arrSortItem => {
-                data.forEach(dataItem => {
-                    if (dataItem.title === arrSortItem) {
-                        res.push(dataItem);
-                    }
-                })
-            })
+
+            const res = data.sort((item1, item2) => item1.title > item2.title ? 1 : -1);
+
             return res;
         } else {
             return data;
