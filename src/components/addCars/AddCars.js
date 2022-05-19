@@ -28,7 +28,8 @@ class AddCars extends Component {
     sendCarItem = (e) => {
         e.preventDefault();
         if (this.state.typeCar === 'Седан' || this.state.typeCar === 'Пикап' || this.state.typeCar === 'Универсал') {
-            this.props.onAddItem(this.state);
+            const { title, typeCar, classComfort, driver, url } = this.state;
+            this.props.onAddItem(title, typeCar, classComfort, driver, url);
             this.setState({
                 title: '',
                 typeCar: '',

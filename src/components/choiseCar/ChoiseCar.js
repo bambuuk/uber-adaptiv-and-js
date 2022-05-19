@@ -60,7 +60,7 @@ class ChoiseCar extends Component {
     }
 
     // Add cars function. There is spred operator in this function
-    onAddItem = ({ title, typeCar, classComfort, driver, url }) => {
+    onAddItem = ( title, typeCar, classComfort, driver, url ) => {
         const carItem = [
             { title, typeItem: { typeCar, classComfort }, driver, url, id: uuidv4() }
         ];
