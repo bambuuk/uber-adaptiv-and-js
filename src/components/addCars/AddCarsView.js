@@ -1,3 +1,4 @@
+import TimeOfStayOnPage from "../timeOfStayOnPage/TimeOfStayOnPage";
 
 const AddCarsView = function (props) {
     const { title, typeCar, classComfort, driver, url } = props.data;
@@ -60,11 +61,11 @@ const AddCarsView = function (props) {
                     className="add-item-car_input url"
                     onChange={(e) => onValueInputChange(e)}
                     value={url}
-                    placeholder="Ссылка на изображение"
+                    placeholder="Ссылка на изображение с белым фоном"
                     required
                     name="url"
                     type="text" />
-
+                <TimeOfStayOnPage/>
                 <button className="add-item-car_btn" type="submit">Добавить</button>
             </form>
         </section>

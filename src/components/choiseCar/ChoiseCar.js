@@ -28,12 +28,9 @@ class ChoiseCar extends Component {
 
     // CarItem delete function. There is choise elem by id in this function.
     deleteItem = (id) => {
-        this.setState(({ data }) => {
-
-            return {
-                data: data.filter(item => item.id !== id)
-            }
-        })
+        this.setState(({ data }) => ({
+            data: data.filter(item => item.id !== id)
+        }))
     }
 
     // filter change function
@@ -60,30 +57,30 @@ class ChoiseCar extends Component {
     }
 
     // Add cars function. There is spred operator in this function
-    onAddItem = ( title, typeCar, classComfort, driver, url ) => {
+    onAddItem = (title, typeCar, classComfort, driver, url) => {
         const carItem = [
             { title, typeItem: { typeCar, classComfort }, driver, url, id: uuidv4() }
         ];
-        this.setState(({data}) => ({
+        this.setState(({ data }) => ({
             data: [...data, ...carItem]
         }))
     }
 
     onChangeSelectedCar = (title) => {
-        this.setState({selectedCar: title})
+        this.setState({ selectedCar: title })
     }
 
     render() {
         const visibleCarItems = this.onSortCarItems(this.state);
 
         return (
-            <ChoiseCarView visibleCarItems={visibleCarItems} 
-                       onChangeFilter={this.onChangeFilter} 
-                       deleteItem={this.deleteItem}
-                       onAddItem={this.onAddItem}
-                       filter={this.state.filter}
-                       selectedCar={this.state.selectedCar}
-                       onChangeSelectedCar={this.onChangeSelectedCar}/>
+            <ChoiseCarView visibleCarItems={visibleCarItems}
+                onChangeFilter={this.onChangeFilter}
+                deleteItem={this.deleteItem}
+                onAddItem={this.onAddItem}
+                filter={this.state.filter}
+                selectedCar={this.state.selectedCar}
+                onChangeSelectedCar={this.onChangeSelectedCar} />
         )
     }
 }
