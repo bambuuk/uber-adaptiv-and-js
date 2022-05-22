@@ -13,16 +13,17 @@ class ChoiseCar extends Component {
         super();
         this.state = {
             data: [
-                { title: "BMW M3", typeItem: { typeCar: "Седан", classComfort: "Средний" }, driver: "Пол Уокер", url: sedan, id: uuidv4() },
-                { title: "TOYOTA GT86", typeItem: { typeCar: "Седан", classComfort: "Люкс" }, driver: "Гарп", url: sedan, id: uuidv4() },
-                { title: "Nissan GTR", typeItem: { typeCar: "Седан", classComfort: "Люкс" }, driver: "Мугивара Луфи", url: sedan, id: uuidv4() },
-                { title: "Ford F-150", typeItem: { typeCar: "Пикап", classComfort: "Люкс" }, driver: "Эдвард Элрик", url: pickup, id: uuidv4() },
-                { title: "TOYOTA Tundra", typeItem: { typeCar: "Пикап", classComfort: "Люкс" }, driver: "Джек Воробей", url: pickup, id: uuidv4() },
-                { title: "Москвич Пирожок", typeItem: { typeCar: "Пикап", classComfort: "Эконом" }, driver: "Эдвард Элрик", url: pickup, id: uuidv4() },
-                { title: "Volkswagen Golf", typeItem: { typeCar: "Универсал", classComfort: "Средний" }, driver: "Доминик Торэтто", url: universal, id: uuidv4() },
+                { order: 1, title: "BMW M3", typeItem: { typeCar: "Седан", classComfort: "Средний" }, driver: "Пол Уокер", url: sedan, id: uuidv4() },
+                { order: 2, title: "TOYOTA GT86", typeItem: { typeCar: "Седан", classComfort: "Люкс" }, driver: "Гарп", url: sedan, id: uuidv4() },
+                { order: 3, title: "Nissan GTR", typeItem: { typeCar: "Седан", classComfort: "Люкс" }, driver: "Мугивара Луфи", url: sedan, id: uuidv4() },
+                { order: 4, title: "Ford F-150", typeItem: { typeCar: "Пикап", classComfort: "Люкс" }, driver: "Эдвард Элрик", url: pickup, id: uuidv4() },
+                { order: 5, title: "TOYOTA Tundra", typeItem: { typeCar: "Пикап", classComfort: "Люкс" }, driver: "Джек Воробей", url: pickup, id: uuidv4() },
+                { order: 6, title: "Москвич Пирожок", typeItem: { typeCar: "Пикап", classComfort: "Эконом" }, driver: "Эдвард Элрик", url: pickup, id: uuidv4() },
+                { order: 7, title: "Volkswagen Golf", typeItem: { typeCar: "Универсал", classComfort: "Средний" }, driver: "Доминик Торэтто", url: universal, id: uuidv4() },
             ],
             filter: 'all',
-            selectedCar: 'Вы пока не выбрали автомобиль'
+            selectedCar: 'Вы пока не выбрали автомобиль',
+            currentCard: null
         }
     }
 
@@ -59,7 +60,7 @@ class ChoiseCar extends Component {
     // Add cars function. There is spred operator in this function
     onAddItem = (title, typeCar, classComfort, driver, url) => {
         const carItem = [
-            { title, typeItem: { typeCar, classComfort }, driver, url, id: uuidv4() }
+            { order: this.state.data.length + 1, title, typeItem: { typeCar, classComfort }, driver, url, id: uuidv4() }
         ];
         this.setState(({ data }) => ({
             data: [...data, ...carItem]
@@ -68,6 +69,57 @@ class ChoiseCar extends Component {
 
     onChangeSelectedCar = (title) => {
         this.setState({ selectedCar: title })
+    }
+
+
+
+    // ***************************************
+    // downstairs functions for drag and drop
+    // ***************************************
+
+
+    
+    dragStartHadler = (e, card) => {
+        this.setState({ currentCard: card });
+        /* send selected cards in state*/
+    }
+
+    dragEndHandler = (e) => {
+        // e.target.className = 'card_drop';
+        // e.target.style.background = 'none';
+    }
+
+    dragOverHandler = (e) => {
+        e.preventDefault();
+        // e.target.className = 'card_drag';
+        // e.target.style.background = 'lightgray';
+    }
+
+    dropHandler = (e, card) => {
+        e.preventDefault();
+        this.setState(state => {
+            const copyData = [...state.data];
+            const newData = copyData.map(c => {
+                if (c.id === card.id) {
+                return {...c, order: state.currentCard.order}
+                }
+                if (c.id === state.currentCard.id) {
+                return {...c, order: card.order}
+                }
+                return c;
+            })
+            return {data: newData};
+        })
+        // e.target.style.background = 'none';
+        // e.target.className = 'card_drop';
+    }
+
+    sortCard = (a, b) => {
+        if (a.order > b.order) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 
     render() {
@@ -80,7 +132,12 @@ class ChoiseCar extends Component {
                 onAddItem={this.onAddItem}
                 filter={this.state.filter}
                 selectedCar={this.state.selectedCar}
-                onChangeSelectedCar={this.onChangeSelectedCar} />
+                onChangeSelectedCar={this.onChangeSelectedCar} 
+                dragStartHadler={this.dragStartHadler}
+                dragEndHandler={this.dragEndHandler}
+                dragOverHandler={this.dragOverHandler}
+                dropHandler={this.dropHandler}
+                sortCard={this.sortCard}/>
         )
     }
 }

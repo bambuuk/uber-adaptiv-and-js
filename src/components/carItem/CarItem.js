@@ -5,14 +5,21 @@ import './carItem.sass';
 class CarItem extends Component {
     render() {
         const { title, typeItem, url, driver } = this.props.data;
-        const {onChangeSelectedCar} = this.props;
+        const {onChangeSelectedCar, dragStartHadler, dragEndHandler, dragOverHandler, dropHandler} = this.props;
         return (
-            <div className="card">
-                <img src={url} className="card-img-top car_img" alt={title} style={{ "objectFit": "contain", "width": 400, "height": 200 }} />
+            <div 
+            className="card"
+            onDragStart={(e) => dragStartHadler(e, this.props.data)}
+            onDragLeave={(e) => dragEndHandler(e)}
+            onDragEnd={(e) => dragEndHandler(e)}
+            onDragOver={(e) => dragOverHandler(e)}
+            onDrop={(e) => dropHandler(e, this.props.data)}
+            draggable={true}>
+                <img src={url} className="card-img-top card_img" alt={title} draggable={false}/>
                 <div className="card-body">
-                    <h5 className="card-title">{title}</h5>
-                    <p className="card-text"><strong>Тип автомобиля:</strong> {typeItem.typeCar} / <strong>Класс:</strong> {typeItem.classComfort}</p>
-                    <p className="card-text"><strong>Водитель:</strong> {driver}</p>
+                    <h5 className="card_title">{title}</h5>
+                    <p className="card_text"><strong>Тип автомобиля:</strong> {typeItem.typeCar} / <strong>Класс:</strong> {typeItem.classComfort}</p>
+                    <p className="card_text"><strong>Водитель:</strong> {driver}</p>
                     <div className="btn_group">
                         <button
                             type="button"

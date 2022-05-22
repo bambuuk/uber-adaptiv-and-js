@@ -6,20 +6,23 @@ import './carList.sass';
 class CarList extends Component {
 
     render() {
-        const carItemList = this.props.data.map(item => {
-            const { id, ...itemProps } = item;
+        const {dragStartHadler, dragEndHandler, dragOverHandler, dropHandler, sortCard} = this.props;
+        const carItemList = this.props.data.sort(sortCard).map(item => {
             return (
                 <CarItem
-                    key={id}
-                    data={itemProps}
-                    onDelete={() => this.props.onDelete(id)}
-                    onChangeSelectedCar={() => this.props.onChangeSelectedCar(itemProps.title)}
-
+                    key={item.id}
+                    data={item}
+                    onDelete={() => this.props.onDelete(item.id)}
+                    onChangeSelectedCar={() => this.props.onChangeSelectedCar(item.title)}
+                    dragStartHadler={dragStartHadler}
+                    dragEndHandler={dragEndHandler}
+                    dragOverHandler={dragOverHandler}
+                    dropHandler={dropHandler}
                 />
             )
         })
         const elementWithoutInfoCar = (
-            <h1 style={{ "display": "inline" }}>Информация отсутствует. Добавть, пожалуйста, новую карточку автомобиля!</h1>
+            <h1>Информация отсутствует. Добавть, пожалуйста, новую карточку автомобиля!</h1>
         )
         if (this.props.data.length > 0) {
             return (
@@ -29,7 +32,7 @@ class CarList extends Component {
             )
         } else {
             return (
-                <div className="carList" style={{"display": "inline-block", "text-align": "center", }}>
+                <div className="carList carList_without-cars">
                     {elementWithoutInfoCar}
                 </div>
             )
