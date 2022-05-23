@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import MainPage from '../pages/MainPage';
-import CarsPage from '../pages/CarsPage';
+import MainPage from './pages/MainPage';
+import CarsPage from './pages/CarsPage';
 
 class App extends Component {
   render() {

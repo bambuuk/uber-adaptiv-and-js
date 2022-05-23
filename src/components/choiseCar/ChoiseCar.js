@@ -8,6 +8,12 @@ import pickup from '../../img/cars/pickup.png';
 import universal from '../../img/cars/universal.png';
 import './choiseCar.sass';
 
+const filterType = {
+    sedan: 'Седан',
+    pickup: 'Пикап',
+    universal: 'Универсал',
+}
+
 class ChoiseCar extends Component {
     constructor() {
         super();
@@ -40,17 +46,12 @@ class ChoiseCar extends Component {
     }
 
     // Sort cars function. There are sort method and sorting methods in this function
-    onSortCarItems = ({ filter, data }) => {
-        if (filter === 'sedan') {
-            return data.filter(item => item.typeItem.typeCar === 'Седан');
-        } else if (filter === 'pickup') {
-            return data.filter(item => item.typeItem.typeCar === 'Пикап');
-        } else if (filter === 'universal') {
-            return data.filter(item => item.typeItem.typeCar === 'Универсал');
+    onSortCarItems = ( filter, data ) => {
+        if (filterType[filter]) {
+            return data.filter(item => item.typeItem.typeCar === filterType[filter]);
         } else if (filter === 'alphabet') {
-
             const res = data.sort((item1, item2) => item1.title > item2.title ? 1 : -1);
-
+            console.log(res);
             return res;
         } else {
             return data;
@@ -85,14 +86,12 @@ class ChoiseCar extends Component {
     }
 
     dragEndHandler = (e) => {
-        // e.target.className = 'card_drop';
-        // e.target.style.background = 'none';
+        e.target.className = 'card card_drop';
     }
 
     dragOverHandler = (e) => {
         e.preventDefault();
-        // e.target.className = 'card_drag';
-        // e.target.style.background = 'lightgray';
+        e.target.className = 'card card_drag';
     }
 
     dropHandler = (e, card) => {
@@ -110,8 +109,7 @@ class ChoiseCar extends Component {
             })
             return {data: newData};
         })
-        // e.target.style.background = 'none';
-        // e.target.className = 'card_drop';
+        e.target.className = 'card card_drop';
     }
 
     sortCard = (a, b) => {
@@ -123,7 +121,9 @@ class ChoiseCar extends Component {
     }
 
     render() {
-        const visibleCarItems = this.onSortCarItems(this.state);
+        const filter = this.state.filter;
+        const data = [...this.state.data];
+        const visibleCarItems = this.onSortCarItems(filter, data);
 
         return (
             <ChoiseCarView visibleCarItems={visibleCarItems}

@@ -1,13 +1,13 @@
 import { Component } from 'react';
 
-import Header from '../header/Header';
-import Promo from '../promo/Promo';
-import Reasons from '../reasons/Reasons';
-import Mobile from '../mobile/Mobile';
-import Choise from '../choise/Choise';
-import Require from '../require/Require';
-import City from '../city/City';
-import Footer from '../footer/Footer';
+import Header from '../components/Header/Header';
+import Promo from '../components/Promo/Promo';
+import Reasons from '../components/Reasons/Reasons';
+import Mobile from '../components/Mobile/Mobile';
+import Choise from '../components/Choise/Choise';
+import Require from '../components/Require/Require';
+import City from '../components/City/City';
+import Footer from '../components/Footer/Footer';
 
 class MainPage extends Component {
     render() {

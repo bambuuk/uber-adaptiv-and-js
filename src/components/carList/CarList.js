@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-import CarItem from "../carItem/CarItem";
+import CarItem from "../CarItem/CarItem";
 import './carList.sass';
 
 class CarList extends Component {

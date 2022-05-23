@@ -1,6 +1,6 @@
 import { Component } from "react";
 import HeaderView from "./HeaderView";
-import '../header/header.sass';
+import './header.sass';
 
 class Header extends Component {
 

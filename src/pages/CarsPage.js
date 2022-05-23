@@ -1,8 +1,8 @@
 import { Component } from "react";
 
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
-import ChoiseCar from '../choiseCar/ChoiseCar';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
+import ChoiseCar from '../components/ChoiseCar/ChoiseCar';
 
 class CarsPage extends Component {
     render() {

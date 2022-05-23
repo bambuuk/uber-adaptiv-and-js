@@ -7,6 +7,7 @@ class CarItem extends Component {
         const { title, typeItem, url, driver } = this.props.data;
         const {onChangeSelectedCar, dragStartHadler, dragEndHandler, dragOverHandler, dropHandler} = this.props;
         return (
+            
             <div 
             className="card"
             onDragStart={(e) => dragStartHadler(e, this.props.data)}

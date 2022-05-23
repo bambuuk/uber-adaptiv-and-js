@@ -1,7 +1,7 @@
-import ChoiseCarFilters from "../choiseCarFilters/ChoiseCarFilters";
-import CarList from "../carList/CarList";
-import AddCars from "../addCars/AddCars";
-import SelectedCar from "../selectedCar/SelectedCar";
+import ChoiseCarFilters from "../ChoiseCarFilters/ChoiseCarFilters";
+import CarList from "../CarList/CarList";
+import AddCars from "../AddCars/AddCars";
+import SelectedCar from "../SelectedCar/SelectedCar";
 
 const ChoiseCarView = function (props) {
     const { visibleCarItems, onChangeFilter, 

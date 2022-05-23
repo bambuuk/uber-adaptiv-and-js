@@ -1,4 +1,4 @@
-import TimeOfStayOnPage from "../timeOfStayOnPage/TimeOfStayOnPage";
+import TimeOfStayOnPage from "../TimeOfStayOnPage/TimeOfStayOnPage";
 
 const AddCarsView = function (props) {
     const { title, typeCar, classComfort, driver, url } = props.data;
