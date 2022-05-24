@@ -29,9 +29,23 @@ class ChoiseCar extends Component {
             ],
             filter: 'all',
             selectedCar: 'Вы пока не выбрали автомобиль',
-            currentCard: null
+            currentCard: null,
+            cardUntilCurrentCard: null
         }
     }
+
+    //componentDidUpdate(prevProps, prevState) {
+    // if (this.state.filter === 'alphabet' && prevState.filter !== this.state.filter) {
+    //     const copyData = [...this.state.data];
+    //     copyData.sort((item1, item2) => item1.title > item2.title ? 1 : -1);
+    //     const res = copyData.map((item, i) => {
+    //         return {...item, order: i+1}
+    //     })
+    //     console.log(res);
+    //     this.setState({data: copyData})
+    // }
+    // console.log('aga', this.state.data)
+    //}
 
     // CarItem delete function. There is choise elem by id in this function.
     deleteItem = (id) => {
@@ -45,13 +59,20 @@ class ChoiseCar extends Component {
         this.setState({ filter: filterType });
     }
 
+    sortCard = (a, b) => {
+        if (a.order > b.order) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
     // Sort cars function. There are sort method and sorting methods in this function
-    onSortCarItems = ( filter, data ) => {
+    onSortCarItems = (filter, data) => {
         if (filterType[filter]) {
             return data.filter(item => item.typeItem.typeCar === filterType[filter]);
         } else if (filter === 'alphabet') {
             const res = data.sort((item1, item2) => item1.title > item2.title ? 1 : -1);
-            console.log(res);
             return res;
         } else {
             return data;
@@ -78,52 +99,46 @@ class ChoiseCar extends Component {
     // downstairs functions for drag and drop
     // ***************************************
 
-
-    
     dragStartHadler = (e, card) => {
         this.setState({ currentCard: card });
         /* send selected cards in state*/
     }
 
     dragEndHandler = (e) => {
-        e.target.className = 'card card_drop';
+        this.setState({ cardUntilCurrentCard: null });
     }
 
-    dragOverHandler = (e) => {
+    dragOverHandler = (e, id) => {
         e.preventDefault();
-        e.target.className = 'card card_drag';
+        const cardUntilCurrentCard = this.state.cardUntilCurrentCard;
+        if (cardUntilCurrentCard !== id) {
+            this.setState({ cardUntilCurrentCard: id });
+        }
     }
 
     dropHandler = (e, card) => {
         e.preventDefault();
+        this.setState({ cardUntilCurrentCard: null });
         this.setState(state => {
             const copyData = [...state.data];
             const newData = copyData.map(c => {
                 if (c.id === card.id) {
-                return {...c, order: state.currentCard.order}
+                    return { ...c, order: state.currentCard.order }
                 }
                 if (c.id === state.currentCard.id) {
-                return {...c, order: card.order}
+                    return { ...c, order: card.order }
                 }
                 return c;
             })
-            return {data: newData};
+            return { data: newData.sort(this.sortCard) };
         })
-        e.target.className = 'card card_drop';
-    }
-
-    sortCard = (a, b) => {
-        if (a.order > b.order) {
-            return 1;
-        } else {
-            return -1;
-        }
     }
 
     render() {
         const filter = this.state.filter;
         const data = [...this.state.data];
         const visibleCarItems = this.onSortCarItems(filter, data);
+
 
         return (
             <ChoiseCarView visibleCarItems={visibleCarItems}
@@ -132,11 +147,13 @@ class ChoiseCar extends Component {
                 onAddItem={this.onAddItem}
                 filter={this.state.filter}
                 selectedCar={this.state.selectedCar}
-                onChangeSelectedCar={this.onChangeSelectedCar} 
+                onChangeSelectedCar={this.onChangeSelectedCar}
                 dragStartHadler={this.dragStartHadler}
                 dragEndHandler={this.dragEndHandler}
                 dragOverHandler={this.dragOverHandler}
-                dropHandler={this.dropHandler}/>
+                dropHandler={this.dropHandler}
+                sortCard={this.sortCard}
+                cardUntilCurrentCard={this.state.cardUntilCurrentCard} />
         )
     }
 }

@@ -4,16 +4,18 @@ import './carItem.sass';
 
 class CarItem extends Component {
     render() {
-        const { title, typeItem, url, driver } = this.props.data;
-        const {onChangeSelectedCar, dragStartHadler, dragEndHandler, dragOverHandler, dropHandler} = this.props;
+        const { title, typeItem, url, driver, id } = this.props.data;
+        const {onChangeSelectedCar, dragStartHadler, dragEndHandler, 
+            dragOverHandler, dropHandler, cardUntilCurrentCard} = this.props;
+        let clazz = cardUntilCurrentCard === id ? 'card card_drag' : 'card';
         return (
             
             <div 
-                className="card"
+                className={clazz}
                 onDragStart={(e) => dragStartHadler(e, this.props.data)}
                 onDragLeave={(e) => dragEndHandler(e)}
                 onDragEnd={(e) => dragEndHandler(e)}
-                onDragOver={(e) => dragOverHandler(e)}
+                onDragOver={(e) => dragOverHandler(e, id)}
                 onDrop={(e) => dropHandler(e, this.props.data)}
                 draggable={true}>
                 <img 
@@ -21,8 +23,9 @@ class CarItem extends Component {
                     className="card-img-top card_img" 
                     alt={title} 
                     draggable={false}
-                    onLoad={console.log('Картинка загрузилась!')}
-                    onError={console.log('Картинка не была загружена!')}/>
+                    onLoad={() => console.log('Картинка загрузилась!')}
+                    onError={() => console.log('Произошла ошибка - Картинка не была загружена!')}
+                    />
                 <div className="card-body">
                     <h5 className="card_title">{title}</h5>
                     <p className="card_text"><strong>Тип автомобиля:</strong> {typeItem.typeCar} / <strong>Класс:</strong> {typeItem.classComfort}</p>

@@ -6,7 +6,8 @@ import './carList.sass';
 class CarList extends Component {
 
     render() {
-        const { dragStartHadler, dragEndHandler, dragOverHandler, dropHandler, sortCard } = this.props;
+        const { dragStartHadler, dragEndHandler, dragOverHandler, 
+            dropHandler, cardUntilCurrentCard } = this.props;
         const carItemList = this.props.data.map(item => {
             return (
                 <CarItem
@@ -18,6 +19,7 @@ class CarList extends Component {
                     dragEndHandler={dragEndHandler}
                     dragOverHandler={dragOverHandler}
                     dropHandler={dropHandler}
+                    cardUntilCurrentCard={cardUntilCurrentCard}
                 />
             )
         })
