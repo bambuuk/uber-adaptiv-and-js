@@ -136,8 +136,7 @@ class ChoiseCar extends Component {
                 dragStartHadler={this.dragStartHadler}
                 dragEndHandler={this.dragEndHandler}
                 dragOverHandler={this.dragOverHandler}
-                dropHandler={this.dropHandler}
-                sortCard={this.sortCard}/>
+                dropHandler={this.dropHandler}/>
         )
     }
 }

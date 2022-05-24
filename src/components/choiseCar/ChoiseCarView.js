@@ -8,7 +8,7 @@ const ChoiseCarView = function (props) {
         deleteItem, filter, onAddItem, selectedCar, 
         onChangeSelectedCar,  dragStartHadler, 
         dragEndHandler, dragOverHandler, 
-        dropHandler, sortCard} = props;
+        dropHandler} = props;
     return (
         <section className="choiseCar">
             <div className="container">
@@ -23,8 +23,7 @@ const ChoiseCarView = function (props) {
                     dragStartHadler={dragStartHadler}
                     dragEndHandler={dragEndHandler} 
                     dragOverHandler={dragOverHandler}
-                    dropHandler={dropHandler}
-                    sortCard={sortCard}/>
+                    dropHandler={dropHandler} />
                 <AddCars onAddItem={onAddItem} />
             </div>
         </section>

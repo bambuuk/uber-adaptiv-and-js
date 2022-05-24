@@ -7,7 +7,7 @@ class CarList extends Component {
 
     render() {
         const { dragStartHadler, dragEndHandler, dragOverHandler, dropHandler, sortCard } = this.props;
-        const carItemList = this.props.data.sort(sortCard).map(item => {
+        const carItemList = this.props.data.map(item => {
             return (
                 <CarItem
                     key={item.id}
