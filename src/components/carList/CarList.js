@@ -6,7 +6,7 @@ import './carList.sass';
 class CarList extends Component {
 
     render() {
-        const {dragStartHadler, dragEndHandler, dragOverHandler, dropHandler, sortCard} = this.props;
+        const { dragStartHadler, dragEndHandler, dragOverHandler, dropHandler, sortCard } = this.props;
         const carItemList = this.props.data.sort(sortCard).map(item => {
             return (
                 <CarItem
@@ -24,19 +24,11 @@ class CarList extends Component {
         const elementWithoutInfoCar = (
             <h1>Информация отсутствует. Добавть, пожалуйста, новую карточку автомобиля!</h1>
         )
-        if (this.props.data.length > 0) {
-            return (
-                <div className="carList">
-                    {carItemList}
-                </div>
-            )
-        } else {
-            return (
-                <div className="carList carList_without-cars">
-                    {elementWithoutInfoCar}
-                </div>
-            )
-        }
+        return (
+            <div className={`${this.props.data.length > 0 ? 'carList' : 'carList carList_without-cars'}`}>
+                {this.props.data.length > 0 ? carItemList : elementWithoutInfoCar}
+            </div>
+        )
     }
 }
 
