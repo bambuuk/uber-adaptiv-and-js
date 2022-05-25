@@ -7,8 +7,8 @@ const ChoiseCarView = function (props) {
     const { visibleCarItems, onChangeFilter, 
         deleteItem, filter, onAddItem, selectedCar, 
         onChangeSelectedCar,  dragStartHadler, 
-        dragEndHandler, dragOverHandler, 
-        dropHandler, sortCard, cardUntilCurrentCard} = props;
+        dragEndHandler, dragOverHandler, onActiveCard,
+        dropHandler, sortCard, cardUntilCurrentCard,} = props;
     return (
         <section className="choiseCar">
             <div className="container">
@@ -25,7 +25,8 @@ const ChoiseCarView = function (props) {
                     dragOverHandler={dragOverHandler}
                     dropHandler={dropHandler}
                     sortCard={sortCard}
-                    cardUntilCurrentCard={cardUntilCurrentCard}/>
+                    cardUntilCurrentCard={cardUntilCurrentCard}
+                    onActiveCard={onActiveCard}/>
                 <AddCars onAddItem={onAddItem} />
             </div>
         </section>

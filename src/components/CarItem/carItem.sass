@@ -10,7 +10,7 @@
     cursor: grab
     margin: 0 auto
     padding: 10px 10px
-    transition: 0.5s all
+    transition: 0.3s all
     &_title
         margin-top: 10px
     &_img
@@ -18,5 +18,8 @@
         object-fit: cover
     &_drag
         background: gray
-    &_drop
-        background: none
+        border-radius: 10px
+        border: 2px solid #000
+    &_active
+        border: 2px solid #000
+        border-radius: 10px

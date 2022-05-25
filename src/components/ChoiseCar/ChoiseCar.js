@@ -19,13 +19,40 @@ class ChoiseCar extends Component {
         super();
         this.state = {
             data: [
-                { order: 1, title: "BMW M3", typeItem: { typeCar: "Седан", classComfort: "Средний" }, driver: "Пол Уокер", url: sedan, id: uuidv4() },
-                { order: 2, title: "TOYOTA GT86", typeItem: { typeCar: "Седан", classComfort: "Люкс" }, driver: "Гарп", url: sedan, id: uuidv4() },
-                { order: 3, title: "Nissan GTR", typeItem: { typeCar: "Седан", classComfort: "Люкс" }, driver: "Мугивара Луфи", url: sedan, id: uuidv4() },
-                { order: 4, title: "Ford F-150", typeItem: { typeCar: "Пикап", classComfort: "Люкс" }, driver: "Эдвард Элрик", url: pickup, id: uuidv4() },
-                { order: 5, title: "TOYOTA Tundra", typeItem: { typeCar: "Пикап", classComfort: "Люкс" }, driver: "Джек Воробей", url: pickup, id: uuidv4() },
-                { order: 6, title: "Москвич Пирожок", typeItem: { typeCar: "Пикап", classComfort: "Эконом" }, driver: "Эдвард Элрик", url: pickup, id: uuidv4() },
-                { order: 7, title: "Volkswagen Golf", typeItem: { typeCar: "Универсал", classComfort: "Средний" }, driver: "Доминик Торэтто", url: universal, id: uuidv4() },
+                {
+                    order: 1, title: "BMW M3", typeItem: { typeCar: "Седан", classComfort: "Средний" },
+                    driver: "Пол Уокер", url: sedan, id: uuidv4(), active: false
+                },
+
+                {
+                    order: 2, title: "TOYOTA GT86", typeItem: { typeCar: "Седан", classComfort: "Люкс" },
+                    driver: "Гарп", url: sedan, id: uuidv4(), active: false
+                },
+
+                {
+                    order: 3, title: "Nissan GTR", typeItem: { typeCar: "Седан", classComfort: "Люкс" },
+                    driver: "Мугивара Луфи", url: sedan, id: uuidv4(), active: false
+                },
+
+                {
+                    order: 4, title: "Ford F-150", typeItem: { typeCar: "Пикап", classComfort: "Люкс" },
+                    driver: "Эдвард Элрик", url: pickup, id: uuidv4(), active: false
+                },
+
+                {
+                    order: 5, title: "TOYOTA Tundra", typeItem: { typeCar: "Пикап", classComfort: "Люкс" },
+                    driver: "Джек Воробей", url: pickup, id: uuidv4(), active: false
+                },
+
+                {
+                    order: 6, title: "Москвич Пирожок", typeItem: { typeCar: "Пикап", classComfort: "Эконом" },
+                    driver: "Эдвард Элрик", url: pickup, id: uuidv4(), active: false
+                },
+
+                {
+                    order: 7, title: "Volkswagen Golf", typeItem: { typeCar: "Универсал", classComfort: "Средний" },
+                    driver: "Доминик Торэтто", url: universal, id: uuidv4(), active: false
+                },
             ],
             filter: 'all',
             selectedCar: 'Вы пока не выбрали автомобиль',
@@ -93,10 +120,23 @@ class ChoiseCar extends Component {
         this.setState({ selectedCar: title })
     }
 
+    onActiveCard = (id) => {
+        this.setState(state => {
+            const copyData = [...state.data];
+            const activeItemInArr = copyData.map(item => {
+                if (item.id === id) {
+                    return { ...item, active: !item.active }
+                } else {
+                    return item
+                }
+            })
+            return { data: activeItemInArr }
+        })
+    }
 
 
     // ***************************************
-    // downstairs functions for drag and drop
+    // downstairs functions for drag and drop functionally
     // ***************************************
 
     dragStartHadler = (e, card) => {
@@ -153,7 +193,8 @@ class ChoiseCar extends Component {
                 dragOverHandler={this.dragOverHandler}
                 dropHandler={this.dropHandler}
                 sortCard={this.sortCard}
-                cardUntilCurrentCard={this.state.cardUntilCurrentCard} />
+                cardUntilCurrentCard={this.state.cardUntilCurrentCard}
+                onActiveCard={this.onActiveCard} />
         )
     }
 }
