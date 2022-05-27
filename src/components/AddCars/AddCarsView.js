@@ -2,13 +2,19 @@ import TimeOfStayOnPage from "../TimeOfStayOnPage/TimeOfStayOnPage";
 
 const AddCarsView = function (props) {
     const { title, typeCar, classComfort, driver, url } = props.data;
-    const { onValueInputChange, sendCarItem, myRef } = props;
+    const { onValueInputChange, sendCarItem, myRef, onResetItem } = props;
 
     return (
         <section className="add-item-car">
             <form
                 className="add-item-car_form"
                 onSubmit={sendCarItem}
+                onReset={onResetItem}
+                onKeyDown={e => {
+                    if (e.code === 'Escape') {
+                        onResetItem(e);
+                    }
+                }}
                 action=""
                 method=""
                 encType='multipart/form-data'>
@@ -65,8 +71,11 @@ const AddCarsView = function (props) {
                     required
                     name="url"
                     type="text" />
+                
+                <button className="add-item-car_btn" name="add" type="submit">Добавить</button>
+                <button className="add-item-car_btn" name="reset" type="reset">Очистить форму</button>
+
                 <TimeOfStayOnPage/>
-                <button className="add-item-car_btn" type="submit">Добавить</button>
             </form>
         </section>
     )

@@ -8,7 +8,8 @@ const ChoiseCarView = function (props) {
         deleteItem, filter, onAddItem, selectedCar, 
         onChangeSelectedCar,  dragStartHadler, 
         dragEndHandler, dragOverHandler, onActiveCard,
-        dropHandler, sortCard, cardUntilCurrentCard,} = props;
+        dropHandler, sortCard, cardUntilCurrentCard,
+        } = props;
     return (
         <section className="choiseCar">
             <div className="container">

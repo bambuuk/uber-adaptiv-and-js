@@ -9,7 +9,7 @@ class CarList extends Component {
         const { dragStartHadler, dragEndHandler, dragOverHandler, 
             dropHandler, cardUntilCurrentCard, onActiveCard, 
             onDelete, onChangeSelectedCar } = this.props;
-        const carItemList = this.props.data.map(item => {
+        const carItemList = this.props.data.map((item, i) => {
             return (
                 <CarItem
                     key={item.id}
@@ -21,7 +21,7 @@ class CarList extends Component {
                     dragOverHandler={dragOverHandler}
                     dropHandler={dropHandler}
                     cardUntilCurrentCard={cardUntilCurrentCard}
-                    onActiveCard={() => onActiveCard(item.id)}
+                    onActiveCard={() => onActiveCard(item.id, i)}
                 />
             )
         })
@@ -29,7 +29,9 @@ class CarList extends Component {
             <h1>Информация отсутствует. Добавть, пожалуйста, новую карточку автомобиля!</h1>
         )
         return (
-            <div className={`${this.props.data.length > 0 ? 'carList' : 'carList carList_without-cars'}`}>
+            <div 
+                className={`${this.props.data.length > 0 ? 'carList' : 'carList carList_without-cars'}`}
+                tabIndex="-1">
                 {this.props.data.length > 0 ? carItemList : elementWithoutInfoCar}
             </div>
         )

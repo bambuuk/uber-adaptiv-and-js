@@ -31,7 +31,8 @@ class CarItem extends Component {
                 onDragOver={(e) => dragOverHandler(e, id)}
                 onDrop={(e) => dropHandler(e, this.props.data)}
                 draggable={true}
-                onClick={onActiveCard}>
+                onClick={onActiveCard}
+                tabIndex="0">
                 <img 
                     src={url} 
                     className="card-img-top card_img" 
@@ -47,7 +48,7 @@ class CarItem extends Component {
                     <div className="btn_group">
                         <button
                             type="button"
-                            className="btn"
+                            className="btn card_btn"
                             onClick={this.props.onDelete}
                             tabIndex="0">Удалить</button>
                         <button 

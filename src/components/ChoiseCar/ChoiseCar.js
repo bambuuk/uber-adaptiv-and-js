@@ -1,4 +1,5 @@
 import { Component } from "react";
+import React from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 import ChoiseCarView from "./ChoiseCarView";
@@ -61,6 +62,28 @@ class ChoiseCar extends Component {
         }
     }
 
+    componentDidMount() {
+        document.addEventListener('keydown', this.onKeyboardClickForActiveCards)
+    }
+
+    onKeyboardClickForActiveCards = (e) => {
+        let c = e.code;
+        if (c === 'ArrowRight' || c === 'ArrowLeft' || c === 'ArrowUp' || c === 'ArrowDown') {
+            console.log('тык');
+        } 
+        // else if (e.code === 'ArrowLeft') {
+        //     console.log('влево');
+        // } else if (e.code === 'ArrowUp') {
+        //     console.log('up');
+        // } else if (e.code === 'ArrowDown') {
+        //     console.log('down');
+        // }
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.onKeyboardClickForActiveCards);
+    }
+
     //componentDidUpdate(prevProps, prevState) {
     // if (this.state.filter === 'alphabet' && prevState.filter !== this.state.filter) {
     //     const copyData = [...this.state.data];
@@ -120,7 +143,7 @@ class ChoiseCar extends Component {
         this.setState({ selectedCar: title })
     }
 
-    onActiveCard = (id) => {
+    onActiveCard = (id, i) => {
         this.setState(state => {
             const copyData = [...state.data];
             const activeItemInArr = copyData.map(item => {
@@ -131,9 +154,8 @@ class ChoiseCar extends Component {
                 }
             })
             return { data: activeItemInArr }
-        })
+        });
     }
-
 
     // ***************************************
     // downstairs functions for drag and drop functionally
@@ -194,7 +216,7 @@ class ChoiseCar extends Component {
                 dropHandler={this.dropHandler}
                 sortCard={this.sortCard}
                 cardUntilCurrentCard={this.state.cardUntilCurrentCard}
-                onActiveCard={this.onActiveCard} />
+                onActiveCard={this.onActiveCard}/>
         )
     }
 }

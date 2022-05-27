@@ -45,12 +45,24 @@ class AddCars extends Component {
         }
     }
 
+    onResetItem = (e) => {
+        e.preventDefault();
+        this.setState({
+            title: '',
+            typeCar: '',
+            classComfort: '',
+            driver: '',
+            url: ''
+        })
+    }
+
     render() {
         return (
             <AddCarsView 
                 data={this.state} 
                 onValueInputChange={this.onValueInputChange}
                 sendCarItem={this.sendCarItem}
+                onResetItem={this.onResetItem}
                 myRef={this.myRef}/>
         )
     }
