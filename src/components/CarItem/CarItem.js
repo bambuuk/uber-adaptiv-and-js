@@ -4,10 +4,10 @@ import './carItem.sass';
 
 class CarItem extends Component {
     render() {
-        const { title, typeItem, url, driver, id, active } = this.props.data;
+        const { title, typeItem, url, driver, id, active, focus } = this.props.data;
         const {onChangeSelectedCar, dragStartHadler, dragEndHandler, 
                dragOverHandler, dropHandler, cardUntilCurrentCard,
-               onActiveCard} = this.props;
+               onActiveCard, setRef} = this.props;
         // let clazz = cardUntilCurrentCard === id ? 'card card_drag' : 'card';
         let clazz = 'card';
         if (active === true) {
@@ -16,15 +16,17 @@ class CarItem extends Component {
             clazz = 'card card_drag';
         } else if (active === true && cardUntilCurrentCard === id) {
             clazz = 'card card_drag card_active';
+        } else if (focus === true) {
+            clazz = 'card card_focus';
         } else {
             clazz = 'card';
         }
-        
 
         return (
             
             <div 
                 className={clazz}
+                ref={setRef}
                 onDragStart={(e) => dragStartHadler(e, this.props.data)}
                 onDragLeave={(e) => dragEndHandler(e)}
                 onDragEnd={(e) => dragEndHandler(e)}
@@ -32,6 +34,12 @@ class CarItem extends Component {
                 onDrop={(e) => dropHandler(e, this.props.data)}
                 draggable={true}
                 onClick={onActiveCard}
+                onKeyUp={e => {
+                    if (e.key === 'Enter') {
+                        console.log('da')
+                        onActiveCard(e);
+                    }
+                }}
                 tabIndex="0">
                 <img 
                     src={url} 
