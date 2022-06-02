@@ -1,20 +1,15 @@
 import { Component } from "react";
 
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
 import ChoiseCar from '../components/ChoiseCar/ChoiseCar';
+import Layout from "../components/Layout/Layout";
 
 class CarsPage extends Component {
     render() {
         return (
             <>
-                <Header />
-
-                <main>
-                    <ChoiseCar/>
-                </main>
-
-                <Footer />
+                <Layout>
+                    <ChoiseCar />
+                </Layout>
             </>
         )
     }
