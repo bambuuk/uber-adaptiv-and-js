@@ -14,7 +14,9 @@ const ChoiseCarView = function (props) {
         <section className="choiseCar">
             <div className="container">
                 <div className="title">Доступные варианты автомобилей</div>
-                <ChoiseCarFilters onChangeFilter={onChangeFilter} />
+                <ChoiseCarFilters 
+                    onChangeFilter={onChangeFilter}
+                    filter={filter} />
                 <SelectedCar selectedCar={selectedCar}/>
                 <CarList 
                     data={visibleCarItems} 

@@ -1,10 +1,13 @@
 import { Component } from "react";
+import ChoiseCarFiltersView from "./ChoiseCarFiltersView";
 
 import './choiseCarFilters.sass';
 
 class ChoiseCarFilters extends Component {
     
     render() {
+        const {onChangeFilter, filter} = this.props;
+
         const buttonsData = [
             { name: 'all', label: 'Все машины' },
             { name: 'sedan', label: 'Седаны' },
@@ -14,10 +17,10 @@ class ChoiseCarFilters extends Component {
         ];
 
         const buttons = buttonsData.map(({ name, label }) => {
-    
+            let clazz = filter === name ? "choiseCar_btn choiseCar_btn_active" : "choiseCar_btn";
             return (
                 <button 
-                    className="choiseCar_btn"
+                    className={clazz}
                     type="button"
                     onClick={() => this.props.onChangeFilter(name)}
                     key={name}>
@@ -27,11 +30,7 @@ class ChoiseCarFilters extends Component {
         });
 
         return (
-            <>
-                <div className="choiseCar_filter">
-                    {buttons}
-                </div>
-            </>
+            <ChoiseCarFiltersView buttons={buttons}/>
         )
     }
 }
