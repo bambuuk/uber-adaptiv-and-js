@@ -7,8 +7,8 @@ class CarItem extends Component {
         const { title, typeItem, url, driver, id, active, focus } = this.props.data;
         const {onChangeSelectedCar, dragStartHadler, dragEndHandler, 
                dragOverHandler, dropHandler, cardUntilCurrentCard,
-               onActiveCard, setRef} = this.props;
-        // let clazz = cardUntilCurrentCard === id ? 'card card_drag' : 'card';
+               onActiveCard, setRef, filter} = this.props;
+        const draggable =  filter === 'alphabet' ? false : true;
         let clazz = 'card';
         if (active === true) {
             clazz = 'card card_active';
@@ -18,6 +18,8 @@ class CarItem extends Component {
             clazz = 'card card_drag card_active';
         } else if (focus === true) {
             clazz = 'card card_focus';
+        } else if (focus === true && active === true) {
+            clazz = 'card card_focus card_active';
         } else {
             clazz = 'card';
         }
@@ -26,18 +28,17 @@ class CarItem extends Component {
             
             <div 
                 className={clazz}
-                ref={setRef}
+                ref={ref => setRef(ref, id)}
                 onDragStart={(e) => dragStartHadler(e, this.props.data)}
                 onDragLeave={(e) => dragEndHandler(e)}
                 onDragEnd={(e) => dragEndHandler(e)}
                 onDragOver={(e) => dragOverHandler(e, id)}
                 onDrop={(e) => dropHandler(e, this.props.data)}
-                draggable={true}
+                draggable={draggable}
                 onClick={onActiveCard}
                 onKeyUp={e => {
                     if (e.key === 'Enter') {
-                        console.log('da')
-                        onActiveCard(e);
+                        onActiveCard(id, e);
                     }
                 }}
                 tabIndex="0">

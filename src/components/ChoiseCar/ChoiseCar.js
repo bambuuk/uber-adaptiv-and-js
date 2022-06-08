@@ -77,9 +77,9 @@ class ChoiseCar extends Component {
             this.setState(({ data }) => {
                 const copyData = [...data];
                 const onFocusCard = copyData.map(item => {
-                    return {...item, focus: false}
+                    return { ...item, focus: false }
                 });
-                return { data: onFocusCard,  onFocusWithArrow: false, countClickArrow: null}
+                return { data: onFocusCard, onFocusWithArrow: false, countClickArrow: null }
             });
         }
 
@@ -138,7 +138,6 @@ class ChoiseCar extends Component {
             });
 
         } else if (e.code === 'KeyE' && this.state.onFocusWithArrow === true) {
-            console.log('KeyE')
             const copyData = [...this.state.data];
             const count = this.state.countClickArrow;
             const id = copyData[count];
@@ -198,13 +197,16 @@ class ChoiseCar extends Component {
         this.setState({ selectedCar: title })
     }
 
-    itemRefs = [];
+    itemRefs = {};
 
-    setRef = (ref) => {
-        this.itemRefs.push(ref);
+    setRef = (ref, id) => {
+        if (ref !== null && ref !== undefined) {
+            this.itemRefs[id] = ref;
+        }
     }
 
     onActiveCard = (id, i) => {
+
         this.setState(state => {
             const copyData = [...state.data];
             const activeItemInArr = copyData.map(item => {
@@ -216,7 +218,11 @@ class ChoiseCar extends Component {
             })
             return { data: activeItemInArr }
         });
-        this.itemRefs[i].focus();
+        if (typeof(id) === 'string') {
+            this.itemRefs[id].focus();
+        } else {
+            this.itemRefs[id.id].focus();
+        }
     }
 
     // ***************************************
@@ -244,7 +250,13 @@ class ChoiseCar extends Component {
         e.preventDefault();
         this.setState({ cardUntilCurrentCard: null });
         this.setState(state => {
-            const copyData = [...state.data];
+            const copyData = [...state.data]
+            //const copyData = [...state.data];
+            // console.log(copyData)
+            /**
+             * когда фильтрую массив данных, нужно заново переписать order уже в отсортированном массиве, после чего 
+             * передавать правильные данные дальше и скорее всего, ордер переписывать нужно в onSortCarItems
+             */
             const newData = copyData.map(c => {
                 if (c.id === card.id) {
                     return { ...c, order: state.currentCard.order }
@@ -256,6 +268,7 @@ class ChoiseCar extends Component {
             })
             return { data: newData.sort(this.sortCard) };
         })
+        this.setState({ currentCard: null })
     }
 
     render() {
