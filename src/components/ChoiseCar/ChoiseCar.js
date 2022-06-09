@@ -22,37 +22,37 @@ class ChoiseCar extends Component {
             data: [
                 {
                     order: 1, title: "BMW M3", typeItem: { typeCar: "Седан", classComfort: "Средний" },
-                    driver: "Пол Уокер", url: sedan, id: uuidv4(), active: false, focus: false
+                    driver: "Двэйн Джонсон", url: sedan, id: uuidv4(), active: false, focus: false
                 },
 
                 {
                     order: 2, title: "TOYOTA GT86", typeItem: { typeCar: "Седан", classComfort: "Люкс" },
-                    driver: "Гарп", url: sedan, id: uuidv4(), active: false, focus: false
+                    driver: "Джейк Джилленгол", url: sedan, id: uuidv4(), active: false, focus: false
                 },
 
                 {
                     order: 3, title: "Nissan GTR", typeItem: { typeCar: "Седан", classComfort: "Люкс" },
-                    driver: "Мугивара Луфи", url: sedan, id: uuidv4(), active: false, focus: false
+                    driver: "Том Холанд", url: sedan, id: uuidv4(), active: false, focus: false
                 },
 
                 {
                     order: 4, title: "Ford F-150", typeItem: { typeCar: "Пикап", classComfort: "Люкс" },
-                    driver: "Эдвард Элрик", url: pickup, id: uuidv4(), active: false, focus: false
+                    driver: "Александра Даддарио", url: pickup, id: uuidv4(), active: false, focus: false
                 },
 
                 {
                     order: 5, title: "TOYOTA Tundra", typeItem: { typeCar: "Пикап", classComfort: "Люкс" },
-                    driver: "Джек Воробей", url: pickup, id: uuidv4(), active: false, focus: false
+                    driver: "Зэндая Мари", url: pickup, id: uuidv4(), active: false, focus: false
                 },
 
                 {
                     order: 6, title: "Москвич Пирожок", typeItem: { typeCar: "Пикап", classComfort: "Эконом" },
-                    driver: "Эдвард Элрик", url: pickup, id: uuidv4(), active: false, focus: false
+                    driver: "Кристиан Бейл", url: pickup, id: uuidv4(), active: false, focus: false
                 },
 
                 {
                     order: 7, title: "Volkswagen Golf", typeItem: { typeCar: "Универсал", classComfort: "Средний" },
-                    driver: "Доминик Торэтто", url: universal, id: uuidv4(), active: false, focus: false
+                    driver: "Том Хэнкс", url: universal, id: uuidv4(), active: false, focus: false
                 },
             ],
             filter: 'all',
@@ -83,65 +83,69 @@ class ChoiseCar extends Component {
             });
         }
 
-        if (c === 'ArrowRight') {
-
-            this.setState(({ countClickArrow, data }) => {
-                let count = countClickArrow;
-                if (count !== null && count < data.length - 1) {
-                    return { countClickArrow: count + 1 }
-                } else if (count !== null && count === data.length - 1) {
-                    return { countClickArrow: 0 }
-                } else if (count === null) {
-                    return { countClickArrow: 0 }
-                } else {
-                    return { countClickArrow: countClickArrow }
-                }
-            })
-            this.setState(({ data, countClickArrow }) => {
-                const copyData = [...data];
-                const onFocusCard = copyData.map((item, i) => {
-                    if (i === countClickArrow) {
-                        return { ...item, focus: true }
+        if (this.state.filter !== 'all' && (c === 'ArrowRight' || c === 'ArrowLeft')) {
+            alert('На этом фильтре нет возможности передвигаться по карточкам с помощью стрелок клавиатуры!')
+        } else {
+            if (c === 'ArrowRight') {
+                this.setState(({ countClickArrow, data }) => {
+                    let count = countClickArrow;
+                    if (count !== null && count < data.length - 1) {
+                        return { countClickArrow: count + 1 }
+                    } else if (count !== null && count === data.length - 1) {
+                        return { countClickArrow: 0 }
+                    } else if (count === null) {
+                        return { countClickArrow: 0 }
                     } else {
-                        return { ...item, focus: false }
+                        return { countClickArrow: countClickArrow }
+                    }
+                })
+                this.setState(({ data, countClickArrow }) => {
+
+                    const copyData = [...data];
+                    const onFocusCard = copyData.map((item, i) => {
+                        if (i === countClickArrow) {
+                            return { ...item, focus: true }
+                        } else {
+                            return { ...item, focus: false }
+                        }
+                    });
+
+                    return { data: onFocusCard }
+                });
+            } else if (c === 'ArrowLeft') {
+
+                this.setState(({ countClickArrow, data }) => {
+                    let count = countClickArrow;
+                    if (count !== null && count > 0) {
+                        return { countClickArrow: count - 1 }
+                    } else if (count !== null && count === 0) {
+                        return { countClickArrow: data.length - 1 }
+                    } else if (count === null) {
+                        return { countClickArrow: 0 }
+                    } else {
+                        return { countClickArrow: countClickArrow }
                     }
                 });
 
-                return { data: onFocusCard }
-            });
-        } else if (c === 'ArrowLeft') {
+                this.setState(({ data, countClickArrow }) => {
+                    const copyData = [...data];
+                    const onFocusCard = copyData.map((item, i) => {
+                        if (i === countClickArrow) {
+                            return { ...item, focus: true }
+                        } else {
+                            return { ...item, focus: false }
+                        }
+                    });
 
-            this.setState(({ countClickArrow, data }) => {
-                let count = countClickArrow;
-                if (count !== null && count > 0) {
-                    return { countClickArrow: count - 1 }
-                } else if (count !== null && count === 0) {
-                    return { countClickArrow: data.length - 1 }
-                } else if (count === null) {
-                    return { countClickArrow: 0 }
-                } else {
-                    return { countClickArrow: countClickArrow }
-                }
-            });
-
-            this.setState(({ data, countClickArrow }) => {
-                const copyData = [...data];
-                const onFocusCard = copyData.map((item, i) => {
-                    if (i === countClickArrow) {
-                        return { ...item, focus: true }
-                    } else {
-                        return { ...item, focus: false }
-                    }
+                    return { data: onFocusCard }
                 });
 
-                return { data: onFocusCard }
-            });
-
-        } else if (e.code === 'KeyE' && this.state.onFocusWithArrow === true) {
-            const copyData = [...this.state.data];
-            const count = this.state.countClickArrow;
-            const id = copyData[count];
-            this.onActiveCard(id, count);
+            } else if (e.code === 'KeyE' && this.state.onFocusWithArrow === true) {
+                const copyData = [...this.state.data];
+                const count = this.state.countClickArrow;
+                const id = copyData[count];
+                this.onActiveCard(id, count);
+            }
         }
     }
 
@@ -158,6 +162,9 @@ class ChoiseCar extends Component {
     // filter change function
     onChangeFilter = (filterType) => {
         this.setState({ filter: filterType });
+        if (filterType === 'alphabet') {
+            alert('При использовании данного фильтра, функция перетаскивания карточек не работает!')
+        }
     }
 
     sortCard = (a, b) => {
@@ -218,7 +225,7 @@ class ChoiseCar extends Component {
             })
             return { data: activeItemInArr }
         });
-        if (typeof(id) === 'string') {
+        if (typeof (id) === 'string') {
             this.itemRefs[id].focus();
         } else {
             this.itemRefs[id.id].focus();

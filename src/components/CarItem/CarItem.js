@@ -16,9 +16,9 @@ class CarItem extends Component {
             clazz = 'card card_drag';
         } else if (active === true && cardUntilCurrentCard === id) {
             clazz = 'card card_drag card_active';
-        } else if (focus === true) {
+        } else if (focus === true && filter === 'all') {
             clazz = 'card card_focus';
-        } else if (focus === true && active === true) {
+        } else if (focus === true && active === true && filter === 'all') {
             clazz = 'card card_focus card_active';
         } else {
             clazz = 'card';

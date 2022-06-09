@@ -2,6 +2,7 @@ import ChoiseCarFilters from "../ChoiseCarFilters/ChoiseCarFilters";
 import CarList from "../CarList/CarList";
 import AddCars from "../AddCars/AddCars";
 import SelectedCar from "../SelectedCar/SelectedCar";
+import BestCompanyDrivers from "../BestCompanyDrivers/BestCompanyDrivers";
 
 const ChoiseCarView = function (props) {
     const { visibleCarItems, onChangeFilter, 
@@ -13,6 +14,7 @@ const ChoiseCarView = function (props) {
     return (
         <section className="choiseCar">
             <div className="container">
+                <BestCompanyDrivers/>
                 <div className="title">Доступные варианты автомобилей</div>
                 <ChoiseCarFilters 
                     onChangeFilter={onChangeFilter}

@@ -22,7 +22,7 @@ class ChoiseCarFilters extends Component {
                 <button 
                     className={clazz}
                     type="button"
-                    onClick={() => this.props.onChangeFilter(name)}
+                    onClick={() => onChangeFilter(name)}
                     key={name}>
                         {label}
                 </button>
