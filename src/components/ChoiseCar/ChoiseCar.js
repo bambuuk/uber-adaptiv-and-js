@@ -7,7 +7,7 @@ import ChoiseCarView from "./ChoiseCarView";
 import sedan from '../../img/cars/sedan.png';
 import pickup from '../../img/cars/pickup.png';
 import universal from '../../img/cars/universal.png';
-import './choiseCar.sass';
+
 
 const filterType = {
     sedan: 'Седан',
@@ -102,13 +102,9 @@ class ChoiseCar extends Component {
                 this.setState(({ data, countClickArrow }) => {
 
                     const copyData = [...data];
-                    const onFocusCard = copyData.map((item, i) => {
-                        if (i === countClickArrow) {
-                            return { ...item, focus: true }
-                        } else {
-                            return { ...item, focus: false }
-                        }
-                    });
+                    const onFocusCard = copyData.map((item, i) => (
+                        {...item, focus: i === countClickArrow}
+                    ));
 
                     return { data: onFocusCard }
                 });
@@ -129,21 +125,16 @@ class ChoiseCar extends Component {
 
                 this.setState(({ data, countClickArrow }) => {
                     const copyData = [...data];
-                    const onFocusCard = copyData.map((item, i) => {
-                        if (i === countClickArrow) {
-                            return { ...item, focus: true }
-                        } else {
-                            return { ...item, focus: false }
-                        }
-                    });
+                    const onFocusCard = copyData.map((item, i) => (
+                        {...item, focus: i === countClickArrow}
+                    ));
 
                     return { data: onFocusCard }
                 });
 
             } else if (e.code === 'KeyE' && this.state.onFocusWithArrow === true) {
-                const copyData = [...this.state.data];
                 const count = this.state.countClickArrow;
-                const id = copyData[count];
+                const id = this.state.data[count];
                 this.onActiveCard(id, count);
             }
         }
@@ -216,13 +207,7 @@ class ChoiseCar extends Component {
 
         this.setState(state => {
             const copyData = [...state.data];
-            const activeItemInArr = copyData.map(item => {
-                if (item.id === id) {
-                    return { ...item, active: !item.active }
-                } else {
-                    return item
-                }
-            })
+            const activeItemInArr = copyData.map(item => item.id === id ? { ...item, active: !item.active } : item);
             return { data: activeItemInArr }
         });
         if (typeof (id) === 'string') {

@@ -1,10 +1,10 @@
 import { Component, createRef } from "react";
 import AddCarsView from "./AddCarsView";
 
-import "./addCars.sass";
+const typeCarList = ['Седан', 'Пикап', 'Универсал'];
 
 class AddCars extends Component {
-    
+
     state = {
         title: '',
         typeCar: '',
@@ -28,9 +28,9 @@ class AddCars extends Component {
     // send info abount new car and zeroing AddCars' state
     sendCarItem = (e) => {
         e.preventDefault();
-        if (this.state.typeCar === 'Седан' || this.state.typeCar === 'Пикап' || this.state.typeCar === 'Универсал') {
-            const copyState = Object.assign({}, this.state);
-            const { title, typeCar, classComfort, driver, url } = copyState;
+        const {typeCar} = this.state;
+        if (typeCarList.includes(typeCar)) {
+            const { title, typeCar, classComfort, driver, url } = this.state;
             this.props.onAddItem(title, typeCar, classComfort, driver, url);
             this.setState({
                 title: '',
@@ -58,12 +58,12 @@ class AddCars extends Component {
 
     render() {
         return (
-            <AddCarsView 
-                data={this.state} 
+            <AddCarsView
+                data={this.state}
                 onValueInputChange={this.onValueInputChange}
                 sendCarItem={this.sendCarItem}
                 onResetItem={this.onResetItem}
-                myRef={this.myRef}/>
+                myRef={this.myRef} />
         )
     }
 }

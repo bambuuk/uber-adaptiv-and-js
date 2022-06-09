@@ -6,10 +6,11 @@ import './carList.sass';
 class CarList extends Component {
 
     render() {
-        const { dragStartHadler, dragEndHandler, dragOverHandler, 
-            dropHandler, cardUntilCurrentCard, onActiveCard, 
-            onDelete, onChangeSelectedCar, setRef, filter } = this.props;
-        const carItemList = this.props.data.map((item, i) => {
+        const { dragStartHadler, dragEndHandler, dragOverHandler,
+            dropHandler, cardUntilCurrentCard, onActiveCard,
+            onDelete, onChangeSelectedCar, setRef, filter, data,
+        } = this.props;
+        const carItemList = data.map((item, i) => {
             return (
                 <CarItem
                     key={item.id}
@@ -31,7 +32,7 @@ class CarList extends Component {
             <h1>Информация отсутствует. Добавть, пожалуйста, новую карточку автомобиля!</h1>
         )
         return (
-            <div 
+            <div
                 className={`${this.props.data.length > 0 ? 'carList' : 'carList carList_without-cars'}`}>
                 {this.props.data.length > 0 ? carItemList : elementWithoutInfoCar}
             </div>

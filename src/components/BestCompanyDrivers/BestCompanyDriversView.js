@@ -1,5 +1,7 @@
+import './BestCompanyDrivers.sass';
 
-const BestCompanyDriversView = ({listDrivers}) => {
+
+const BestCompanyDriversView = ({ listDrivers }) => {
     return (
         <section className="bestCompDrivers">
             <div className="container">

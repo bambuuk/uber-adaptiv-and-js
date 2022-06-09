@@ -46,7 +46,7 @@ class TimeOfStayOnPage extends Component {
         })
     }
 
-    getZero = (num) => { 
+    getZero = (num) => {
         if (num >= 0 && num < 10) {
             return `0${num}`;
         } else {
@@ -60,7 +60,7 @@ class TimeOfStayOnPage extends Component {
         let seconds = this.getZero(this.state.seconds);
 
         return (
-            <TimeOfStayOnPageView hours={hours} minutes={minutes} seconds={seconds}/>
+            <TimeOfStayOnPageView hours={hours} minutes={minutes} seconds={seconds} />
         )
     }
 }

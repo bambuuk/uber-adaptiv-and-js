@@ -1,4 +1,6 @@
 import TimeOfStayOnPage from "../TimeOfStayOnPage/TimeOfStayOnPage";
+import "./addCars.sass";
+
 
 const AddCarsView = function (props) {
     const { title, typeCar, classComfort, driver, url } = props.data;
@@ -38,10 +40,10 @@ const AddCarsView = function (props) {
                         name="typeCar"
                         value={typeCar}
                         onChange={(e) => onValueInputChange(e)}>
-                            <option>Достуаные варианты</option>
-                            <option value="Седан">Седан</option>
-                            <option value="Пикап">Пикап</option>
-                            <option value="Универсал">Универсал</option>
+                        <option>Достуаные варианты</option>
+                        <option value="Седан">Седан</option>
+                        <option value="Пикап">Пикап</option>
+                        <option value="Универсал">Универсал</option>
                     </select>
                 </p>
 
@@ -71,11 +73,11 @@ const AddCarsView = function (props) {
                     required
                     name="url"
                     type="text" />
-                
+
                 <button className="add-item-car_btn" name="add" type="submit">Добавить</button>
                 <button className="add-item-car_btn" name="reset" type="reset">Очистить форму</button>
 
-                <TimeOfStayOnPage/>
+                <TimeOfStayOnPage />
             </form>
         </section>
     )

@@ -1,4 +1,7 @@
-function ChoiseCarFiltersView ({buttons}) {
+import './choiseCarFilters.sass';
+
+
+function ChoiseCarFiltersView({ buttons }) {
     return (
         <>
             <div className="choiseCar_filter">

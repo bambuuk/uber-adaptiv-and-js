@@ -4,35 +4,37 @@ import AddCars from "../AddCars/AddCars";
 import SelectedCar from "../SelectedCar/SelectedCar";
 import BestCompanyDrivers from "../BestCompanyDrivers/BestCompanyDrivers";
 
+import './choiseCar.sass';
+
+
 const ChoiseCarView = function (props) {
-    const { visibleCarItems, onChangeFilter, 
-        deleteItem, filter, onAddItem, selectedCar, 
-        onChangeSelectedCar,  dragStartHadler, 
+    const { visibleCarItems, onChangeFilter,
+        deleteItem, filter, onAddItem, selectedCar,
+        onChangeSelectedCar, dragStartHadler,
         dragEndHandler, dragOverHandler, onActiveCard,
-        dropHandler, sortCard, cardUntilCurrentCard,
+        dropHandler, cardUntilCurrentCard,
         setRef } = props;
     return (
         <section className="choiseCar">
             <div className="container">
-                <BestCompanyDrivers/>
+                <BestCompanyDrivers />
                 <div className="title">Доступные варианты автомобилей</div>
-                <ChoiseCarFilters 
+                <ChoiseCarFilters
                     onChangeFilter={onChangeFilter}
                     filter={filter} />
-                <SelectedCar selectedCar={selectedCar}/>
-                <CarList 
-                    data={visibleCarItems} 
-                    onDelete={deleteItem} 
-                    filter={filter} 
+                <SelectedCar selectedCar={selectedCar} />
+                <CarList
+                    data={visibleCarItems}
+                    onDelete={deleteItem}
+                    filter={filter}
                     onChangeSelectedCar={onChangeSelectedCar}
                     dragStartHadler={dragStartHadler}
-                    dragEndHandler={dragEndHandler} 
+                    dragEndHandler={dragEndHandler}
                     dragOverHandler={dragOverHandler}
                     dropHandler={dropHandler}
-                    sortCard={sortCard}
                     cardUntilCurrentCard={cardUntilCurrentCard}
                     onActiveCard={onActiveCard}
-                    setRef={setRef}/>
+                    setRef={setRef} />
                 <AddCars onAddItem={onAddItem} />
             </div>
         </section>
