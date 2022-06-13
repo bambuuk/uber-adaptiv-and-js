@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import './choiseCarFilters.sass';
 
 
@@ -9,6 +10,10 @@ function ChoiseCarFiltersView({ buttons }) {
             </div>
         </>
     )
+}
+
+ChoiseCarFiltersView.propTypes = { 
+    buttons: PropTypes.array, 
 }
 
 export default ChoiseCarFiltersView;

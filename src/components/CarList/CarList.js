@@ -1,6 +1,7 @@
 import { Component } from "react";
 
 import CarItem from "../CarItem/CarItem";
+import PropTypes from 'prop-types';
 import './carList.sass';
 
 class CarList extends Component {
@@ -38,6 +39,20 @@ class CarList extends Component {
             </div>
         )
     }
+}
+
+CarList.propTypes = { 
+    dragStartHadler: PropTypes.func, 
+    dragEndHandler: PropTypes.func,
+    dragOverHandler: PropTypes.func, 
+    dropHandler: PropTypes.func, 
+    cardUntilCurrentCard: PropTypes.string,
+    onActiveCard: PropTypes.func,
+    onDelete: PropTypes.func,
+    onChangeSelectedCar: PropTypes.func, 
+    setRef: PropTypes.func, 
+    filter: PropTypes.string,
+    data: PropTypes.array,
 }
 
 export default CarList;

@@ -58,7 +58,6 @@ class TimeOfStayOnPage extends Component {
         let hours = this.getZero(this.state.hours);
         let minutes = this.getZero(this.state.minutes);
         let seconds = this.getZero(this.state.seconds);
-
         return (
             <TimeOfStayOnPageView hours={hours} minutes={minutes} seconds={seconds} />
         )

@@ -3,6 +3,7 @@ import CarList from "../CarList/CarList";
 import AddCars from "../AddCars/AddCars";
 import SelectedCar from "../SelectedCar/SelectedCar";
 import BestCompanyDrivers from "../BestCompanyDrivers/BestCompanyDrivers";
+import PropTypes from 'prop-types';
 
 import './choiseCar.sass';
 
@@ -39,6 +40,23 @@ const ChoiseCarView = function (props) {
             </div>
         </section>
     )
+}
+
+ChoiseCarView.propTypes = { 
+    visibleCarItems: PropTypes.array,
+    onChangeFilter: PropTypes.func,
+    deleteItem: PropTypes.func,
+    filter: PropTypes.string,
+    onAddItem: PropTypes.func,
+    selectedCar: PropTypes.string,
+    onChangeSelectedCar: PropTypes.func, 
+    dragStartHadler: PropTypes.func, 
+    dragEndHandler: PropTypes.func,
+    dragOverHandler: PropTypes.func, 
+    dropHandler: PropTypes.func, 
+    cardUntilCurrentCard: PropTypes.string,
+    onActiveCard: PropTypes.func,    
+    setRef: PropTypes.func, 
 }
 
 export default ChoiseCarView;

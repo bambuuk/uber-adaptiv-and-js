@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function TimeOfStayOnPageView({ hours, minutes, seconds }) {
     return (
         <div className="timer">
@@ -9,6 +11,12 @@ function TimeOfStayOnPageView({ hours, minutes, seconds }) {
             </div>
         </div>
     )
+}
+
+TimeOfStayOnPageView.propTypes = {
+    hours: PropTypes.string,
+    minutes: PropTypes.string,
+    seconds: PropTypes.string,
 }
 
 export default TimeOfStayOnPageView;

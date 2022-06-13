@@ -1,4 +1,5 @@
 import TimeOfStayOnPage from "../TimeOfStayOnPage/TimeOfStayOnPage";
+import PropTypes from 'prop-types';
 import "./addCars.sass";
 
 
@@ -81,6 +82,15 @@ const AddCarsView = function (props) {
             </form>
         </section>
     )
+}
+
+AddCarsView.propTypes = {
+    data: PropTypes.object,
+    onValueInputChange: PropTypes.func, 
+    sendCarItem: PropTypes.func, 
+    myRef: PropTypes.object, 
+    onResetItem: PropTypes.func,
+
 }
 
 export default AddCarsView;

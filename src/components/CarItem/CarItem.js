@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from 'prop-types';
 
 import './carItem.sass';
 
@@ -7,7 +8,7 @@ class CarItem extends Component {
         const { title, typeItem, url, driver, id, active, focus } = this.props.data;
         const { onChangeSelectedCar, dragStartHadler, dragEndHandler,
             dragOverHandler, dropHandler, cardUntilCurrentCard,
-            onActiveCard, setRef, filter } = this.props;
+            onActiveCard, setRef, filter, onDelete } = this.props;
         const draggable = filter === 'alphabet' ? false : true;
         let clazz = 'card';
         if (active === true) {
@@ -58,7 +59,7 @@ class CarItem extends Component {
                         <button
                             type="button"
                             className="btn card_btn"
-                            onClick={this.props.onDelete}
+                            onClick={onDelete}
                             tabIndex="0">Удалить</button>
                         <button
                             type="button"
@@ -70,6 +71,20 @@ class CarItem extends Component {
             </div>
         )
     }
+}
+
+CarItem.propTypes = {
+    data: PropTypes.object,
+    onChangeSelectedCar: PropTypes.func, 
+    dragStartHadler: PropTypes.func, 
+    dragEndHandler: PropTypes.func,
+    dragOverHandler: PropTypes.func, 
+    dropHandler: PropTypes.func, 
+    cardUntilCurrentCard: PropTypes.string,
+    onActiveCard: PropTypes.func, 
+    setRef: PropTypes.func, 
+    filter: PropTypes.string,
+    onDelete: PropTypes.func,
 }
 
 export default CarItem; 

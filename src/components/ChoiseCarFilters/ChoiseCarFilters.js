@@ -1,5 +1,7 @@
 import { Component } from "react";
 import ChoiseCarFiltersView from "./ChoiseCarFiltersView";
+import PropTypes from 'prop-types';
+
 
 
 class ChoiseCarFilters extends Component {
@@ -32,6 +34,12 @@ class ChoiseCarFilters extends Component {
             <ChoiseCarFiltersView buttons={buttons} />
         )
     }
+}
+
+ChoiseCarFilters.propTypes = { 
+    filter: PropTypes.string,
+    onChangeFilter: PropTypes.func,
+
 }
 
 export default ChoiseCarFilters;

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import './selectedCar.sass';
 
 const SelectedCar = function (props) {
@@ -7,6 +9,10 @@ const SelectedCar = function (props) {
             <button className="btn">Подтвердить</button>
         </div>
     )
+}
+
+SelectedCar.propTypes ={
+    selectedCar: PropTypes.string
 }
 
 export default SelectedCar;

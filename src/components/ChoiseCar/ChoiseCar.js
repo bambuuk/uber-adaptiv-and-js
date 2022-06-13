@@ -132,7 +132,7 @@ class ChoiseCar extends Component {
                     return { data: onFocusCard }
                 });
 
-            } else if (e.code === 'KeyE' && this.state.onFocusWithArrow === true) {
+            } else if (e.code === 'ControlRight') {
                 const count = this.state.countClickArrow;
                 const id = this.state.data[count];
                 this.onActiveCard(id, count);

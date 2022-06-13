@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import uberLogo from '../../img/logo/Uber.png';
 
 const HeaderView = function(props) {
@@ -49,6 +50,12 @@ const HeaderView = function(props) {
             </div>
         </header>
     );
+}
+
+HeaderView.propTypes = { 
+    styleHamburger: PropTypes.string, 
+    styleMenu: PropTypes.string,
+    toggleHamburgerMenuActive: PropTypes.func, 
 }
 
 export default HeaderView;

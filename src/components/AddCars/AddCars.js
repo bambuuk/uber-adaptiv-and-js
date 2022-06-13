@@ -1,5 +1,6 @@
 import { Component, createRef } from "react";
 import AddCarsView from "./AddCarsView";
+import PropTypes from 'prop-types';
 
 const typeCarList = ['Седан', 'Пикап', 'Универсал'];
 
@@ -66,6 +67,10 @@ class AddCars extends Component {
                 myRef={this.myRef} />
         )
     }
+}
+
+AddCars.propTypes = {
+    onAddItem: PropTypes.func
 }
 
 export default AddCars;
