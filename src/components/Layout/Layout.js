@@ -1,18 +1,24 @@
+import PropTypes from 'prop-types';
+
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-const Layout = ({children}) => {
-    return (
-        <>
-            <Header />
+function Layout({ children }) {
+  return (
+    <>
+      <Header />
 
-            <main>
-                {children}
-            </main>
+      <main>
+        {children}
+      </main>
 
-            <Footer />
-        </>
-    )
+      <Footer />
+    </>
+  );
 }
+
+Layout.propTypes = {
+  children: PropTypes.element.isRequired
+};
 
 export default Layout;

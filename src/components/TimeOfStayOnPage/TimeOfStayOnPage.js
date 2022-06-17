@@ -1,67 +1,67 @@
-import { Component } from "react";
-import TimeOfStayOnPageView from "./TimeOfStayOnPageView";
+import { Component } from 'react';
+import TimeOfStayOnPageView from './TimeOfStayOnPageView';
 
 import './timeOfStayOnPage.sass';
 
 class TimeOfStayOnPage extends Component {
+  // eslint-disable-next-line
+  state = { 
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  };
 
-    state = {
-        hours: 0,
-        minutes: 0,
-        seconds: 0
-    }
+  componentDidMount() {
+    this.timerId = setInterval(() => this.updateTime(), 1000);
+  }
 
-    componentDidMount() {
-        this.timerId = setInterval(() => this.updateTime(), 1000);
-    }
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
 
-    componentWillUnmount() {
-        clearInterval(this.timerId);
-    }
+  updateTime = () => {
+    this.setState((state) => {
+      let s = state.seconds;
+      let m = state.minutes;
+      let h = state.hours;
 
-    updateTime = () => {
-        this.setState(state => {
-            let s = state.seconds;
-            let m = state.minutes;
-            let h = state.hours;
+      // installing seconds and minutes
+      if (state.seconds < 59) {
+        s += 1;
+      } else {
+        s = 0;
+        m += 1;
+      }
 
-            // installing seconds and minutes
-            if (state.seconds < 59) {
-                s++;
-            } else {
-                s = 0;
-                m++;
-            }
+      // installing minutes and hours
+      if (m === 60) {
+        m = 0;
+        h += 1;
+      }
+      return {
+        hours: h,
+        minutes: m,
+        seconds: s
+      };
+    });
+  };
 
-            // installing minutes and hours
-            if (m === 60) {
-                m = 0;
-                h++;
-            }
-            return {
-                hours: h,
-                minutes: m,
-                seconds: s
-            }
-        })
-    }
+  getZero = (num) => {
+    if (num >= 0 && num < 10) {
+      return `0${num}`;
+    } 
+    return num;
+  };
 
-    getZero = (num) => {
-        if (num >= 0 && num < 10) {
-            return `0${num}`;
-        } else {
-            return num;
-        }
-    }
-
-    render() {
-        let hours = this.getZero(this.state.hours);
-        let minutes = this.getZero(this.state.minutes);
-        let seconds = this.getZero(this.state.seconds);
-        return (
-            <TimeOfStayOnPageView hours={hours} minutes={minutes} seconds={seconds} />
-        )
-    }
+  render() {
+    const { hours, minutes, seconds } = this.state;
+    const hoursTime = this.getZero(hours);
+    const minutesTime = this.getZero(minutes);
+    const secondsTime = this.getZero(seconds);
+    return (
+      <TimeOfStayOnPageView hours={String(hoursTime)} minutes={String(minutesTime)} seconds={String(secondsTime)} />
+    );
+  }
 }
 
 export default TimeOfStayOnPage;

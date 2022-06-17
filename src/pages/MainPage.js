@@ -9,20 +9,18 @@ import City from '../components/City/City';
 import Layout from '../components/Layout/Layout';
 
 class MainPage extends Component {
-    render() {
-        return (
-            <>
-                <Layout>
-                    <Promo />
-                    <Reasons />
-                    <Mobile />
-                    <Choise />
-                    <Require />
-                    <City />
-                </Layout>
-            </>
-        )
-    }
+  render() {
+    return (
+      <Layout>
+        <Promo />
+        <Reasons />
+        <Mobile />
+        <Choise />
+        <Require />
+        <City />
+      </Layout>
+    );
+  }
 }
 
 export default MainPage;
