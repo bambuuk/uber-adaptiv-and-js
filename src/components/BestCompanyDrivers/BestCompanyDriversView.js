@@ -1,7 +1,16 @@
 import PropTypes from 'prop-types';
 import './BestCompanyDrivers.sass';
 
-function BestCompanyDriversView({ listDrivers }) {
+function BestCompanyDriversView({ data }) {
+  const listDrivers = data.map(({ name, imgUrl, id }) => {
+    return (
+      <div className="bestCompDrivers_item" key={id}>
+        <img className="bestCompDrivers_img" src={imgUrl} alt={name} />
+        <p className="bestCompDrivers_name">{name}</p>
+      </div>
+    );
+  });
+
   return (
     <section className="bestCompDrivers">
       <div className="container">
@@ -15,11 +24,11 @@ function BestCompanyDriversView({ listDrivers }) {
 }
 
 BestCompanyDriversView.propTypes = {
-  listDrivers: PropTypes.instanceOf(Array),
+  data: PropTypes.instanceOf(Array),
 };
 
 BestCompanyDriversView.defaultProps = {
-  listDrivers: null,
+  data: null,
 };
 
 export default BestCompanyDriversView;

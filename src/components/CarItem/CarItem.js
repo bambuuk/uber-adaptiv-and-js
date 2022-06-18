@@ -17,11 +17,11 @@ class CarItem extends Component {
     
     const draggable = filter !== 'alphabet';
     let clazz = 'card';
-    if (active === true) {
+    if (active) {
       clazz = 'card card_active';
     } else if (cardUntilCurrentCard === id) {
       clazz = 'card card_drag';
-    } else if (focus === true && filter === 'all') {
+    } else if (focus && filter === 'all') {
       clazz = 'card card_focus';
     } else {
       clazz = 'card';

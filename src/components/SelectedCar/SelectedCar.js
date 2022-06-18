@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 
 import './selectedCar.sass';
 
-function SelectedCar(props) {
-  const { selectedCar } = props;
+function SelectedCar({ selectedCar }) {
   return (
     <div className="selected-car">
       <p className="selected-car_text">
