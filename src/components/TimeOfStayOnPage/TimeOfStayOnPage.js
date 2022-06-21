@@ -4,12 +4,14 @@ import TimeOfStayOnPageView from './TimeOfStayOnPageView';
 import './timeOfStayOnPage.sass';
 
 class TimeOfStayOnPage extends Component {
-  // eslint-disable-next-line
-  state = { 
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  };
+  constructor() {
+    super();
+    this.state = { 
+      hours: 0,
+      minutes: 0,
+      seconds: 0
+    };
+  }
 
   componentDidMount() {
     this.timerId = setInterval(() => this.updateTime(), 1000);

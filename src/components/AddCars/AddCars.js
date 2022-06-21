@@ -5,16 +5,17 @@ import AddCarsView from './AddCarsView';
 const typeCarList = ['Седан', 'Пикап', 'Универсал'];
 
 class AddCars extends Component {
-  // eslint-disable-next-line
-  state = { 
-    title: '',
-    typeCar: '',
-    classComfort: '',
-    driver: '',
-    url: '',
-  };
-
-  myRef = createRef();
+  constructor() {
+    super();
+    this.myRef = createRef();
+    this.state = { 
+      title: '',
+      typeCar: '',
+      classComfort: '',
+      driver: '',
+      url: '',
+    };
+  }
 
   componentDidMount() {
     this.myRef.current.focus();

@@ -4,10 +4,12 @@ import HeaderView from './HeaderView';
 import './header.sass';
 
 class Header extends Component {
-  // eslint-disable-next-line
-  state = {
-    active: false
-  };
+  constructor() {
+    super();
+    this.state = {
+      active: false
+    };
+  }
 
   toggleHamburgerMenuActive = (e) => {
     if (e.type === 'click' || e.code === 'Enter') {

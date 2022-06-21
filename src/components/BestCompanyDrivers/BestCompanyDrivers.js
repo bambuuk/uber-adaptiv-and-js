@@ -3,10 +3,12 @@ import axios from 'axios';
 import BestCompanyDriversView from './BestCompanyDriversView';
 
 class BestCompanyDrivers extends Component {
-  // eslint-disable-next-line
-  state = {
-    data: []
-  };
+  constructor() {
+    super();
+    this.state = {
+      data: []
+    };
+  }
 
   componentDidMount() {
     axios.get('https://62a11ee47b9345bcbe46a4c5.mockapi.io/drivers')
