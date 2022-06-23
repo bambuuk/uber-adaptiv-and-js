@@ -121,8 +121,7 @@ class ChoiseCar extends Component {
       this.setState({ onFocusWithArrow: true });
     } else if (c === 'Escape') {
       this.setState(({ data }) => {
-        const copyData = [...data];
-        const onFocusCard = copyData.map((item) => {
+        const onFocusCard = data.map((item) => {
           return { ...item, focus: false };
         });
         return { data: onFocusCard, onFocusWithArrow: false, countClickArrow: null };
@@ -244,8 +243,8 @@ class ChoiseCar extends Component {
 
   onActiveCard = (id) => {
     this.setState((state) => {
-      const copyData = [...state.data];
-      const activeItemInArr = copyData.map((item) => (item.id === id ? { ...item, active: !item.active } : item));
+      const { data } = state;
+      const activeItemInArr = data.map((item) => (item.id === id ? { ...item, active: !item.active } : item));
       return { data: activeItemInArr };
     });
     if (typeof (id) === 'string') {
@@ -302,7 +301,7 @@ class ChoiseCar extends Component {
     } = this.state;
     const { onSortCarItems } = this;
     const visibleCarItems = onSortCarItems(filter, data);
-    const theme = this.context;
+    const { theme } = this.context;
 
     return (
       <ChoiseCarView

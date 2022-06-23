@@ -9,25 +9,23 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      theme: 'light',
+      theme: 'light', // eslint-disable-line
+      choiseTheme: this.choiseTheme, // eslint-disable-line
     };
   }
 
   choiseTheme = (propsTheme) => {
-    this.setState({ theme: propsTheme });
+    this.setState({ theme: propsTheme }); // eslint-disable-line
   };
 
   render() {
-    const { theme } = this.state;
-    // console.log(this.choiseTheme)
-
     return (
       <BrowserRouter>
         <div className="App">
-          <ThemeContext.Provider value={theme}>
+          <ThemeContext.Provider value={this.state}>
             <Routes>
               <Route path="/" element={<MainPage />} />
-              <Route path="/choise-car" element={<CarsPage choiseTheme={this.choiseTheme} />} />
+              <Route path="/choise-car" element={<CarsPage />} />
             </Routes>
           </ThemeContext.Provider>
         </div>
