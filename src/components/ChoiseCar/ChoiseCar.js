@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
 import ChoiseCarView from './ChoiseCarView';
+import ThemeContext from '../../context/ThemeContext';
 
 import sedan from '../../img/cars/sedan.png';
 import pickup from '../../img/cars/pickup.png';
@@ -13,8 +13,8 @@ const filterType = {
 };
 
 class ChoiseCar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       data: [
         {
@@ -99,7 +99,7 @@ class ChoiseCar extends Component {
       currentCard: null,
       cardUntilCurrentCard: null,
       onFocusWithArrow: false,
-      countClickArrow: null
+      countClickArrow: null,
     };
   }
 
@@ -113,7 +113,7 @@ class ChoiseCar extends Component {
 
   onKeyboardClickForFocusCards = (e) => {
     const c = e.code;
-    const { 
+    const {
       onFocusWithArrow, filter,
     } = this.state;
 
@@ -139,7 +139,7 @@ class ChoiseCar extends Component {
           return { countClickArrow: 0 };
         } if (count === null) {
           return { countClickArrow: 0 };
-        } 
+        }
         return { countClickArrow };
       });
       this.setState(({ data, countClickArrow }) => {
@@ -159,7 +159,7 @@ class ChoiseCar extends Component {
           return { countClickArrow: data.length - 1 };
         } if (count === null) {
           return { countClickArrow: 0 };
-        } 
+        }
         return { countClickArrow };
       });
 
@@ -195,7 +195,7 @@ class ChoiseCar extends Component {
   sortCard = (a, b) => {
     if (a.order > b.order) {
       return 1;
-    } 
+    }
     return -1;
   };
 
@@ -206,7 +206,7 @@ class ChoiseCar extends Component {
     } if (filter === 'alphabet') {
       const res = data.sort((item1, item2) => (item1.title > item2.title ? 1 : -1));
       return res;
-    } 
+    }
     return data;
   };
 
@@ -281,12 +281,7 @@ class ChoiseCar extends Component {
     this.setState({ cardUntilCurrentCard: null });
     this.setState((state) => {
       const copyData = [...state.data];
-      // const copyData = [...state.data];
-      // console.log(copyData)
-      /**
-       * когда фильтрую массив данных, нужно заново переписать order уже в отсортированном массиве, после чего 
-       * передавать правильные данные дальше и скорее всего, ордер переписывать нужно в onSortCarItems
-     */
+      
       const newData = copyData.map((c) => {
         if (c.id === card.id) {
           return { ...c, order: state.currentCard.order };
@@ -302,11 +297,12 @@ class ChoiseCar extends Component {
   };
 
   render() {
-    const { 
+    const {
       filter, data, selectedCar, cardUntilCurrentCard
     } = this.state;
     const { onSortCarItems } = this;
     const visibleCarItems = onSortCarItems(filter, data);
+    const theme = this.context;
 
     return (
       <ChoiseCarView
@@ -325,9 +321,12 @@ class ChoiseCar extends Component {
         cardUntilCurrentCard={cardUntilCurrentCard}
         onActiveCard={this.onActiveCard}
         setRef={this.setRef}
+        theme={theme}
       />
     );
   }
 }
+
+ChoiseCar.contextType = ThemeContext;
 
 export default ChoiseCar;

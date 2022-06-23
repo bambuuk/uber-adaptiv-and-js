@@ -1,13 +1,37 @@
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import uberLogo from '../../img/logo/Uber.png';
 
 function HeaderView(props) {
-  const { styleHamburger, styleMenu, toggleHamburgerMenuActive } = props;
+  const { 
+    styleHamburger, styleMenu, toggleHamburgerMenuActive, choiseTheme
+  } = props;
+  
   return (
     <header>
       <nav>
+        <div className="btn_switcher_theme">
+          <button 
+            type="button" 
+            aria-label="Sun" 
+            className="btn-switcher"
+            onClick={() => choiseTheme('light')}
+          >
+            <FontAwesomeIcon icon={faSun} />
+          </button>
+          <button 
+            type="button" 
+            aria-label="Moon" 
+            className="btn-switcher"
+            onClick={() => choiseTheme('dark')}
+          >
+            <FontAwesomeIcon icon={faMoon} />
+          </button>
+        </div>
         <div className="container">
+          
           <ul // eslint-disable-line
             className={`menu ${styleMenu}`}
             onClick={(e) => toggleHamburgerMenuActive(e)}
@@ -80,13 +104,15 @@ function HeaderView(props) {
 HeaderView.propTypes = { 
   styleHamburger: PropTypes.string, 
   styleMenu: PropTypes.string,
-  toggleHamburgerMenuActive: PropTypes.func, 
+  toggleHamburgerMenuActive: PropTypes.func,
+  choiseTheme: PropTypes.func,
 };
 
 HeaderView.defaultProps = { 
   styleHamburger: 'hamburger_active', 
   styleMenu: 'menu_active',
   toggleHamburgerMenuActive: null,
+  choiseTheme: null
 };
 
 export default HeaderView;

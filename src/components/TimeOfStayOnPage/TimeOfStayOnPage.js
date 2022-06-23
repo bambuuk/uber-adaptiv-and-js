@@ -4,8 +4,8 @@ import TimeOfStayOnPageView from './TimeOfStayOnPageView';
 import './timeOfStayOnPage.sass';
 
 class TimeOfStayOnPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { 
       hours: 0,
       minutes: 0,

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function Layout({ children }) {
+function Layout({ children, choiseTheme }) {
   return (
     <>
-      <Header />
+      <Header choiseTheme={choiseTheme} />
 
       <main>
         {children}
@@ -18,7 +18,12 @@ function Layout({ children }) {
 }
 
 Layout.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
+  choiseTheme: PropTypes.func,
+};
+
+Layout.defaultProps = { 
+  choiseTheme: null
 };
 
 export default Layout;

@@ -4,7 +4,6 @@ import CarList from '../CarList/CarList';
 import AddCars from '../AddCars/AddCars';
 import SelectedCar from '../SelectedCar/SelectedCar';
 import BestCompanyDrivers from '../BestCompanyDrivers/BestCompanyDrivers';
-
 import './choiseCar.sass';
 
 function ChoiseCarView(props) {
@@ -14,13 +13,15 @@ function ChoiseCarView(props) {
     onChangeSelectedCar, dragStartHadler,
     dragEndHandler, dragOverHandler, onActiveCard,
     dropHandler, cardUntilCurrentCard,
-    setRef 
+    setRef, theme, 
   } = props;
+
   return (
-    <section className="choiseCar">
+    <section className={`choiseCar choiseCar_${theme}`}>
       <div className="container">
+        <div className={`title title_${theme}`}>Лучшие водители нашей компании</div>
         <BestCompanyDrivers />
-        <div className="title">Доступные варианты автомобилей</div>
+        <div className={`title title_${theme}`}>Доступные варианты автомобилей</div>
         <ChoiseCarFilters
           onChangeFilter={onChangeFilter}
           filter={filter}
@@ -59,7 +60,8 @@ ChoiseCarView.propTypes = {
   dropHandler: PropTypes.func, 
   cardUntilCurrentCard: PropTypes.string,
   onActiveCard: PropTypes.func,    
-  setRef: PropTypes.func, 
+  setRef: PropTypes.func,
+  theme: PropTypes.string,
 };
 
 ChoiseCarView.defaultProps = { 
@@ -76,7 +78,8 @@ ChoiseCarView.defaultProps = {
   dropHandler: () => null, 
   cardUntilCurrentCard: '',
   onActiveCard: () => null,    
-  setRef: () => null, 
+  setRef: () => null,
+  theme: 'light', 
 };
 
 export default ChoiseCarView;

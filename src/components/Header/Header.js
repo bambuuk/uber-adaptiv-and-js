@@ -1,11 +1,11 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import HeaderView from './HeaderView';
-
 import './header.sass';
 
 class Header extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       active: false
     };
@@ -19,6 +19,7 @@ class Header extends Component {
 
   render() {
     const { active } = this.state;
+    const choiseTheme = this.props;
     const styleHamburger = active ? 'hamburger_active' : '';
     const styleMenu = active ? 'menu_active' : '';
 
@@ -27,9 +28,18 @@ class Header extends Component {
         styleHamburger={styleHamburger}
         styleMenu={styleMenu}
         toggleHamburgerMenuActive={this.toggleHamburgerMenuActive}
+        choiseTheme={choiseTheme.choiseTheme}
       />
     );
   }
 }
+
+Header.propTypes = { 
+  choiseTheme: PropTypes.func, 
+};
+
+Header.defaultProps = { 
+  choiseTheme: null
+};
 
 export default Header;

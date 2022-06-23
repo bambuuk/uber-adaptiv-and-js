@@ -5,8 +5,8 @@ import AddCarsView from './AddCarsView';
 const typeCarList = ['Седан', 'Пикап', 'Универсал'];
 
 class AddCars extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.myRef = createRef();
     this.state = { 
       title: '',

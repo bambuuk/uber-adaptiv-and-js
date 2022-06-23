@@ -3,8 +3,8 @@ import axios from 'axios';
 import BestCompanyDriversView from './BestCompanyDriversView';
 
 class BestCompanyDrivers extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       data: []
     };
