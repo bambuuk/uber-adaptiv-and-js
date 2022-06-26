@@ -12,14 +12,12 @@ class MainPage extends Component {
   render() {
     return (
       <Layout>
-        <>
-          <Promo />
-          <Reasons />
-          <Mobile />
-          <Choise />
-          <Require />
-          <City />
-        </>
+        <Promo />
+        <Reasons />
+        <Mobile />
+        <Choise />
+        <Require />
+        <City />
       </Layout>
     );
   }
