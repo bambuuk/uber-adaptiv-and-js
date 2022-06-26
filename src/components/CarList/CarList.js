@@ -1,45 +1,41 @@
-import { Component } from 'react';
-
 import PropTypes from 'prop-types';
 import CarItem from '../CarItem/CarItem';
 import './carList.sass';
 
-class CarList extends Component {
-  render() {
-    const {
-      dragStartHadler, dragEndHandler, dragOverHandler,
-      dropHandler, cardUntilCurrentCard, onActiveCard,
-      onDelete, onChangeSelectedCar, setRef, filter, data,
-    } = this.props;
-    const carItemList = data.map((item, i) => {
-      return (
-        <CarItem
-          key={item.id}
-          data={item}
-          onDelete={() => onDelete(item.id)}
-          onChangeSelectedCar={() => onChangeSelectedCar(item.title)}
-          dragStartHadler={dragStartHadler}
-          dragEndHandler={dragEndHandler}
-          dragOverHandler={dragOverHandler}
-          dropHandler={dropHandler}
-          cardUntilCurrentCard={cardUntilCurrentCard}
-          onActiveCard={(e) => onActiveCard(item.id, i, e)}
-          setRef={setRef}
-          filter={filter}
-        />
-      );
-    });
-    const elementWithoutInfoCar = (
-      <h1>Информация отсутствует. Добавть, пожалуйста, новую карточку автомобиля!</h1>
-    );
+function CarList(props) {
+  const {
+    dragStartHadler, dragEndHandler, dragOverHandler,
+    dropHandler, cardUntilCurrentCard, onActiveCard,
+    onDelete, onChangeSelectedCar, setRef, filter, data,
+  } = props;
+  const carItemList = data.map((item, i) => {
     return (
-      <div
-        className={`${data.length > 0 ? 'carList' : 'carList carList_without-cars'}`}
-      >
-        {data.length > 0 ? carItemList : elementWithoutInfoCar}
-      </div>
+      <CarItem
+        key={item.id}
+        data={item}
+        onDelete={() => onDelete(item.id)}
+        onChangeSelectedCar={() => onChangeSelectedCar(item.title)}
+        dragStartHadler={dragStartHadler}
+        dragEndHandler={dragEndHandler}
+        dragOverHandler={dragOverHandler}
+        dropHandler={dropHandler}
+        cardUntilCurrentCard={cardUntilCurrentCard}
+        onActiveCard={(e) => onActiveCard(item.id, i, e)}
+        setRef={setRef}
+        filter={filter}
+      />
     );
-  }
+  });
+  const elementWithoutInfoCar = (
+    <h1>Информация отсутствует. Добавть, пожалуйста, новую карточку автомобиля!</h1>
+  );
+  return (
+    <div
+      className={`${data.length > 0 ? 'carList' : 'carList carList_without-cars'}`}
+    >
+      {data.length > 0 ? carItemList : elementWithoutInfoCar}
+    </div>
+  );
 }
 
 CarList.propTypes = { 
