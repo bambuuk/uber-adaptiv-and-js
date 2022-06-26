@@ -1,59 +1,54 @@
-import { Component, createRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AddCarsView from './AddCarsView';
 
 const typeCarList = ['Седан', 'Пикап', 'Универсал'];
 
-class AddCars extends Component {
-  constructor(props) {
-    super(props);
-    this.myRef = createRef();
-    this.state = { 
-      title: '',
-      typeCar: '',
-      classComfort: '',
-      driver: '',
-      url: '',
-    };
-  }
+function AddCars(props) {
+  const [data, setData] = useState({
+    title: '',
+    typeCar: '',
+    classComfort: '',
+    driver: '',
+    url: '',
+  });
 
-  componentDidMount() {
-    this.myRef.current.focus();
-  }
+  const myRef = useRef(null);
 
-  onValueInputChange = (e) => {
-    this.setState({
+  useEffect(() => {
+    myRef.current.focus();
+  }, []);
+
+  const onValueInputChange = (e) => {
+    setData({
+      ...data,
       [e.target.name]: e.target.value
     });
   };
 
   // send info abount new car and zeroing AddCars' state
-  sendCarItem = (e) => {
+  const sendCarItem = (e) => {
     e.preventDefault();
-    const { typeCar } = this.state;
-    const { onAddItem } = this.props;
+    const { typeCar } = data;
+    const { onAddItem } = props;
     if (typeCarList.includes(typeCar)) {
       const {
-        title, classComfort, driver, url 
-      } = this.state;
+        title, classComfort, driver, url
+      } = data;
       onAddItem(title, typeCar, classComfort, driver, url);
-      this.setState({
+      setData({
         title: '',
         typeCar: '',
         classComfort: '',
         driver: '',
         url: ''
       });
-    } else {
-      // eslint-disable-next-line
-      alert(`Тип автомобиля может быть: Седан, Пикап, Универсал. 
-            Пожалуйста, впишите один из предложенных вариантов`); 
-    }
+    } 
   };
 
-  onResetItem = (e) => {
+  const onResetItem = (e) => {
     e.preventDefault();
-    this.setState({
+    setData({
       title: '',
       typeCar: '',
       classComfort: '',
@@ -62,17 +57,15 @@ class AddCars extends Component {
     });
   };
 
-  render() {
-    return (
-      <AddCarsView
-        data={this.state}
-        onValueInputChange={this.onValueInputChange}
-        sendCarItem={this.sendCarItem}
-        onResetItem={this.onResetItem}
-        myRef={this.myRef}
-      />
-    );
-  }
+  return (
+    <AddCarsView
+      data={data}
+      onValueInputChange={onValueInputChange}
+      sendCarItem={sendCarItem}
+      onResetItem={onResetItem}
+      myRef={myRef}
+    />
+  );
 }
 
 AddCars.propTypes = {

@@ -88,7 +88,7 @@ function AddCarsView(props) {
         />
 
         <button className="add-item-car_btn" name="add" type="submit">Добавить</button>
-        <button className="add-item-car_btn" name="reset" type="button">Очистить форму</button>
+        <button className="add-item-car_btn" name="reset" type="button" onClick={onResetItem}>Очистить форму</button>
 
         <TimeOfStayOnPage />
       </form>
