@@ -1,65 +1,54 @@
-import { Component } from 'react';
-import './mobile.sass';
+import { useState } from 'react';
+import MobileView from './MobileView';
+import PossibilityItem from '../PossibilityItem/PossibilityItem';
 
-class Mobile extends Component {
-  render() {
+function Mobile() {
+  // eslint-disable-next-line
+  const [possibilitiesList, setPossibilitiesList] = useState([
+    {
+      numberItem: 1,
+      subtitle: 'оформление заказа одним касанием',
+      id: 'оформление заказа одним касанием',
+    },
+    {
+      numberItem: 2,
+      subtitle: 'надежная подача',
+      id: 'надежная подача',
+    },
+    {
+      numberItem: 3,
+      subtitle: 'прозрачные цены',
+      id: 'прозрачные цены',
+    },
+    {
+      numberItem: 4,
+      subtitle: 'безналичная оплата',
+      id: 'безналичная оплата',
+    },
+    {
+      numberItem: 5,
+      subtitle: 'обратная связь',
+      id: 'обратная связь',
+    },
+    {
+      numberItem: 6,
+      subtitle: 'разделить стоимость поездки',
+      id: 'разделить стоимость поездки',
+    },
+  ]);
+
+  const content = possibilitiesList.map(({ numberItem, subtitle, id }) => {
     return (
-      <section className="mobile">
-        <div className="container">
-          <div className="label">Возможности</div>
-          <h2 className="title">мобильное приложение убер</h2>
-          <div className="subtitle">
-            Сделайте заказ, совершите поездку и оплатите ее стоимость, используя свой
-            мобильный
-            телефон
-          </div>
-
-          <div className="row mobile_main_item">
-            <div className="col-md-6 col-lg-4">
-              <div className="mobile_item mobile_item_1">
-                <div className="mobile_item_subtitle">оформление заказа одним касанием</div>
-                <div className="mobile_item_plus" />
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="mobile_item mobile_item_2">
-                <div className="mobile_item_subtitle">надежная подача</div>
-                <div className="mobile_item_plus" />
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="mobile_item mobile_item_3">
-                <div className="mobile_item_subtitle">прозрачные цены</div>
-                <div className="mobile_item_plus" />
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="mobile_item mobile_item_4">
-                <div className="mobile_item_subtitle">безналичная оплата</div>
-                <div className="mobile_item_plus" />
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="mobile_item mobile_item_5">
-                <div className="mobile_item_subtitle">обратная связь</div>
-                <div className="mobile_item_plus" />
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="mobile_item mobile_item_6">
-                <div className="mobile_item_subtitle">
-                  разделить
-                  <br />
-                  стоимость поездки
-                </div>
-                <div className="mobile_item_plus" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PossibilityItem
+        numberItem={numberItem}
+        subtitle={subtitle}
+        key={id}
+      />
     );
-  }
+  });
+  return (
+    <MobileView content={content} />
+  );
 }
 
 export default Mobile;
