@@ -4,26 +4,9 @@ import TimeOfStayOnPageView from './TimeOfStayOnPageView';
 import './timeOfStayOnPage.sass';
 
 function TimeOfStayOnPage() {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { 
-  //     hours: 0,
-  //     minutes: 0,
-  //     seconds: 0
-  //   };
-  // }
-
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-
-  // componentDidMount() {
-  //   this.timerId = setInterval(() => this.updateTime(), 1000);
-  // }
-
-  // componentWillUnmount() {
-  //   clearInterval(this.timerId);
-  // }
 
   const updateTime = () => {
     let s = seconds;
@@ -43,12 +26,6 @@ function TimeOfStayOnPage() {
       m = 0;
       h += 1;
     }
-    
-    // return {
-    //   hours: h,
-    //   minutes: m,
-    //   seconds: s
-    // };
 
     setHours(h);
     setMinutes(m);
