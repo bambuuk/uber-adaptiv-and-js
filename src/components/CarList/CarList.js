@@ -13,7 +13,10 @@ function CarList(props) {
       <CarItem
         key={item.id}
         data={item}
-        onDelete={() => onDelete(item.id)}
+        onDelete={() => {
+          onDelete(item.id);
+          // console.log(item.id)
+        }}
         onChangeSelectedCar={() => onChangeSelectedCar(item.title)}
         dragStartHadler={dragStartHadler}
         dragEndHandler={dragEndHandler}

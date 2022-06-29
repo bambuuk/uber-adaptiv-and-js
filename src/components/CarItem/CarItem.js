@@ -29,7 +29,7 @@ function CarItem(props) {
     <div
       className={clazz}
       ref={(ref) => setRef(ref, id)}
-      onDragStart={(e) => dragStartHadler(e, data)}
+      onDragStart={() => dragStartHadler(data)}
       onDragLeave={(e) => dragEndHandler(e)}
       onDragEnd={(e) => dragEndHandler(e)}
       onDragOver={(e) => dragOverHandler(e, id)}

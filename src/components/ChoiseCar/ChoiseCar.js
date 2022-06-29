@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import ChoiseCarView from './ChoiseCarView';
 import ThemeContext from '../../context/ThemeContext';
 
@@ -12,186 +12,211 @@ const filterType = {
   universal: 'Универсал',
 };
 
-class ChoiseCar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [
-        {
-          order: 1,
-          title: 'BMW M3',
-          typeItem: { typeCar: 'Седан', classComfort: 'Средний' },
-          driver: 'Двэйн Джонсон',
-          url: sedan,
-          id: 'BMW M3 Двэйн Джонсон',
-          active: false,
-          focus: false
-        },
+function ChoiseCar() {
+  const [filter, setFilter] = useState('all');
+  const [selectedCar, setSelectedCar] = useState('Вы пока не выбрали автомобиль');
+  const [currentCard, setCurrentCard] = useState(null);
+  const [cardUntilCurrentCard, setCardUntilCurrentCard] = useState(null);
+  const [onFocusWithArrow, setOnFocusWithArrow] = useState(false);
+  const [countClickArrow, setCountClickArrow] = useState(null);
+  const [cardsList, setCardsList] = useState([
+    {
+      order: 1,
+      title: 'BMW M3',
+      typeItem: { typeCar: 'Седан', classComfort: 'Средний' },
+      driver: 'Двэйн Джонсон',
+      url: sedan,
+      id: 'BMW M3 Двэйн Джонсон',
+      active: false,
+      focus: false
+    },
 
-        {
-          order: 2,
-          title: 'TOYOTA GT86',
-          typeItem: { typeCar: 'Седан', classComfort: 'Люкс' },
-          driver: 'Джейк Джилленгол',
-          url: sedan,
-          id: 'TOYOTA GT86 Джейк Джилленгол',
-          active: false,
-          focus: false
-        },
+    {
+      order: 2,
+      title: 'TOYOTA GT86',
+      typeItem: { typeCar: 'Седан', classComfort: 'Люкс' },
+      driver: 'Джейк Джилленгол',
+      url: sedan,
+      id: 'TOYOTA GT86 Джейк Джилленгол',
+      active: false,
+      focus: false
+    },
 
-        {
-          order: 3,
-          title: 'Nissan GTR',
-          typeItem: { typeCar: 'Седан', classComfort: 'Люкс' },
-          driver: 'Том Холанд',
-          url: sedan,
-          id: 'Nissan GTR Том Холанд',
-          active: false,
-          focus: false
-        },
+    {
+      order: 3,
+      title: 'Nissan GTR',
+      typeItem: { typeCar: 'Седан', classComfort: 'Люкс' },
+      driver: 'Том Холанд',
+      url: sedan,
+      id: 'Nissan GTR Том Холанд',
+      active: false,
+      focus: false
+    },
 
-        {
-          order: 4,
-          title: 'Ford F-150',
-          typeItem: { typeCar: 'Пикап', classComfort: 'Люкс' },
-          driver: 'Александра Даддарио',
-          url: pickup,
-          id: 'Ford F-150 Александра Даддарио',
-          active: false,
-          focus: false
-        },
+    {
+      order: 4,
+      title: 'Ford F-150',
+      typeItem: { typeCar: 'Пикап', classComfort: 'Люкс' },
+      driver: 'Александра Даддарио',
+      url: pickup,
+      id: 'Ford F-150 Александра Даддарио',
+      active: false,
+      focus: false
+    },
 
-        {
-          order: 5,
-          title: 'TOYOTA Tundra',
-          typeItem: { typeCar: 'Пикап', classComfort: 'Люкс' },
-          driver: 'Зэндая Мари',
-          url: pickup,
-          id: 'TOYOTA Tundra Зэндая Мари',
-          active: false,
-          focus: false
-        },
+    {
+      order: 5,
+      title: 'TOYOTA Tundra',
+      typeItem: { typeCar: 'Пикап', classComfort: 'Люкс' },
+      driver: 'Зэндая Мари',
+      url: pickup,
+      id: 'TOYOTA Tundra Зэндая Мари',
+      active: false,
+      focus: false
+    },
 
-        {
-          order: 6,
-          title: 'Москвич Пирожок',
-          typeItem: { typeCar: 'Пикап', classComfort: 'Эконом' },
-          driver: 'Кристиан Бейл',
-          url: pickup,
-          id: 'Москвич Пирожок Кристиан Бейл',
-          active: false,
-          focus: false
-        },
+    {
+      order: 6,
+      title: 'Москвич Пирожок',
+      typeItem: { typeCar: 'Пикап', classComfort: 'Эконом' },
+      driver: 'Кристиан Бейл',
+      url: pickup,
+      id: 'Москвич Пирожок Кристиан Бейл',
+      active: false,
+      focus: false
+    },
 
-        {
-          order: 7,
-          title: 'Volkswagen Golf',
-          typeItem: { typeCar: 'Универсал', classComfort: 'Средний' },
-          driver: 'Том Хэнкс',
-          url: universal,
-          id: 'Volkswagen Golf Том Хэнкс',
-          active: false,
-          focus: false
-        },
-      ],
-      filter: 'all',
-      selectedCar: 'Вы пока не выбрали автомобиль',
-      currentCard: null,
-      cardUntilCurrentCard: null,
-      onFocusWithArrow: false,
-      countClickArrow: null,
-    };
-  }
+    {
+      order: 7,
+      title: 'Volkswagen Golf',
+      typeItem: { typeCar: 'Универсал', classComfort: 'Средний' },
+      driver: 'Том Хэнкс',
+      url: universal,
+      id: 'Volkswagen Golf Том Хэнкс',
+      active: false,
+      focus: false
+    },
+  ]);
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.onKeyboardClickForFocusCards);
-  }
+  const itemRefs = {}; // eslint-disable-line
+  
+  const onActiveCard = (id) => {
+    // this.setState((state) => {
+    //   const { data } = state;
+    //   const activeItemInArr = data.map((item) => (item.id === id ? { ...item, active: !item.active } : item));
+    //   return { data: activeItemInArr };
+    // });
+    setCardsList(cardsList.map((item) => (item.id === id ? { ...item, active: !item.active } : item)));
+    if (typeof (id) === 'string') {
+      itemRefs[id].focus();
+    } else {
+      itemRefs[id.id].focus();
+    }
+  };
 
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.onKeyboardClickForFocusCards);
-  }
-
-  onKeyboardClickForFocusCards = (e) => {
+  const onKeyboardClickForFocusCards = (e) => {
     const c = e.code;
-    const {
-      onFocusWithArrow, filter,
-    } = this.state;
 
     if (onFocusWithArrow === false && c !== 'Escape') {
-      this.setState({ onFocusWithArrow: true });
+      setOnFocusWithArrow(true);
     } else if (c === 'Escape') {
-      this.setState(({ data }) => {
-        const onFocusCard = data.map((item) => {
+      setCardsList(() => {
+        return cardsList.map((item) => {
           return { ...item, focus: false };
         });
-        return { data: onFocusCard, onFocusWithArrow: false, countClickArrow: null };
+        // return { data: onFocusCard, onFocusWithArrow: false, countClickArrow: null };
       });
+      setOnFocusWithArrow(false);
+      setCountClickArrow(null);
     }
     if (filter !== 'all' && (c === 'ArrowRight' || c === 'ArrowLeft')) {
       alert('На этом фильтре нет возможности передвигаться по карточкам с помощью стрелок клавиатуры!'); // eslint-disable-line
     } else if (c === 'ArrowRight') {
-      this.setState(({ countClickArrow, data }) => {
-        const count = countClickArrow;
-        if (count !== null && count < data.length - 1) {
-          return { countClickArrow: count + 1 };
-        } if (count !== null && count === data.length - 1) {
-          return { countClickArrow: 0 };
-        } if (count === null) {
-          return { countClickArrow: 0 };
-        }
-        return { countClickArrow };
-      });
-      this.setState(({ data, countClickArrow }) => {
-        const copyData = [...data];
-        const onFocusCard = copyData.map((item, i) => (
-          { ...item, focus: i === countClickArrow }
-        ));
+      //   const count = countClickArrow;
+      //   if (count !== null && count < data.length - 1) {
+      //     return { countClickArrow: count + 1 };
+      //   } if (count !== null && count === data.length - 1) {
+      //     return { countClickArrow: 0 };
+      //   } if (count === null) {
+      //     return { countClickArrow: 0 };
+      //   }
+      //   return { countClickArrow };
+      // });
+      if (countClickArrow !== null && countClickArrow < cardsList.length - 1) {
+        setCountClickArrow(countClickArrow + 1);
+      } else if (countClickArrow !== null && countClickArrow === cardsList.length - 1) {
+        setCountClickArrow(0);
+      } else if (countClickArrow === null) {
+        setCountClickArrow(0);
+      }
+      // this.setState(({ data, countClickArrow }) => {
+      //   const copyData = [...data];
+      //   const onFocusCard = copyData.map((item, i) => (
+      //     { ...item, focus: i === countClickArrow }
+      //   ));
 
-        return { data: onFocusCard };
-      });
+      //   return { data: onFocusCard };
+      // });
+      setCardsList(cardsList.map((item, i) => (
+        { ...item, focus: i === countClickArrow }
+      )));
     } else if (c === 'ArrowLeft') {
-      this.setState(({ countClickArrow, data }) => {
-        const count = countClickArrow;
-        if (count !== null && count > 0) {
-          return { countClickArrow: count - 1 };
-        } if (count !== null && count === 0) {
-          return { countClickArrow: data.length - 1 };
-        } if (count === null) {
-          return { countClickArrow: 0 };
-        }
-        return { countClickArrow };
-      });
+      // this.setState(({ countClickArrow, data }) => {
+      //   const count = countClickArrow;
+      //   if (count !== null && count > 0) {
+      //     return { countClickArrow: count - 1 };
+      //   } if (count !== null && count === 0) {
+      //     return { countClickArrow: data.length - 1 };
+      //   } if (count === null) {
+      //     return { countClickArrow: 0 };
+      //   }
+      //   return { countClickArrow };
+      // });
 
-      this.setState(({ data, countClickArrow }) => {
-        const copyData = [...data];
-        const onFocusCard = copyData.map((item, i) => (
-          { ...item, focus: i === countClickArrow }
-        ));
+      if (countClickArrow !== null && countClickArrow > 0) {
+        setCountClickArrow(countClickArrow - 1);
+      } else if (countClickArrow !== null && countClickArrow === 0) {
+        setCountClickArrow(cardsList.length - 1);
+      } else if (countClickArrow === null) {
+        setCountClickArrow(0);
+      }
 
-        return { data: onFocusCard };
-      });
+      // this.setState(({ data, countClickArrow }) => {
+      //   const copyData = [...data];
+      //   const onFocusCard = copyData.map((item, i) => (
+      //     { ...item, focus: i === countClickArrow }
+      //   ));
+
+      //   return { data: onFocusCard };
+      // });
+
+      setCardsList(cardsList.map((item, i) => (
+        { ...item, focus: i === countClickArrow }
+      )));
     } else if (e.code === 'ControlRight') {
-      const { data, countClickArrow } = this.state;
-      const id = data[countClickArrow];
-      this.onActiveCard(id, countClickArrow);
+      const id = cardsList[countClickArrow];
+      onActiveCard(id);
     }
   };
 
-  deleteItem = (id) => {
-    this.setState(({ data }) => ({
-      data: data.filter((item) => item.id !== id)
-    }));
+  const deleteItem = (id) => {
+    // this.setState(({ data }) => ({
+    //   data: data.filter((item) => item.id !== id)
+    // }));
+    // const newCardsList = cardsList.filter((item) => item.id !== id);
+    // console.log(newCardsList, id)
+    setCardsList(cardsList.filter((item) => item.id !== id));
   };
 
   // filter change function
-  onChangeFilter = (filterTypeCar) => {
-    this.setState({ filter: filterTypeCar });
+  const onChangeFilter = (filterTypeCar) => {
+    setFilter(filterTypeCar);
     if (filterTypeCar === 'alphabet') {
       alert('При использовании данного фильтра, функция перетаскивания карточек не работает!'); // eslint-disable-line
     }
   };
 
-  sortCard = (a, b) => {
+  const sortCard = (a, b) => {
     if (a.order > b.order) {
       return 1;
     }
@@ -199,22 +224,24 @@ class ChoiseCar extends Component {
   };
 
   // Sort cars function. There are sort method and sorting methods in this function
-  onSortCarItems = (filter, data) => {
-    if (filterType[filter]) {
-      return data.filter((item) => item.typeItem.typeCar === filterType[filter]);
-    } if (filter === 'alphabet') {
-      const res = data.sort((item1, item2) => (item1.title > item2.title ? 1 : -1));
+  const onSortCarItems = (filters, data) => {
+    if (filterType[filters]) {
+      return data.filter((item) => item.typeItem.typeCar === filterType[filters]);
+    } 
+    if (filters === 'alphabet') {
+      const copyData = [...data];
+      const res = copyData.sort((item1, item2) => (item1.title > item2.title ? 1 : -1));
       return res;
     }
     return data;
   };
 
   // Add cars function. There is spred operator in this function
-  onAddItem = (title, typeCar, classComfort, driver, url) => {
-    const { data } = this.state;
+  const onAddItem = (title, typeCar, classComfort, driver, url) => {
+    // const { data } = this.state;
     const carItem = [
       {
-        order: data.length + 1,
+        order: cardsList.length + 1,
         title,
         typeItem: { typeCar, classComfort },
         driver,
@@ -224,33 +251,23 @@ class ChoiseCar extends Component {
         focus: false
       }
     ];
-    this.setState(() => ({
-      data: [...data, ...carItem]
-    }));
+    // this.setState(() => ({
+    //   data: [...data, ...carItem]
+    // }));
+    setCardsList([
+      ...cardsList,
+      ...carItem
+    ]);
   };
 
-  onChangeSelectedCar = (title) => {
-    this.setState({ selectedCar: title });
+  const onChangeSelectedCar = (title) => {
+    // this.setState({ selectedCar: title });
+    setSelectedCar(title);
   };
 
-  itemRefs = {}; // eslint-disable-line
-
-  setRef = (ref, id) => {
+  const setRef = (ref, id) => {
     if (ref !== null && ref !== undefined) {
-      this.itemRefs[id] = ref;
-    }
-  };
-
-  onActiveCard = (id) => {
-    this.setState((state) => {
-      const { data } = state;
-      const activeItemInArr = data.map((item) => (item.id === id ? { ...item, active: !item.active } : item));
-      return { data: activeItemInArr };
-    });
-    if (typeof (id) === 'string') {
-      this.itemRefs[id].focus();
-    } else {
-      this.itemRefs[id.id].focus();
+      itemRefs[id] = ref;
     }
   };
 
@@ -258,74 +275,97 @@ class ChoiseCar extends Component {
   // downstairs functions for drag and drop functionally
   // ***************************************
 
-  dragStartHadler = (e, card) => {
-    this.setState({ currentCard: card });
+  const dragStartHadler = (card) => {
+    // this.setState({ currentCard: card });
+    setCurrentCard(card);
     /* send selected cards in state */
   };
 
-  dragEndHandler = () => {
-    this.setState({ cardUntilCurrentCard: null });
+  const dragEndHandler = () => {
+    // this.setState({ cardUntilCurrentCard: null });
+    setCardUntilCurrentCard(null);
   };
 
-  dragOverHandler = (e, id) => {
+  const dragOverHandler = (e, id) => {
     e.preventDefault();
-    const { cardUntilCurrentCard } = this.state;
     if (cardUntilCurrentCard !== id) {
-      this.setState({ cardUntilCurrentCard: id });
+      // this.setState({ cardUntilCurrentCard: id });
+      setCardUntilCurrentCard(id);
     }
   };
 
-  dropHandler = (e, card) => {
+  const dropHandler = (e, card) => {
     e.preventDefault();
-    this.setState({ cardUntilCurrentCard: null });
-    this.setState((state) => {
-      const copyData = [...state.data];
-      
-      const newData = copyData.map((c) => {
-        if (c.id === card.id) {
-          return { ...c, order: state.currentCard.order };
-        }
-        if (c.id === state.currentCard.id) {
-          return { ...c, order: card.order };
-        }
-        return c;
-      });
-      return { data: newData.sort(this.sortCard) };
-    });
-    this.setState({ currentCard: null });
+    // this.setState({ cardUntilCurrentCard: null });
+    setCardUntilCurrentCard(null);
+    // this.setState((state) => {
+    //   const copyData = [...state.data];
+
+    //   const newData = copyData.map((c) => {
+    //     if (c.id === card.id) {
+    //       return { ...c, order: state.currentCard.order };
+    //     }
+    //     if (c.id === state.currentCard.id) {
+    //       return { ...c, order: card.order };
+    //     }
+    //     return c;
+    //   });
+    //   return { data: newData.sort(this.sortCard) };
+    // });
+    setCardsList(cardsList.map((c) => {
+      if (c.id === card.id) {
+        return { ...c, order: currentCard.order };
+      }
+      if (c.id === currentCard.id) {
+        return { ...c, order: card.order };
+      }
+      return c;
+    }).sort(sortCard));
+    // this.setState({ currentCard: null });
+    setCurrentCard(null);
   };
 
-  render() {
-    const {
-      filter, data, selectedCar, cardUntilCurrentCard
-    } = this.state;
-    const { onSortCarItems } = this;
-    const visibleCarItems = onSortCarItems(filter, data);
-    const { theme } = this.context;
+  // componentDidMount() {
+  //   document.addEventListener('keydown', this.onKeyboardClickForFocusCards);
+  // }
 
-    return (
-      <ChoiseCarView
-        visibleCarItems={visibleCarItems}
-        onChangeFilter={this.onChangeFilter}
-        deleteItem={this.deleteItem}
-        onAddItem={this.onAddItem}
-        filter={filter}
-        selectedCar={selectedCar}
-        onChangeSelectedCar={this.onChangeSelectedCar}
-        dragStartHadler={this.dragStartHadler}
-        dragEndHandler={this.dragEndHandler}
-        dragOverHandler={this.dragOverHandler}
-        dropHandler={this.dropHandler}
-        sortCard={this.sortCard}
-        cardUntilCurrentCard={cardUntilCurrentCard}
-        onActiveCard={this.onActiveCard}
-        setRef={this.setRef}
-        theme={theme}
-      />
-    );
-  }
+  // componentWillUnmount() {
+  //   document.removeEventListener('keydown', this.onKeyboardClickForFocusCards);
+  // }
+  useEffect(() => {
+    document.addEventListener('keydown', onKeyboardClickForFocusCards);
+    return () => {
+      document.removeEventListener('keydown', onKeyboardClickForFocusCards);
+    };
+  }, []);
+
+  // const {
+  //   filter, data, selectedCar, cardUntilCurrentCard
+  // } = this.state;
+  // const { onSortCarItems } = this;
+  const visibleCarItems = onSortCarItems(filter, cardsList);
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <ChoiseCarView
+      visibleCarItems={visibleCarItems}
+      onChangeFilter={onChangeFilter}
+      deleteItem={deleteItem}
+      onAddItem={onAddItem}
+      filter={filter}
+      selectedCar={selectedCar}
+      onChangeSelectedCar={onChangeSelectedCar}
+      dragStartHadler={dragStartHadler}
+      dragEndHandler={dragEndHandler}
+      dragOverHandler={dragOverHandler}
+      dropHandler={dropHandler}
+      sortCard={sortCard}
+      cardUntilCurrentCard={cardUntilCurrentCard}
+      onActiveCard={onActiveCard}
+      setRef={setRef}
+      theme={theme}
+    />
+  );
 }
-
-ChoiseCar.contextType = ThemeContext;
 
 export default ChoiseCar;
