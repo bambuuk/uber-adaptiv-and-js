@@ -203,8 +203,7 @@ function ChoiseCar() {
     // this.setState(({ data }) => ({
     //   data: data.filter((item) => item.id !== id)
     // }));
-    // const newCardsList = cardsList.filter((item) => item.id !== id);
-    // console.log(newCardsList, id)
+
     setCardsList(cardsList.filter((item) => item.id !== id));
   };
 
