@@ -1,4 +1,6 @@
-import { useState, useEffect, useContext } from 'react';
+import { 
+  useState, useEffect, useContext, useCallback 
+} from 'react';
 import ChoiseCarView from './ChoiseCarView';
 import ThemeContext from '../../context/ThemeContext';
 
@@ -101,11 +103,6 @@ function ChoiseCar() {
   const itemRefs = {}; // eslint-disable-line
   
   const onActiveCard = (id) => {
-    // this.setState((state) => {
-    //   const { data } = state;
-    //   const activeItemInArr = data.map((item) => (item.id === id ? { ...item, active: !item.active } : item));
-    //   return { data: activeItemInArr };
-    // });
     setCardsList(cardsList.map((item) => (item.id === id ? { ...item, active: !item.active } : item)));
     if (typeof (id) === 'string') {
       itemRefs[id].focus();
@@ -114,7 +111,8 @@ function ChoiseCar() {
     }
   };
 
-  const onKeyboardClickForFocusCards = (e) => {
+  const onKeyboardClickForFocusCards = useCallback((e) => {
+    // console.log('used')
     const c = e.code;
 
     if (onFocusWithArrow === false && c !== 'Escape') {
@@ -124,7 +122,6 @@ function ChoiseCar() {
         return cardsList.map((item) => {
           return { ...item, focus: false };
         });
-        // return { data: onFocusCard, onFocusWithArrow: false, countClickArrow: null };
       });
       setOnFocusWithArrow(false);
       setCountClickArrow(null);
@@ -132,72 +129,44 @@ function ChoiseCar() {
     if (filter !== 'all' && (c === 'ArrowRight' || c === 'ArrowLeft')) {
       alert('На этом фильтре нет возможности передвигаться по карточкам с помощью стрелок клавиатуры!'); // eslint-disable-line
     } else if (c === 'ArrowRight') {
-      //   const count = countClickArrow;
-      //   if (count !== null && count < data.length - 1) {
-      //     return { countClickArrow: count + 1 };
-      //   } if (count !== null && count === data.length - 1) {
-      //     return { countClickArrow: 0 };
-      //   } if (count === null) {
-      //     return { countClickArrow: 0 };
-      //   }
-      //   return { countClickArrow };
-      // });
       if (countClickArrow !== null && countClickArrow < cardsList.length - 1) {
         setCountClickArrow(countClickArrow + 1);
+        setCardsList((prevCardList) => prevCardList.map((item, i) => (
+          { ...item, focus: i === countClickArrow + 1 }
+        )));
       } else if (countClickArrow !== null && countClickArrow === cardsList.length - 1) {
         setCountClickArrow(0);
+        setCardsList((prevCardList) => prevCardList.map((item, i) => (
+          { ...item, focus: i === 0 }
+        )));
       } else if (countClickArrow === null) {
         setCountClickArrow(0);
+        setCardsList((prevCardList) => prevCardList.map((item, i) => (
+          { ...item, focus: i === 0 }
+        )));
       }
-      // this.setState(({ data, countClickArrow }) => {
-      //   const copyData = [...data];
-      //   const onFocusCard = copyData.map((item, i) => (
-      //     { ...item, focus: i === countClickArrow }
-      //   ));
-
-      //   return { data: onFocusCard };
-      // });
-      setCardsList(cardsList.map((item, i) => (
-        { ...item, focus: i === countClickArrow }
-      )));
     } else if (c === 'ArrowLeft') {
-      // this.setState(({ countClickArrow, data }) => {
-      //   const count = countClickArrow;
-      //   if (count !== null && count > 0) {
-      //     return { countClickArrow: count - 1 };
-      //   } if (count !== null && count === 0) {
-      //     return { countClickArrow: data.length - 1 };
-      //   } if (count === null) {
-      //     return { countClickArrow: 0 };
-      //   }
-      //   return { countClickArrow };
-      // });
-
       if (countClickArrow !== null && countClickArrow > 0) {
         setCountClickArrow(countClickArrow - 1);
+        setCardsList(cardsList.map((item, i) => (
+          { ...item, focus: i === countClickArrow - 1 }
+        )));
       } else if (countClickArrow !== null && countClickArrow === 0) {
         setCountClickArrow(cardsList.length - 1);
+        setCardsList(cardsList.map((item, i) => (
+          { ...item, focus: i === countClickArrow - 1 }
+        )));
       } else if (countClickArrow === null) {
         setCountClickArrow(0);
+        setCardsList(cardsList.map((item, i) => (
+          { ...item, focus: i === 0 }
+        )));
       }
-
-      // this.setState(({ data, countClickArrow }) => {
-      //   const copyData = [...data];
-      //   const onFocusCard = copyData.map((item, i) => (
-      //     { ...item, focus: i === countClickArrow }
-      //   ));
-
-      //   return { data: onFocusCard };
-      // });
-
-      setCardsList(cardsList.map((item, i) => (
-        { ...item, focus: i === countClickArrow }
-      )));
     } else if (e.code === 'ControlRight') {
       const id = cardsList[countClickArrow];
       onActiveCard(id);
     }
-  };
+  }, [onFocusWithArrow, countClickArrow, cardsList]);
 
   const deleteItem = (id) => {
     // this.setState(({ data }) => ({
@@ -205,6 +174,7 @@ function ChoiseCar() {
     // }));
 
     setCardsList(cardsList.filter((item) => item.id !== id));
+    // console.log(cardsList.filter((item) => item.id !== id));
   };
 
   // filter change function
@@ -237,7 +207,6 @@ function ChoiseCar() {
 
   // Add cars function. There is spred operator in this function
   const onAddItem = (title, typeCar, classComfort, driver, url) => {
-    // const { data } = this.state;
     const carItem = [
       {
         order: cardsList.length + 1,
@@ -250,9 +219,7 @@ function ChoiseCar() {
         focus: false
       }
     ];
-    // this.setState(() => ({
-    //   data: [...data, ...carItem]
-    // }));
+
     setCardsList([
       ...cardsList,
       ...carItem
@@ -260,7 +227,6 @@ function ChoiseCar() {
   };
 
   const onChangeSelectedCar = (title) => {
-    // this.setState({ selectedCar: title });
     setSelectedCar(title);
   };
 
@@ -275,42 +241,25 @@ function ChoiseCar() {
   // ***************************************
 
   const dragStartHadler = (card) => {
-    // this.setState({ currentCard: card });
     setCurrentCard(card);
     /* send selected cards in state */
   };
 
   const dragEndHandler = () => {
-    // this.setState({ cardUntilCurrentCard: null });
     setCardUntilCurrentCard(null);
   };
 
   const dragOverHandler = (e, id) => {
     e.preventDefault();
     if (cardUntilCurrentCard !== id) {
-      // this.setState({ cardUntilCurrentCard: id });
       setCardUntilCurrentCard(id);
     }
   };
 
   const dropHandler = (e, card) => {
     e.preventDefault();
-    // this.setState({ cardUntilCurrentCard: null });
     setCardUntilCurrentCard(null);
-    // this.setState((state) => {
-    //   const copyData = [...state.data];
 
-    //   const newData = copyData.map((c) => {
-    //     if (c.id === card.id) {
-    //       return { ...c, order: state.currentCard.order };
-    //     }
-    //     if (c.id === state.currentCard.id) {
-    //       return { ...c, order: card.order };
-    //     }
-    //     return c;
-    //   });
-    //   return { data: newData.sort(this.sortCard) };
-    // });
     setCardsList(cardsList.map((c) => {
       if (c.id === card.id) {
         return { ...c, order: currentCard.order };
@@ -320,28 +269,16 @@ function ChoiseCar() {
       }
       return c;
     }).sort(sortCard));
-    // this.setState({ currentCard: null });
     setCurrentCard(null);
   };
 
-  // componentDidMount() {
-  //   document.addEventListener('keydown', this.onKeyboardClickForFocusCards);
-  // }
-
-  // componentWillUnmount() {
-  //   document.removeEventListener('keydown', this.onKeyboardClickForFocusCards);
-  // }
   useEffect(() => {
     document.addEventListener('keydown', onKeyboardClickForFocusCards);
     return () => {
       document.removeEventListener('keydown', onKeyboardClickForFocusCards);
     };
-  }, []);
+  }, [onKeyboardClickForFocusCards]);
 
-  // const {
-  //   filter, data, selectedCar, cardUntilCurrentCard
-  // } = this.state;
-  // const { onSortCarItems } = this;
   const visibleCarItems = onSortCarItems(filter, cardsList);
   const { theme } = useContext(ThemeContext);
 
