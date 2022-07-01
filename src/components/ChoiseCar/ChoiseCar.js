@@ -169,11 +169,7 @@ function ChoiseCar() {
   }, [onFocusWithArrow, countClickArrow, cardsList]);
 
   const deleteItem = (id) => {
-    // this.setState(({ data }) => ({
-    //   data: data.filter((item) => item.id !== id)
-    // }));
-
-    setCardsList(cardsList.filter((item) => item.id !== id));
+    setCardsList((prevCardsList) => prevCardsList.filter((item) => item.id !== id));
     // console.log(cardsList.filter((item) => item.id !== id));
   };
 
