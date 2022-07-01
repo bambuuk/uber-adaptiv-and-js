@@ -103,7 +103,9 @@ function ChoiseCar() {
   const itemRefs = {}; // eslint-disable-line
   
   const onActiveCard = (id) => {
-    setCardsList(cardsList.map((item) => (item.id === id ? { ...item, active: !item.active } : item)));
+    setCardsList(
+      (prevCardList) => prevCardList.map((item) => (item.id === id ? { ...item, active: !item.active } : item))
+    );
     if (typeof (id) === 'string') {
       itemRefs[id].focus();
     } else {
@@ -112,7 +114,6 @@ function ChoiseCar() {
   };
 
   const onKeyboardClickForFocusCards = useCallback((e) => {
-    // console.log('used')
     const c = e.code;
 
     if (onFocusWithArrow === false && c !== 'Escape') {
@@ -170,7 +171,6 @@ function ChoiseCar() {
 
   const deleteItem = (id) => {
     setCardsList((prevCardsList) => prevCardsList.filter((item) => item.id !== id));
-    // console.log(cardsList.filter((item) => item.id !== id));
   };
 
   // filter change function

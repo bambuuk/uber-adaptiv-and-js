@@ -12,8 +12,7 @@ import icon5 from '../../icons/icon-5.png';
 import icon7 from '../../icons/icon-7.png';
 
 function Reasons() {
-  // eslint-disable-next-line
-  const [reasonsList, setReasonsList] = useState([
+  const [reasonsList] = useState([
     {
       imgSrc: icon0,
       subtitle: 'Никаких наличных, оплата происходит автоматически',
