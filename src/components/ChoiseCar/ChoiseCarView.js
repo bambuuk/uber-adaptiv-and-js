@@ -47,7 +47,7 @@ function ChoiseCarView(props) {
 }
 
 ChoiseCarView.propTypes = { 
-  visibleCarItems: PropTypes.instanceOf(Array),
+  visibleCarItems: PropTypes.arrayOf(Object),
   onChangeFilter: PropTypes.func,
   deleteItem: PropTypes.func,
   filter: PropTypes.string,

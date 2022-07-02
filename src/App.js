@@ -6,14 +6,6 @@ import MainPage from './pages/MainPage';
 import CarsPage from './pages/CarsPage';
 
 function App() {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     theme: 'light', // eslint-disable-line
-  //     choiseTheme: this.choiseTheme, // eslint-disable-line
-  //   };
-  // }
-
   const [state, setState] = useState({
     theme: 'light', // eslint-disable-line
     choiseTheme: choiseTheme, // eslint-disable-line

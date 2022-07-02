@@ -17,7 +17,7 @@ function ReasonsView({ content }) {
 }
 
 ReasonsView.propTypes = {
-  content: PropTypes.instanceOf(Array),
+  content: PropTypes.arrayOf(Object),
 };
 
 ReasonsView.defaultProps = {

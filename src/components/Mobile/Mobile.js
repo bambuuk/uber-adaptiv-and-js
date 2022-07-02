@@ -3,8 +3,7 @@ import MobileView from './MobileView';
 import PossibilityItem from '../PossibilityItem/PossibilityItem';
 
 function Mobile() {
-  // eslint-disable-next-line
-  const [possibilitiesList, setPossibilitiesList] = useState([
+  const [possibilitiesList] = useState([
     {
       numberItem: 1,
       subtitle: 'оформление заказа одним касанием',

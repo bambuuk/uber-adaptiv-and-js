@@ -21,7 +21,7 @@ function MobileView({ content }) {
 }
 
 MobileView.propTypes = {
-  content: PropTypes.instanceOf(Array),
+  content: PropTypes.arrayOf(Object),
 };
 
 MobileView.defaultProps = {

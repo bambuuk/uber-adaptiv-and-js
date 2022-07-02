@@ -49,7 +49,7 @@ CarList.propTypes = {
   onChangeSelectedCar: PropTypes.func, 
   setRef: PropTypes.func, 
   filter: PropTypes.string,
-  data: PropTypes.instanceOf(Array),
+  data: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 CarList.defaultProps = { 

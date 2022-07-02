@@ -94,7 +94,18 @@ function CarItem(props) {
 }
 
 CarItem.propTypes = {
-  data: PropTypes.instanceOf(Object),
+  data: PropTypes.shape({
+    title: PropTypes.string, 
+    typeItem: PropTypes.shape({
+      typeCar: PropTypes.string,
+      classComfort: PropTypes.string,
+    }), 
+    url: PropTypes.string, 
+    driver: PropTypes.string, 
+    id: PropTypes.string,
+    active: PropTypes.bool,
+    focus: PropTypes.bool,
+  }),
   onChangeSelectedCar: PropTypes.func,
   dragStartHadler: PropTypes.func,
   dragEndHandler: PropTypes.func,

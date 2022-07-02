@@ -97,10 +97,16 @@ function AddCarsView(props) {
 }
 
 AddCarsView.propTypes = {
-  data: PropTypes.instanceOf(Object),
+  data: PropTypes.shape({
+    title: PropTypes.string, 
+    typeCar: PropTypes.string, 
+    classComfort: PropTypes.string, 
+    driver: PropTypes.string, 
+    url: PropTypes.string,
+  }),
   onValueInputChange: PropTypes.func,
   sendCarItem: PropTypes.func,
-  myRef: PropTypes.instanceOf(Object),
+  myRef: PropTypes.shape({}),
   onResetItem: PropTypes.func,
 };
 

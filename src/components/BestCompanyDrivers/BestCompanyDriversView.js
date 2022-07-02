@@ -23,7 +23,7 @@ function BestCompanyDriversView({ data }) {
 }
 
 BestCompanyDriversView.propTypes = {
-  data: PropTypes.instanceOf(Array),
+  data: PropTypes.arrayOf(Object),
 };
 
 BestCompanyDriversView.defaultProps = {
