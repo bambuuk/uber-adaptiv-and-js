@@ -1,4 +1,5 @@
 import ChoiseCar from '../components/ChoiseCar/ChoiseCar';
+import withLayout from '../hocs/withLayout';
 
 function CarsPage() {
   return (
@@ -6,4 +7,4 @@ function CarsPage() {
   );
 }
 
-export default CarsPage;
+export default withLayout(CarsPage);

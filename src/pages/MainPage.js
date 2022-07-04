@@ -4,6 +4,7 @@ import Mobile from '../components/Mobile/Mobile';
 import Choise from '../components/Choise/Choise';
 import Require from '../components/Require/Require';
 import City from '../components/City/City';
+import withLayout from '../hocs/withLayout';
 
 function MainPage() {
   return (
@@ -18,4 +19,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default withLayout(MainPage);

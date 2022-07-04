@@ -4,11 +4,6 @@ import ThemeContext from './context/ThemeContext';
 
 import MainPage from './pages/MainPage';
 import CarsPage from './pages/CarsPage';
-import withLayout from './hocs/withLayout';
-
-// Component with HOC
-const MainPageComponent = withLayout(MainPage);
-const CarsPageComponent = withLayout(CarsPage);
 
 function App() {
   const [state, setState] = useState({
@@ -28,8 +23,8 @@ function App() {
       <div className="App">
         <ThemeContext.Provider value={state}>
           <Routes>
-            <Route path="/" element={<MainPageComponent />} />
-            <Route path="/choise-car" element={<CarsPageComponent />} />
+            <Route path="/" element={<MainPage />} />
+            <Route path="/choise-car" element={<CarsPage />} />
           </Routes>
         </ThemeContext.Provider>
       </div>
