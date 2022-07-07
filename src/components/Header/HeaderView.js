@@ -2,70 +2,83 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
+import '../../i18n/index';
 import uberLogo from '../../img/logo/Uber.png';
 
 function HeaderView(props) {
-  const { 
+  const {
     styleHamburger, styleMenu, toggleHamburgerMenuActive, choiseTheme
   } = props;
-  
+
+  const { t, i18n } = useTranslation();
+  const onChangeLanguage = (event) => {
+    i18n.changeLanguage(event.target.value);
+  };
+
   return (
     <header>
       <nav>
         <div className="btn_switcher_theme">
-          <button 
-            type="button" 
-            aria-label="Sun" 
+          <button
+            type="button"
+            aria-label="Sun"
             className="btn-switcher"
             onClick={() => choiseTheme('light')}
           >
             <FontAwesomeIcon icon={faSun} />
           </button>
-          <button 
-            type="button" 
-            aria-label="Moon" 
+          <button
+            type="button"
+            aria-label="Moon"
             className="btn-switcher"
             onClick={() => choiseTheme('dark')}
           >
             <FontAwesomeIcon icon={faMoon} />
           </button>
         </div>
+        <div className="chooseLanguage">
+          <select name="language" onChange={onChangeLanguage}>
+            <option value="ua">UA</option>
+            <option value="ru">RU</option>
+          </select>
+        </div>
         <div className="container">
-          
+
           <ul // eslint-disable-line
             className={`menu ${styleMenu}`}
             onClick={(e) => toggleHamburgerMenuActive(e)}
             onKeyDown={toggleHamburgerMenuActive}
           >
             <li className="menu_item">
-              <NavLink 
-                style={({ isActive }) => ({ color: isActive ? '#fc7107' : '#fff' })} 
-                to="/" 
-                href="#main" 
+              <NavLink
+                style={({ isActive }) => ({ color: isActive ? '#fc7107' : '#fff' })}
+                to="/"
+                href="#main"
                 className="menu_link"
               >
-                Главная
+                {t('header.main')}
               </NavLink>
             </li>
-            <li className="menu_item"><a href="#require" className="menu_link">Со своим автомобилем</a></li>
-            <li className="menu_item"><a href="#require" className="menu_link">На автомобиле компании</a></li>
-            <li className="menu_item"><a href="#requirement" className="menu_link">Требования</a></li>
-            <li className="menu_item"><a href="#contacts" className="menu_link">Контакты</a></li>
+            <li className="menu_item"><a href="#require" className="menu_link">{t('header.ownCar')}</a></li>
+            <li className="menu_item"><a href="#require" className="menu_link">{t('header.companyCar')}</a></li>
+            <li className="menu_item"><a href="#requirement" className="menu_link">{t('header.requirements')}</a></li>
+            <li className="menu_item"><a href="#contacts" className="menu_link">{t('header.contacts')}</a></li>
             <li className="menu_item">
-              <NavLink 
-                end 
-                style={({ isActive }) => ({ color: isActive ? '#fc7107' : '#fff' })} 
-                className="menu_link" 
-                href="#contacts" 
+              <NavLink
+                end
+                style={({ isActive }) => ({ color: isActive ? '#fc7107' : '#fff' })}
+                className="menu_link"
+                href="#contacts"
                 to="/choise-car"
               >
-                Выбор авто
+                {t('header.choiseCar')}
               </NavLink>
             </li>
           </ul>
         </div>
 
-        <div 
+        <div
           className={`hamburger ${styleHamburger}`}
           onClick={(e) => toggleHamburgerMenuActive(e)}
           onKeyDown={toggleHamburgerMenuActive}
@@ -82,17 +95,17 @@ function HeaderView(props) {
           <div className="row">
             <div className="col-6 col-md-4 offset-md-1">
               <a href="#main" className="subheader_logo"><img src={uberLogo} alt="logo" /></a>
-              <div id="main" className="subheader_official">Официальный партнер Uber</div>
+              <div id="main" className="subheader_official">{t('header.officialPartner')}</div>
             </div>
 
             <div className="xs-hidden col-6 col-md-3 offset-md-1 col-xl-2 offset-xl-2">
-              <div id="contacts" className="subheader_call">Звоните нам ежедневно</div>
+              <div id="contacts" className="subheader_call">{t('header.callUs')}</div>
               <a href="tel:84957970988" className="subheader_phone">+380992380623</a>
             </div>
 
             <div className="col-6 col-md-3 col-lg-2">
               <a href="tel:84957970988" className="xs-visible subheader_phone">+380 495 797 09 88</a>
-              <button type="button" className="subheader_btn">заказать звонок</button>
+              <button type="button" className="subheader_btn">{t('header.requestCall')}</button>
             </div>
           </div>
         </div>
@@ -101,15 +114,15 @@ function HeaderView(props) {
   );
 }
 
-HeaderView.propTypes = { 
-  styleHamburger: PropTypes.string, 
+HeaderView.propTypes = {
+  styleHamburger: PropTypes.string,
   styleMenu: PropTypes.string,
   toggleHamburgerMenuActive: PropTypes.func,
   choiseTheme: PropTypes.func,
 };
 
-HeaderView.defaultProps = { 
-  styleHamburger: 'hamburger_active', 
+HeaderView.defaultProps = {
+  styleHamburger: 'hamburger_active',
   styleMenu: 'menu_active',
   toggleHamburgerMenuActive: null,
   choiseTheme: null

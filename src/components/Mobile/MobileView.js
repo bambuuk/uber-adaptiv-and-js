@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+
 import './mobile.sass';
 
 function MobileView({ content }) {
+  const { t } = useTranslation();
   return (
     <section className="mobile">
       <div className="container">
-        <div className="label">Возможности</div>
-        <h2 className="title">мобильное приложение убер</h2>
+        <div className="label">{t('mobileView.label')}</div>
+        <h2 className="title">{t('mobileView.title')}</h2>
         <div className="subtitle">
-          Сделайте заказ, совершите поездку и оплатите ее стоимость, используя свой
-          мобильный
-          телефон
+          {t('mobileView.subtitle')}
         </div>
         <div className="row mobile_main_item">
           {content}

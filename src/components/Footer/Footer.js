@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import appStore from '../../icons/store/apple-store.png';
 import gplayStore from '../../icons/store/gplay-store.png';
 import microsoftStore from '../../icons/store/microsoft-store.png';
@@ -5,40 +6,40 @@ import microsoftStore from '../../icons/store/microsoft-store.png';
 import './footer.sass';
 
 function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer_content">
           <div className="footer_content_line" />
           <div className="footer_content_link_header">
-            <a href="#main">на главную</a>
-            <a href="#main">города</a>
-            <a href="#main">для водителей</a>
+            <a href="#main">{t('footer.main')}</a>
+            <a href="#main">{t('footer.towns')}</a>
+            <a href="#main">{t('footer.forDrivers')}</a>
           </div>
           <div className="footer_content_link_subheader">
-            <a href="#main">центр поддержки</a>
-            <a href="#main">вакансии</a>
-            <a href="#main">разработчики</a>
-            <a href="#main">блог</a>
-            <a href="#main">о нас</a>
+            <a href="#main">{t('footer.centerSupport')}</a>
+            <a href="#main">{t('footer.vacancy')}</a>
+            <a href="#main">{t('footer.developers')}</a>
+            <a href="#main">{t('footer.blog')}</a>
+            <a href="#main">{t('footer.aboutUs')}</a>
           </div>
           <div className="footer_content_link_subheader_min_screen_size">
             <div className="first">
-              <a href="#main">центр поддержки</a>
-              <a href="#main">вакансии</a>
+              <a href="#main">{t('footer.centerSupport')}</a>
+              <a href="#main">{t('footer.vacancy')}</a>
             </div>
             <div className="second">
-              <a href="#main">разработчики</a>
-              <a href="#main">блог</a>
-              <a href="#main">о нас</a>
+              <a href="#main">{t('footer.developers')}</a>
+              <a href="#main">{t('footer.blog')}</a>
+              <a href="#main">{t('footer.aboutUs')}</a>
             </div>
           </div>
-          <a href="#main" target="_blank" className="footer_content_language">русский</a>
         </div>
         <div className="author">
           <div className="author_content">
-            <div className="author_title">Информация об авторе:</div>
-            <div className="author_name">Иван Коробка</div>
+            <div className="author_title">{t('footer.informationAboutAuthor')}</div>
+            <div className="author_name">{t('footer.name')}</div>
             <a href="https://github.com/bambuuk" className="author_link">Github</a>
             <a
               href="https://www.figma.com/file/ivgb9OfADjPvRowi32CSgY/UBER_course?node-id=0%3A1"
@@ -46,7 +47,7 @@ function Footer() {
               rel="noreferrer"
               className="author_design_link"
             >
-              Оригинал дизайна
+              {t('footer.original')}
             </a>
           </div>
         </div>

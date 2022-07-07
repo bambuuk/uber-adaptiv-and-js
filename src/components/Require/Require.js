@@ -1,72 +1,73 @@
+import { useTranslation } from 'react-i18next';
+
 import './require.sass';
 
 function Require() {
+  const { t } = useTranslation();
+
   return (
     <section className="require" id="require">
       <div className="container">
-        <div className="label">Возможности</div>
-        <h2 className="title">условия и требования</h2>
+        <div className="label">{t('require.label')}</div>
+        <h2 className="title">{t('require.title')}</h2>
         <div className="row">
           <div className="col-md-6">
             <div className="require_block">
               <div className="require_title">
-                УСЛОВИЯ: со своим авто:
+                {t('require.require_title1')}
               </div>
               <ul className="require_list">
-                <li>Подключаем к системе UBER под 10%.</li>
-                <li>Ни каких взносов 0%!</li>
-                <li>Можем подключать удаленно без приезда в офис</li>
-                <li>ФОП не требуется</li>
-                <li>Заказы распределяются без учета рейтинга ближайшим водителям</li>
-                <li>Работа только по безналичному расчету</li>
-                <li>Деньги перечисляем на карту водителю или наличными в офисе</li>
+                <li>{t('require.require_list1.item1')}</li>
+                <li>{t('require.require_list1.item2')}</li>
+                <li>{t('require.require_list1.item3')}</li>
+                <li>{t('require.require_list1.item4')}</li>
+                <li>{t('require.require_list1.item5')}</li>
+                <li>{t('require.require_list1.item6')}</li>
+                <li>{t('require.require_list1.item7')}</li>
               </ul>
               <div className="require_description">
-                В день заработок составляет 3500-6000 грн + бонус 1500 грн
+                {t('require.equire_description1')}
               </div>
             </div>
           </div>
           <div className="col-md-6">
             <div className="require_block">
               <div className="require_title">
-                УСЛОВИЯ: на авто компании:
+                {t('require.require_title2')}
               </div>
               <ul className="require_list">
-                <li>Предоставляем авто без залога</li>
-                <li>Без ежедневных выплат по аренде</li>
-                <li>Среда пятница и суббота работа на компанию осталь ные дни вы работаете на себя</li>
+                <li>{t('require.require_list2.item1')}</li>
+                <li>{t('require.require_list2.item2')}</li>
+                <li>{t('require.require_list2.item3')}</li>
               </ul>
             </div>
           </div>
           <div className="col-md-6">
             <div className="require_block require_block_nmb warning">
               <div className="require_title" id="requirement">
-                ТРЕБОВАНИЕ:
+                {t('require.require_title3')}
               </div>
               <ul className="require_list">
-                <li>Наличие автомобиля без рекламы</li>
-                <li>
-                  Автомобиль не должен быть желтый и не с желтыми
-                  номерами
-                </li>
-                <li>Машина не старше 3 лет</li>
-                <li>Стаж вождения не менее 3 лет</li>
-                <li>Девайс на системе андроид 4.0 и выше (самсунг)</li>
+                <li>{t('require.require_list3.item1')}</li>
+                <li>{t('require.require_list3.item2')}</li>
+                <li>{t('require.require_list3.item3')}</li>
+                <li>{t('require.require_list3.item4')}</li>
+                <li>{t('require.require_list3.item5')}</li>
               </ul>
             </div>
           </div>
           <div className="col-md-6">
             <div className="require_block require_block_nmb warning">
               <div className="require_title">
-                ДОКУМЕНТЫ:
+                {t('require.require_title4')}
               </div>
               <ul className="require_list">
-                <li>Права 2 стороны</li>
-                <li>Паспорт лицевая сторона</li>
-                <li>СтС</li>
-                <li>Лицензия (если есть)</li>
-                <li>Номер телефона</li>
-                <li>Номер карты для перечисления денег (указать в письме)!</li>
+                <li>{t('require.require_list4.item1')}</li>
+                <li>{t('require.require_list4.item2')}</li>
+                <li>{t('require.require_list4.item3')}</li>
+                <li>{t('require.require_list4.item4')}</li>
+                <li>{t('require.require_list4.item5')}</li>
+                <li>{t('require.require_list4.item6')}</li>
               </ul>
             </div>
           </div>

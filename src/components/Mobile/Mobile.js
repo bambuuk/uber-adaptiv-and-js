@@ -1,37 +1,39 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import MobileView from './MobileView';
 import PossibilityItem from '../PossibilityItem/PossibilityItem';
 
 function Mobile() {
+  const { t } = useTranslation();
   const [possibilitiesList] = useState([
     {
       numberItem: 1,
-      subtitle: 'оформление заказа одним касанием',
+      subtitle: t('mobile.subtitle1'),
       id: 'оформление заказа одним касанием',
     },
     {
       numberItem: 2,
-      subtitle: 'надежная подача',
+      subtitle: t('mobile.subtitle2'),
       id: 'надежная подача',
     },
     {
       numberItem: 3,
-      subtitle: 'прозрачные цены',
+      subtitle: t('mobile.subtitle3'),
       id: 'прозрачные цены',
     },
     {
       numberItem: 4,
-      subtitle: 'безналичная оплата',
+      subtitle: t('mobile.subtitle4'),
       id: 'безналичная оплата',
     },
     {
       numberItem: 5,
-      subtitle: 'обратная связь',
+      subtitle: t('mobile.subtitle5'),
       id: 'обратная связь',
     },
     {
       numberItem: 6,
-      subtitle: 'разделить стоимость поездки',
+      subtitle: t('mobile.subtitle6'),
       id: 'разделить стоимость поездки',
     },
   ]);
