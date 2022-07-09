@@ -13,8 +13,12 @@ function HeaderView(props) {
 
   const { t, i18n } = useTranslation();
   const onChangeLanguage = (event) => {
-    i18n.changeLanguage(event.target.value);
+    const lng = event.target.value;
+    i18n.changeLanguage(lng);
+    localStorage.setItem('lng', `${lng}`);
   };
+
+  // const currentLanguageCode = localStorage.get('i18nextLng') || 'ua';
 
   return (
     <header>

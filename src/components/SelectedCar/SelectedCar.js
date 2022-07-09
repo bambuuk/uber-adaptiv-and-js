@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import './selectedCar.sass';
 
 function SelectedCar({ selectedCar }) {
+  const { t } = useTranslation();
   return (
     <div className="selected-car">
       <p className="selected-car_text">
-        <strong>Выбранный автомобиль:</strong> 
+        <strong>{t('choiseCar.selectedCar')}</strong> 
         {' '}
         {selectedCar}
       </p>
-      <button name="confirm" type="button" className="btn">Подтвердить</button>
+      <button name="confirm" type="button" className="btn">{t('choiseCar.selectedCarApprove')}</button>
     </div>
   );
 }

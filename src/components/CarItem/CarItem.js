@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import './carItem.sass';
 
 function CarItem(props) {
+  const { t } = useTranslation();
+
   const {
     onChangeSelectedCar, dragStartHadler, dragEndHandler,
     dragOverHandler, dropHandler, cardUntilCurrentCard,
@@ -55,18 +58,18 @@ function CarItem(props) {
       <div className="card-body">
         <h5 className="card_title">{title}</h5>
         <p className="card_text">
-          <strong>Тип автомобиля:</strong>
+          <strong>{t('choiseCar.carItem.carType')}</strong>
           {' '}
           {typeItem.typeCar}
           {' '}
           /
           {' '}
-          <strong>Класс:</strong>
+          <strong>{t('choiseCar.carItem.class')}</strong>
           {' '}
           {typeItem.classComfort}
         </p>
         <p className="card_text">
-          <strong>Водитель:</strong>
+          <strong>{t('choiseCar.carItem.driver')}</strong>
           {' '}
           {driver}
         </p>
@@ -77,7 +80,7 @@ function CarItem(props) {
             onClick={onDelete}
             tabIndex="0"
           >
-            Удалить
+            {t('choiseCar.carItem.delete')}
           </button>
           <button
             type="button"
@@ -85,7 +88,7 @@ function CarItem(props) {
             onClick={onChangeSelectedCar}
             tabIndex="0"
           >
-            Выбрать
+            {t('choiseCar.carItem.choose')}
           </button>
         </div>
       </div>

@@ -18,51 +18,51 @@ function Reasons() {
   const [reasonsList] = useState([
     {
       imgSrc: icon0,
-      subtitle: t('reasons.subtitle0'),
+      subtitle: 'reasons.subtitle0',
       id: 'Никаких наличных, оплата происходит автоматически',
-      text: t('reasons.text0'),
+      text: 'reasons.text0',
     },
     {
       imgSrc: icon2,
-      subtitle: t('reasons.subtitle2'),
+      subtitle: 'reasons.subtitle2',
       id: 'Комиссия 8% + БОНУСЫ',
-      text: t('reasons.text2'),
+      text: 'reasons.text2',
     },
     {
       imgSrc: icon1,
-      subtitle: t('reasons.subtitle1'),
+      subtitle: 'reasons.subtitle1',
       id: 'Высокий доход с гарантированными выплатами',
-      text: t('reasons.text1'),
+      text: 'reasons.text1',
     },
     {
       imgSrc: icon4,
-      subtitle: t('reasons.subtitle4'),
+      subtitle: 'reasons.subtitle4',
       id: 'Работа в удобное время, никаких графиков',
-      text: t('reasons.text4'),
+      text: 'reasons.text4',
     },
     {
       imgSrc: icon3,
-      subtitle: t('reasons.subtitle3'),
+      subtitle: 'reasons.subtitle3',
       id: 'Комфортное, прозрачное и простое подключение',
-      text: t('reasons.text3'),
+      text: 'reasons.text3',
     },
     {
       imgSrc: icon6,
-      subtitle: t('reasons.subtitle6'),
+      subtitle: 'reasons.subtitle6',
       id: 'Всегда большое количество заказов',
-      text: t('reasons.text6'),
+      text: 'reasons.text6',
     },
     {
       imgSrc: icon5,
-      subtitle: t('reasons.subtitle5'),
+      subtitle: 'reasons.subtitle5',
       id: 'Круглосуточная поддержка',
-      text: t('reasons.text5'),
+      text: 'reasons.text5',
     },
     {
       imgSrc: icon7,
-      subtitle: t('reasons.subtitle7'),
+      subtitle: 'reasons.subtitle7',
       id: 'Без шашечек и наклеек',
-      text: t('reasons.text7'),
+      text: 'reasons.text7',
     },
   ]);
 
@@ -75,8 +75,8 @@ function Reasons() {
       <ReasonsItem
         key={id}
         imgSrc={imgSrc}
-        subtitle={subtitle}
-        text={text}
+        subtitle={t(subtitle)} 
+        text={t(text)}
       />
     );
   });

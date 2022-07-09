@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 function TimeOfStayOnPageView({ hours, minutes, seconds }) {
+  const { t } = useTranslation();
+
   return (
     <div className="timer">
-      <div className="timer_descr">Время перебывания на странице:</div>
+      <div className="timer_descr">{t('choiseCar.timeOfStayOnPageView')}</div>
       <div className="timer_active">
         <div id="timer_hours">
           {hours}

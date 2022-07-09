@@ -1,15 +1,17 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import ChoiseCarFiltersView from './ChoiseCarFiltersView';
 
 function ChoiseCarFilters(props) {
   const { onChangeFilter, filter } = props;
+  const { t } = useTranslation();
 
   const buttonsData = [
-    { name: 'all', label: 'Все машины' },
-    { name: 'sedan', label: 'Седаны' },
-    { name: 'pickup', label: 'Пикапы' },
-    { name: 'universal', label: 'Универсалы' },
-    { name: 'alphabet', label: 'Сортировка машин за алфавитом' },
+    { name: 'all', label: 'choiseCar.filterButtons.allLabel' },
+    { name: 'sedan', label: 'choiseCar.filterButtons.sedanLabel' },
+    { name: 'pickup', label: 'choiseCar.filterButtons.pickupLabel' },
+    { name: 'universal', label: 'choiseCar.filterButtons.universalLabel' },
+    { name: 'alphabet', label: 'choiseCar.filterButtons.alphabetLabel' },
   ];
 
   const buttons = buttonsData.map(({ name, label }) => {
@@ -21,7 +23,7 @@ function ChoiseCarFilters(props) {
         onClick={() => onChangeFilter(name)}
         key={name}
       >
-        {label}
+        {t(label)}
       </button>
     );
   });

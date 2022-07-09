@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import ChoiseCarFilters from '../ChoiseCarFilters/ChoiseCarFilters';
 import CarList from '../CarList/CarList';
 import AddCars from '../AddCars/AddCars';
@@ -7,6 +8,7 @@ import BestCompanyDrivers from '../BestCompanyDrivers/BestCompanyDrivers';
 import './choiseCar.sass';
 
 function ChoiseCarView(props) {
+  const { t } = useTranslation();
   const {
     visibleCarItems, onChangeFilter,
     deleteItem, filter, onAddItem, selectedCar,
@@ -19,9 +21,9 @@ function ChoiseCarView(props) {
   return (
     <section className={`choiseCar choiseCar_${theme}`}>
       <div className="container">
-        <div className={`title title_${theme}`}>Лучшие водители нашей компании</div>
+        <div className={`title title_${theme}`}>{t('choiseCar.bestDriversCompany')}</div>
         <BestCompanyDrivers />
-        <div className={`title title_${theme}`}>Доступные варианты автомобилей</div>
+        <div className={`title title_${theme}`}>{t('choiseCar.availableCarOptions')}</div>
         <ChoiseCarFilters
           onChangeFilter={onChangeFilter}
           filter={filter}

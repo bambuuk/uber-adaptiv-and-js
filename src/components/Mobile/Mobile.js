@@ -8,32 +8,32 @@ function Mobile() {
   const [possibilitiesList] = useState([
     {
       numberItem: 1,
-      subtitle: t('mobile.subtitle1'),
+      subtitle: 'mobile.subtitle1',
       id: 'оформление заказа одним касанием',
     },
     {
       numberItem: 2,
-      subtitle: t('mobile.subtitle2'),
+      subtitle: 'mobile.subtitle2',
       id: 'надежная подача',
     },
     {
       numberItem: 3,
-      subtitle: t('mobile.subtitle3'),
+      subtitle: 'mobile.subtitle3',
       id: 'прозрачные цены',
     },
     {
       numberItem: 4,
-      subtitle: t('mobile.subtitle4'),
+      subtitle: 'mobile.subtitle4',
       id: 'безналичная оплата',
     },
     {
       numberItem: 5,
-      subtitle: t('mobile.subtitle5'),
+      subtitle: 'mobile.subtitle5',
       id: 'обратная связь',
     },
     {
       numberItem: 6,
-      subtitle: t('mobile.subtitle6'),
+      subtitle: 'mobile.subtitle6',
       id: 'разделить стоимость поездки',
     },
   ]);
@@ -42,7 +42,7 @@ function Mobile() {
     return (
       <PossibilityItem
         numberItem={numberItem}
-        subtitle={subtitle}
+        subtitle={t(subtitle)}
         key={id}
       />
     );
