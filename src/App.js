@@ -1,4 +1,4 @@
-import { useState, Suspense } from 'react';
+import { useState, Suspense, useMemo } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ThemeContext from './context/ThemeContext';
 
@@ -6,23 +6,19 @@ import MainPage from './pages/MainPage';
 import CarsPage from './pages/CarsPage';
 
 function App() {
-  const [state, setState] = useState({
-    theme: 'light', // eslint-disable-line
-    choiseTheme: choiseTheme, // eslint-disable-line
-  });
+  const [theme, setTheme] = useState('light');
 
-  function choiseTheme(propsTheme) {
-    setState({
-      ...state,
-      theme: propsTheme
-    }); // eslint-disable-line
+  function chooseTheme(propsTheme) {
+    setTheme(propsTheme);
   }
+
+  const controlTheme = useMemo(() => ({ theme, chooseTheme }), [theme, chooseTheme]);
 
   return (
     <BrowserRouter>
       <Suspense fallback="Loading...">
         <div className="App">
-          <ThemeContext.Provider value={state}>
+          <ThemeContext.Provider value={controlTheme}>
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/choise-car" element={<CarsPage />} />

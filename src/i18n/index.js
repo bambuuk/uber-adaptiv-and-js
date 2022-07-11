@@ -19,14 +19,12 @@ i18next
   .use(initReactI18next) 
   .init({
     resources,
-    lng: 'ua',
     fallbackLng: 'ua',
-    whitelist: ['ua', 'ru'],
     detection: {
       order: ['localStorage', 'cookie'],
       caches: ['localStorage', 'cookie'],
-    }, 
-
+    },
+        
     interpolation: {
       escapeValue: false 
     }

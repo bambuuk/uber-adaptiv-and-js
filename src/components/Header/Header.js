@@ -5,7 +5,7 @@ import './header.sass';
 
 function Header() {
   const [active, setActive] = useState(false);
-  const { choiseTheme } = useContext(ThemeContext);
+  const { chooseTheme } = useContext(ThemeContext);
 
   const toggleHamburgerMenuActive = (e) => {
     if (e.type === 'click' || e.code === 'Enter') {
@@ -21,7 +21,7 @@ function Header() {
       styleHamburger={styleHamburger}
       styleMenu={styleMenu}
       toggleHamburgerMenuActive={toggleHamburgerMenuActive}
-      choiseTheme={choiseTheme}
+      chooseTheme={chooseTheme}
     />
   );
 }

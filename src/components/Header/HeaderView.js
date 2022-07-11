@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+// import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
@@ -8,17 +9,24 @@ import uberLogo from '../../img/logo/Uber.png';
 
 function HeaderView(props) {
   const {
-    styleHamburger, styleMenu, toggleHamburgerMenuActive, choiseTheme
+    styleHamburger, styleMenu, toggleHamburgerMenuActive, chooseTheme
   } = props;
 
   const { t, i18n } = useTranslation();
+
+  // useEffect(() => {
+  //   if (localStorage.getItem('lng')) {
+  //     i18n.changeLanguage(localStorage.getItem('lng'));
+  //   } else {
+  //     i18n.changeLanguage('ua');
+  //   }
+  // }, []);
+
   const onChangeLanguage = (event) => {
     const lng = event.target.value;
     i18n.changeLanguage(lng);
     localStorage.setItem('lng', `${lng}`);
   };
-
-  // const currentLanguageCode = localStorage.get('i18nextLng') || 'ua';
 
   return (
     <header>
@@ -28,7 +36,7 @@ function HeaderView(props) {
             type="button"
             aria-label="Sun"
             className="btn-switcher"
-            onClick={() => choiseTheme('light')}
+            onClick={() => chooseTheme('light')}
           >
             <FontAwesomeIcon icon={faSun} />
           </button>
@@ -36,7 +44,7 @@ function HeaderView(props) {
             type="button"
             aria-label="Moon"
             className="btn-switcher"
-            onClick={() => choiseTheme('dark')}
+            onClick={() => chooseTheme('dark')}
           >
             <FontAwesomeIcon icon={faMoon} />
           </button>
@@ -122,14 +130,14 @@ HeaderView.propTypes = {
   styleHamburger: PropTypes.string,
   styleMenu: PropTypes.string,
   toggleHamburgerMenuActive: PropTypes.func,
-  choiseTheme: PropTypes.func,
+  chooseTheme: PropTypes.func,
 };
 
 HeaderView.defaultProps = {
   styleHamburger: 'hamburger_active',
   styleMenu: 'menu_active',
   toggleHamburgerMenuActive: null,
-  choiseTheme: null
+  chooseTheme: null
 };
 
 export default HeaderView;
