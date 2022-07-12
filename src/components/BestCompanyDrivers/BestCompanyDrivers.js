@@ -1,22 +1,40 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
 import BestCompanyDriversView from './BestCompanyDriversView';
+import { updBestDriversList } from '../../store/drivers/actions';
 
 function BestCompanyDrivers() {
-  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    axios.get('https://62a11ee47b9345bcbe46a4c5.mockapi.io/drivers')
-      .then((res) => setData(res.data))
+  const dispatch = useDispatch();
+  const content = useSelector((state) => state.drivers.dataDrivers);
+
+  const onRequest = (url) => {
+    setLoading(true);
+    axios.get(url)
+      .then((res) => {
+        setLoading(false);
+        dispatch(updBestDriversList(res.data));
+      })
       .catch((err) => {
+        setLoading(false);
         throw new Error(
-          `Could not fetch ${'https://62a11ee47b9345bcbe46a4c5.mockapi.io/drivers'}, message: "${err.message}."`
+          `Could not fetch ${url}, message: "${err.message}."`
         );
       });
+  };
+
+  useEffect(() => {
+    onRequest('https://62a11ee47b9345bcbe46a4c5.mockapi.io/drivers');
   }, []);
 
   return (
-    <BestCompanyDriversView data={data} />
+    <BestCompanyDriversView 
+      data={content}
+      onRequest={onRequest}
+      loading={loading}
+    />
   );
 }
 

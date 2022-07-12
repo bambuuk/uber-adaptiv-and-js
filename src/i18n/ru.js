@@ -182,7 +182,8 @@ const translationRU = {
     addCarItemBtn: 'Добавить',
     resetFormBtn: 'Очистить форму',
     timeOfStayOnPageView: 'Время перебывания на странице:'
-  }
+  },
+  updateDriversListBtn: 'Обновить данные'
 };
 
 // console.log(JSON.stringify(translationRU));

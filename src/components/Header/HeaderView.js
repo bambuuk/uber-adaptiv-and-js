@@ -14,14 +14,6 @@ function HeaderView(props) {
 
   const { t, i18n } = useTranslation();
 
-  // useEffect(() => {
-  //   if (localStorage.getItem('lng')) {
-  //     i18n.changeLanguage(localStorage.getItem('lng'));
-  //   } else {
-  //     i18n.changeLanguage('ua');
-  //   }
-  // }, []);
-
   const onChangeLanguage = (event) => {
     const lng = event.target.value;
     i18n.changeLanguage(lng);
@@ -50,7 +42,7 @@ function HeaderView(props) {
           </button>
         </div>
         <div className="chooseLanguage">
-          <select name="language" onChange={onChangeLanguage}>
+          <select name="language" value={localStorage.getItem('i18nextLng')} onChange={onChangeLanguage}>
             <option value="ua">UA</option>
             <option value="ru">RU</option>
           </select>

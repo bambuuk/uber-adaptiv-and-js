@@ -174,8 +174,9 @@ const translationUA = {
     linkOnPhotoInput: 'Посилання на зображення з білим фоном',
     addCarItemBtn: 'Додати',
     resetFormBtn: 'Очистити форму',
-    timeOfStayOnPageView: 'Час перебування на сторінкі:'
-  }
+    timeOfStayOnPageView: 'Час перебування на сторінкі:',
+  },
+  updateDriversListBtn: 'Оновити дані'
 };
 // console.log(JSON.stringify(translationUA));
 
