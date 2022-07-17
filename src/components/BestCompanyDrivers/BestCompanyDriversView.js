@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux/es/exports';
 
 import Spinner from '../Spinner/Spinner';
 import './BestCompanyDrivers.sass';
 
-function BestCompanyDriversView({ data, onRequest, loading }) {
+function BestCompanyDriversView({ data, fetchbestDriversList, loading }) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const listDrivers = data.map(({ name, imgUrl, id }) => {
     return (
@@ -28,7 +30,7 @@ function BestCompanyDriversView({ data, onRequest, loading }) {
           name="update" 
           type="button" 
           className="btn btn_position_center"
-          onClick={() => onRequest('https://62a11ee47b9345bcbe46a4c5.mockapi.io/drivers')}
+          onClick={() => dispatch(fetchbestDriversList('https://62a11ee47b9345bcbe46a4c5.mockapi.io/drivers'))}
         >
           {spinnerShow}
         </button>
@@ -39,13 +41,13 @@ function BestCompanyDriversView({ data, onRequest, loading }) {
 
 BestCompanyDriversView.propTypes = {
   data: PropTypes.arrayOf(Object),
-  onRequest: PropTypes.func,
+  fetchbestDriversList: PropTypes.func,
   loading: PropTypes.bool
 };
 
 BestCompanyDriversView.defaultProps = {
   data: null,
-  onRequest: null,
+  fetchbestDriversList: null,
   loading: null
 };
 
