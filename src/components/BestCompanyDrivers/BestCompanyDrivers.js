@@ -1,24 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import BestCompanyDriversView from './BestCompanyDriversView';
-import { updBestDriversList } from '../../store/drivers/actions';
+import { bestDriversListFetching, bestDriversListFetched, bestDriversListError } from '../../store/drivers/actions';
 
 function BestCompanyDrivers() {
-  const [loading, setLoading] = useState(false);
-
   const dispatch = useDispatch();
-  const content = useSelector((state) => state.drivers.dataDrivers);
+  const { dataDrivers, loadingStatus } = useSelector((state) => state.drivers);
 
   const onRequest = (url) => {
-    setLoading(true);
+    dispatch(bestDriversListFetching());
     axios.get(url)
       .then((res) => {
-        setLoading(false);
-        dispatch(updBestDriversList(res.data));
+        dispatch(bestDriversListFetched(res.data));
       })
       .catch((err) => {
-        setLoading(false);
+        dispatch(bestDriversListError());
         throw new Error(
           `Could not fetch ${url}, message: "${err.message}."`
         );
@@ -31,9 +28,9 @@ function BestCompanyDrivers() {
 
   return (
     <BestCompanyDriversView 
-      data={content}
+      data={dataDrivers}
       onRequest={onRequest}
-      loading={loading}
+      loading={loadingStatus}
     />
   );
 }
