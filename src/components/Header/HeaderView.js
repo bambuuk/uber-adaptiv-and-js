@@ -9,7 +9,7 @@ import uberLogo from '../../img/logo/Uber.png';
 
 function HeaderView(props) {
   const {
-    styleHamburger, styleMenu, toggleHamburgerMenuActive, chooseTheme
+    styleHamburger, styleMenu, toggleHamburgerMenuActive, chooseTheme, theme
   } = props;
 
   const { t, i18n } = useTranslation();
@@ -20,6 +20,9 @@ function HeaderView(props) {
     localStorage.setItem('lng', `${lng}`);
   };
 
+  const lightActive = theme === 'light' ? 'btn-switcher btn-switcher_active' : 'btn-switcher';
+  const darkActive = theme === 'dark' ? 'btn-switcher btn-switcher_active' : 'btn-switcher';
+
   return (
     <header>
       <nav>
@@ -27,7 +30,7 @@ function HeaderView(props) {
           <button
             type="button"
             aria-label="Sun"
-            className="btn-switcher"
+            className={lightActive}
             onClick={() => chooseTheme('light')}
           >
             <FontAwesomeIcon icon={faSun} />
@@ -35,7 +38,7 @@ function HeaderView(props) {
           <button
             type="button"
             aria-label="Moon"
-            className="btn-switcher"
+            className={darkActive}
             onClick={() => chooseTheme('dark')}
           >
             <FontAwesomeIcon icon={faMoon} />
@@ -123,13 +126,15 @@ HeaderView.propTypes = {
   styleMenu: PropTypes.string,
   toggleHamburgerMenuActive: PropTypes.func,
   chooseTheme: PropTypes.func,
+  theme: PropTypes.string
 };
 
 HeaderView.defaultProps = {
   styleHamburger: 'hamburger_active',
   styleMenu: 'menu_active',
   toggleHamburgerMenuActive: null,
-  chooseTheme: null
+  chooseTheme: null,
+  theme: 'light'
 };
 
 export default HeaderView;
