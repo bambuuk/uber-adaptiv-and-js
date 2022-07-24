@@ -44,20 +44,20 @@ function AddCarsView(props) {
         <p className="selectTypeCar">
           <label htmlFor="type-car">
             {t('choiseCar.chooseCarInput')}
-            <select
-              id="type-car"
-              className="form-select"
-              aria-label="Default select example"
-              name="typeCar"
-              value={typeCar}
-              onChange={(e) => onValueInputChange(e)}
-            >
-              <option>{t('choiseCar.availableVariablesOptionList')}</option>
-              <option value="Седан">{t('choiseCar.sedanOptionList')}</option>
-              <option value="Пикап">{t('choiseCar.pickupOptionList')}</option>
-              <option value="Универсал">{t('choiseCar.universalOptionList')}</option>
-            </select>
           </label>
+          <select
+            id="type-car"
+            className="form-select"
+            aria-label="Default select example"
+            name="typeCar"
+            value={typeCar}
+            onChange={(e) => onValueInputChange(e)}
+          >
+            <option>{t('choiseCar.availableVariablesOptionList')}</option>
+            <option value="Седан">{t('choiseCar.sedanOptionList')}</option>
+            <option value="Пикап">{t('choiseCar.pickupOptionList')}</option>
+            <option value="Универсал">{t('choiseCar.universalOptionList')}</option>
+          </select>
         </p>
 
         <input

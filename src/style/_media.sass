@@ -1,4 +1,13 @@
 @media (max-width: 1200px)
+    .selectTypeCar
+        display: flex
+    .add-item-car
+        font-size: 19px
+        .add-item-car_form
+            grid-template-rows: repeat(3, 40px)
+    .bestCompDrivers
+        &_list
+            grid-template-columns: repeat(3, 200px)
     .menu
         .menu_item
             padding-right: 20px
@@ -42,49 +51,15 @@
             display: none
 
 @media (max-width: 991px)
-    .menu
-        .menu_item
-            padding-right: 8px
-        .menu_link
-            font-size: 10px
-    .subheader
-        .subheader_logo
-            img
-                width: 100%
-        .subheader_official
-            font-size: 11px
-        .subheader_phone
-            font-size: 18px
-        .subheader_btn
-            margin-top: 21px
-            height: 40px
-            width: 100%
-    .promo
-        .promo_header
-            font-size: 40px
-        .promo_subheader
-            font-size: 30px
-    .reasons
-        &_block
-            flex-direction: column
-            align-items: center
-        &_round
-            margin-right: 0
-        &_descr
-            width: 300px
-            margin-top: 20px
-    .mobile
-        &_item
-            padding-top: 70px
-            &_subtitle
-                line-height: 30px
-    .choise
-        .choise_content
-            .choise_content_car
-                margin-top: 77px
-                width: 100%
-
-@media (max-width: 767px)
+    .choiseCar_btn
+        margin-top: 5px
+    .selectTypeCar
+        label
+            display: none
+    .choiseCar_btn
+        font-size: 16px
+    .carList
+        grid-template-columns: repeat(2, 300px)
     .menu
         position: fixed
         flex-direction: column
@@ -150,6 +125,40 @@
             height: 40px
             margin: 0 auto
             margin-top: 10px
+        .subheader_logo
+            img
+                width: 100%
+        .subheader_official
+            font-size: 11px
+    .promo
+        .promo_header
+            font-size: 40px
+        .promo_subheader
+            font-size: 30px
+    .reasons
+        &_block
+            flex-direction: column
+            align-items: center
+        &_round
+            margin-right: 0
+        &_descr
+            width: 300px
+            margin-top: 20px
+    .mobile
+        &_item
+            padding-top: 70px
+            &_subtitle
+                line-height: 30px
+    .choise
+        .choise_content
+            .choise_content_car
+                margin-top: 77px
+                width: 100%
+
+@media (max-width: 767px)
+    .bestCompDrivers
+        &_list
+            grid-template-columns: repeat(2, 200px)
     .promo
         .promo_header
             line-height: 45px
@@ -161,7 +170,7 @@
             padding-top: 80px
             margin-bottom: 30px
     .title
-        font-size: 31px
+        font-size: 30px
     .subtitle
         font-size: 24px
     .choise
@@ -174,6 +183,22 @@
             height: 258px
 
 @media (max-width: 575px)
+    .timer
+        flex-direction: column
+    .add-item-car 
+        .add-item-car_form
+            display: flex
+            flex-wrap: wrap
+    .carList
+        grid-template-columns: repeat(1, 300px)
+    .selected-car
+        &_text
+            font-size: 11px
+    .btn
+        padding: 6px 10px
+    .bestCompDrivers
+        &_list
+            grid-template-columns: repeat(1, 200px)
     nav
         height: 30px
     header

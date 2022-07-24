@@ -165,7 +165,7 @@ const translationUA = {
     },
     modelCarInput: 'Марка/модель автомобіля',
     chooseCarInput: 'Виберіть тип автомобіля:',
-    availableVariablesOptionList: 'Доступні варіанти',
+    availableVariablesOptionList: 'Тип автомобіля',
     sedanOptionList: 'Седан',
     pickupOptionList: 'Пікап',
     universalOptionList: 'Універсал',

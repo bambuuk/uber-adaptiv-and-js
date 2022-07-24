@@ -172,7 +172,7 @@ const translationRU = {
     },
     modelCarInput: 'Марка/модель автомобиля',
     chooseCarInput: 'Выберите тип автомобиля:',
-    availableVariablesOptionList: 'Достуаные варианты',
+    availableVariablesOptionList: 'Тип автомобиля',
     sedanOptionList: 'Седан',
     pickupOptionList: 'Пикап',
     universalOptionList: 'Универсал',

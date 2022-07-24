@@ -16,7 +16,7 @@ function TimeOfStayOnPageView({ hours, minutes, seconds }) {
           {minutes}
           :
         </div>
-        <div id="timer_econds">{seconds}</div>
+        <div id="timer_seconds">{seconds}</div>
       </div>
     </div>
   );

@@ -61,9 +61,8 @@ function CarItem(props) {
           <strong>{t('choiseCar.carItem.carType')}</strong>
           {' '}
           {typeItem.typeCar}
-          {' '}
-          /
-          {' '}
+        </p>
+        <p className="card_text">
           <strong>{t('choiseCar.carItem.class')}</strong>
           {' '}
           {typeItem.classComfort}
