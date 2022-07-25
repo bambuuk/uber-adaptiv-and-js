@@ -1,7 +1,10 @@
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
+import ThemeContext from '../../context/ThemeContext';
 import './reasons.sass';
 
 function ReasonsItem(props) {
+  const { theme } = useContext(ThemeContext);
   const {
     imgSrc, subtitle, text
   } = props;
@@ -13,7 +16,7 @@ function ReasonsItem(props) {
         </div>
         <div className="reasons_descr">
           <div className="reasons_subtitle">{subtitle}</div>
-          <div className="reasons_text">{text}</div>
+          <div className={`reasons_text ${theme}`}>{text}</div>
         </div>
       </div>
     </div>

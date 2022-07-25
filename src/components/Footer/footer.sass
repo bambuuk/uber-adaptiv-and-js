@@ -6,6 +6,12 @@
   min-height: 150px
   padding: 11px 0 0 23px
   position: relative
+  &_light
+    background: $background-light-theme
+    transition: 0.5s all
+  &_dark
+    background: $background-dark-theme
+    transition: 0.5s all
   &_content
     padding-bottom: 40px
     &_line
@@ -23,7 +29,6 @@
         font-weight: 300
         font-size: 15px
         text-transform: uppercase
-        color: #070716
         text-decoration: none
     &_link_subheader, &_link_subheader_min_screen_size
       display: flex
@@ -34,7 +39,6 @@
         font-weight: 300
         font-size: 11px
         text-transform: uppercase
-        color: #999999
     &_link_subheader_min_screen_size
       display: none
     &_language
@@ -83,7 +87,7 @@
   margin-top: 20px
   display: flex
   justify-content: flex-end
-  margin-bottom: 40px
+  padding-bottom: 40px 
   &_content
     display: flex
     flex-direction: column
@@ -93,7 +97,6 @@
     color: #070716
     a
       text-decoration: none
-      color: #070716
       transition: 0.5s all
       &:hover
         color: #6dcb55
@@ -103,3 +106,9 @@
     font-weight: 600
   &_name
     margin-top: 10px
+.light
+  color: $text-light-theme
+  transition: 0.5s all
+.dark
+  color: $text-dark-theme
+  transition: 0.5s all

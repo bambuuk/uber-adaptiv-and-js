@@ -7,12 +7,21 @@
   height: 24px
   width: 112px
   padding: 5px 12px
-  background-color: #000000
-  color: #ffffff
   font-size: 11px
   font-weight: 300
   text-transform: uppercase
   text-align: center
+  background-color: #000000
+  color: #ffffff
+  &_light
+    background-color: #000000
+    color: #ffffff
+    transition: 0.5s all
+  &_dark
+    background-color: #FFF
+    color: #000000
+    font-weight: 500
+    transition: 0.5s all
 
 .title
   margin-bottom: 0
@@ -33,6 +42,11 @@
     font-size: 17px
     color: $text-color
     text-align: center
+    &_light
+      color: #222222
+    &_dark
+      color: #fff
+
 .btn
   padding: 6px 20px
   background-color: #3d5a80

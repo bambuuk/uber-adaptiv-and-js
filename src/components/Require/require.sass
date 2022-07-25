@@ -4,6 +4,12 @@
 
 .require
   padding: 68px 0 84px 0
+  &_light
+    background: $background-light-theme
+    transition: 0.5s all
+  &_dark
+    background: $background-dark-theme
+    transition: 0.5s all
   &_block
     margin: 33px 0
     &_nmb
@@ -16,6 +22,12 @@
     list-style-type: none
     padding-left: 50px
     margin-top: 22px
+    &_light
+      color: $text-light-theme
+      transition: 0.5s all
+    &_dark
+      color: $text-dark-theme
+      transition: 0.5s all
     li
       position: relative
       font-weight: 300

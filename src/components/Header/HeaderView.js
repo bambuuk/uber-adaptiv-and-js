@@ -12,15 +12,16 @@ function HeaderView(props) {
   } = props;
 
   const { t, i18n } = useTranslation();
+  const dark = 'dark';
+  const light = 'light';
 
   const onChangeLanguage = (event) => {
     const lng = event.target.value;
     i18n.changeLanguage(lng);
-    localStorage.setItem('lng', `${lng}`);
   };
 
-  const lightActive = theme === 'light' ? 'btn-switcher btn-switcher_active' : 'btn-switcher';
-  const darkActive = theme === 'dark' ? 'btn-switcher btn-switcher_active' : 'btn-switcher';
+  const lightActive = theme === light ? 'btn-switcher btn-switcher_active' : 'btn-switcher';
+  const darkActive = theme === dark ? 'btn-switcher btn-switcher_active' : 'btn-switcher';
 
   return (
     <header>
@@ -30,7 +31,7 @@ function HeaderView(props) {
             type="button"
             aria-label="Sun"
             className={lightActive}
-            onClick={() => chooseTheme('light')}
+            onClick={() => chooseTheme(light)}
           >
             <FontAwesomeIcon icon={faSun} />
           </button>
@@ -38,13 +39,13 @@ function HeaderView(props) {
             type="button"
             aria-label="Moon"
             className={darkActive}
-            onClick={() => chooseTheme('dark')}
+            onClick={() => chooseTheme(dark)}
           >
             <FontAwesomeIcon icon={faMoon} />
           </button>
         </div>
         <div className="chooseLanguage">
-          <select name="language" value={localStorage.getItem('i18nextLng')} onChange={onChangeLanguage}>
+          <select name="language" value={i18n.language} onChange={onChangeLanguage}>
             <option value="ua">UA</option>
             <option value="ru">RU</option>
           </select>
