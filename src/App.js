@@ -15,7 +15,7 @@ function App() {
   const controlTheme = useMemo(() => ({ theme, chooseTheme }), [theme, chooseTheme]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Suspense fallback="Loading...">
         <div className="App">
           <ThemeContext.Provider value={controlTheme}>
@@ -26,7 +26,7 @@ function App() {
           </ThemeContext.Provider>
         </div>
       </Suspense>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
