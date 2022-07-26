@@ -1,8 +1,11 @@
 {
   "name": "uber",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "homepage": "https://bambuuk.github.io/uber-adaptiv-and-js",
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
