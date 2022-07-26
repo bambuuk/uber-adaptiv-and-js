@@ -2,7 +2,7 @@
   "name": "uber",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://bambuuk.github.io/uber-adaptiv-and-js",
+  "homepage": "https://react-uber.herokuapp.com/",
   "engines": {
     "node": "14.x"
   },
