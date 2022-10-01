@@ -4,6 +4,7 @@ import ThemeContext from './context/ThemeContext';
 
 import MainPage from './pages/MainPage';
 import CarsPage from './pages/CarsPage';
+import Page404 from './pages/404';
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -22,6 +23,7 @@ function App() {
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/choise-car" element={<CarsPage />} />
+              <Route path="*" element={<Page404 />} />
             </Routes>
           </ThemeContext.Provider>
         </div>

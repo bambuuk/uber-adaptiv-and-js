@@ -76,7 +76,7 @@ function HeaderView(props) {
                 end
                 style={({ isActive }) => ({ color: isActive ? '#fc7107' : '#fff' })}
                 className="menu_link"
-                href="#contacts"
+                href="#main"
                 to="/choise-car"
               >
                 {t('header.choiseCar')}
