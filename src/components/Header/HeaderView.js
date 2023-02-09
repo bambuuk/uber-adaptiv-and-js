@@ -14,6 +14,7 @@ function HeaderView(props) {
   const { t, i18n } = useTranslation();
   const dark = 'dark';
   const light = 'light';
+  localStorage.setItem('language', i18n.language);
 
   const onChangeLanguage = (event) => {
     const lng = event.target.value;

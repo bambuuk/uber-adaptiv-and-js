@@ -38,21 +38,6 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="author">
-          <div className="author_content">
-            <div className={`author_title ${theme}`}>{t('footer.informationAboutAuthor')}</div>
-            <div className={`author_name ${theme}`}>{t('footer.name')}</div>
-            <a href="https://github.com/bambuuk" className={`author_link ${theme}`}>Github</a>
-            <a
-              href="https://www.figma.com/file/ivgb9OfADjPvRowi32CSgY/UBER_course?node-id=0%3A1"
-              target="_blank"
-              rel="noreferrer"
-              className={`author_design_link ${theme}`}
-            >
-              {t('footer.original')}
-            </a>
-          </div>
-        </div>
       </div>
 
       <div className="footer_networks">

@@ -8,9 +8,9 @@ function SelectedCar({ selectedCar }) {
   return (
     <div className="selected-car">
       <p className="selected-car_text">
-        <strong>{t('choiseCar.selectedCar')}</strong> 
+        <strong>{t('choiseCar.selectedCar')}</strong>
         {' '}
-        {selectedCar}
+        {selectedCar || t('choiseCar.choseCar')}
       </p>
       <button name="confirm" type="button" className="btn">{t('choiseCar.selectedCarApprove')}</button>
     </div>
@@ -18,7 +18,7 @@ function SelectedCar({ selectedCar }) {
 }
 
 SelectedCar.propTypes = {
-  selectedCar: PropTypes.string
+  selectedCar: PropTypes.string || null
 };
 
 SelectedCar.defaultProps = {

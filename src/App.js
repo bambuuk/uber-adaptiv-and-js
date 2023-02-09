@@ -16,7 +16,7 @@ function App() {
   const controlTheme = useMemo(() => ({ theme, chooseTheme }), [theme, chooseTheme]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/uber-adaptiv-and-js">
       <Suspense fallback="Loading...">
         <div className="App">
           <ThemeContext.Provider value={controlTheme}>

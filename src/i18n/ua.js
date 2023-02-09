@@ -114,9 +114,9 @@ const translationUA = {
       item2: 'Автомобіль не повинен бути жовтий і не з жовтими номерами',
       item3: 'Машина не старше 3 років',
       item4: 'Стаж водіння не менше 3 років',
-      item5: 'Девайс на системі андроїд 4.0 і вище (самсунг)',
+      item5: 'Девайс на системі андроїд 10.0 і вище',
     },
-    require_title4: 'ДОКУМЕНТЫ:',
+    require_title4: 'ДОКУМЕНТИ:',
     require_list4: { 
       item1: 'Права 2 сторони',
       item2: 'Паспорт лицьова сторона',
@@ -163,6 +163,7 @@ const translationUA = {
       delete: 'Видалити',
       choose: 'Обрати'
     },
+    choseCar: 'Ви поки що не обрали автомобіль',
     modelCarInput: 'Марка/модель автомобіля',
     chooseCarInput: 'Виберіть тип автомобіля:',
     availableVariablesOptionList: 'Тип автомобіля',
@@ -175,9 +176,11 @@ const translationUA = {
     addCarItemBtn: 'Додати',
     resetFormBtn: 'Очистити форму',
     timeOfStayOnPageView: 'Час перебування на сторінкі:',
+    arrowErrorAlphabetFilter: `На цьому фільтрі немає можливості пересуватися картками 
+    за допомогою стрілок клавіатури!`,
+    dragNdropErrorAlphabetFilter: 'При використанні цього фільтра функція перетягування карток не працює!'
   },
-  updateDriversListBtn: 'Оновити дані'
+  updateDriversListBtn: 'Оновити дані',
 };
-// console.log(JSON.stringify(translationUA));
 
 export default translationUA;

@@ -1,6 +1,7 @@
 import { 
   useState, useEffect, useContext, useCallback 
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import ChoiseCarView from './ChoiseCarView';
 import ThemeContext from '../../context/ThemeContext';
 
@@ -15,8 +16,9 @@ const filterType = {
 };
 
 function ChoiseCar() {
+  const { t } = useTranslation();
   const [filter, setFilter] = useState('all');
-  const [selectedCar, setSelectedCar] = useState('Вы пока не выбрали автомобиль');
+  const [selectedCar, setSelectedCar] = useState(null);
   const [currentCard, setCurrentCard] = useState(null);
   const [cardUntilCurrentCard, setCardUntilCurrentCard] = useState(null);
   const [onFocusWithArrow, setOnFocusWithArrow] = useState(false);
@@ -128,7 +130,7 @@ function ChoiseCar() {
       setCountClickArrow(null);
     }
     if (filter !== 'all' && (c === 'ArrowRight' || c === 'ArrowLeft')) {
-      alert('На этом фильтре нет возможности передвигаться по карточкам с помощью стрелок клавиатуры!'); // eslint-disable-line
+      alert(t('choiseCar.arrowErrorAlphabetFilter')); // eslint-disable-line      
     } else if (c === 'ArrowRight') {
       if (countClickArrow !== null && countClickArrow < cardsList.length - 1) {
         setCountClickArrow(countClickArrow + 1);
@@ -177,7 +179,7 @@ function ChoiseCar() {
   const onChangeFilter = (filterTypeCar) => {
     setFilter(filterTypeCar);
     if (filterTypeCar === 'alphabet') {
-      alert('При использовании данного фильтра, функция перетаскивания карточек не работает!'); // eslint-disable-line
+      alert(t('choiseCar.dragNdropErrorAlphabetFilter')); // eslint-disable-line
     }
   };
 

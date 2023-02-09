@@ -170,6 +170,7 @@ const translationRU = {
       delete: 'Удалить',
       choose: 'Выбрать'
     },
+    choseCar: 'Вы пока не выбрали автомобиль',
     modelCarInput: 'Марка/модель автомобиля',
     chooseCarInput: 'Выберите тип автомобиля:',
     availableVariablesOptionList: 'Тип автомобиля',
@@ -181,11 +182,11 @@ const translationRU = {
     linkOnPhotoInput: 'Ссылка на изображение с белым фоном',
     addCarItemBtn: 'Добавить',
     resetFormBtn: 'Очистить форму',
-    timeOfStayOnPageView: 'Время перебывания на странице:'
+    timeOfStayOnPageView: 'Время перебывания на странице:',
+    arrowErrorAlphabetFilter: 'На этом фильтре нет возможности передвигаться по карточкам с помощью стрелок клавиатуры!',
+    dragNdropErrorAlphabetFilter: 'При использовании данного фильтра, функция перетаскивания карточек не работает!'
   },
-  updateDriversListBtn: 'Обновить данные'
+  updateDriversListBtn: 'Обновить данные',
 };
-
-// console.log(JSON.stringify(translationRU));
 
 export default translationRU;
