@@ -164,6 +164,7 @@ const translationUA = {
       choose: 'Обрати'
     },
     choseCar: 'Ви поки що не обрали автомобіль',
+    youNeedSelectAuto: 'Будь-лака, спочатку виберіть автомобіль!',
     modelCarInput: 'Марка/модель автомобіля',
     chooseCarInput: 'Виберіть тип автомобіля:',
     availableVariablesOptionList: 'Тип автомобіля',

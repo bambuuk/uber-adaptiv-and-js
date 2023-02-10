@@ -171,6 +171,7 @@ const translationRU = {
       choose: 'Выбрать'
     },
     choseCar: 'Вы пока не выбрали автомобиль',
+    youNeedSelectAuto: 'Пожалуйста, сначала выберите автомобиль!',
     modelCarInput: 'Марка/модель автомобиля',
     chooseCarInput: 'Выберите тип автомобиля:',
     availableVariablesOptionList: 'Тип автомобиля',
@@ -183,7 +184,8 @@ const translationRU = {
     addCarItemBtn: 'Добавить',
     resetFormBtn: 'Очистить форму',
     timeOfStayOnPageView: 'Время перебывания на странице:',
-    arrowErrorAlphabetFilter: 'На этом фильтре нет возможности передвигаться по карточкам с помощью стрелок клавиатуры!',
+    arrowErrorAlphabetFilter: `На этом фильтре нет возможности передвигаться по карточкам 
+    с помощью стрелок клавиатуры!`,
     dragNdropErrorAlphabetFilter: 'При использовании данного фильтра, функция перетаскивания карточек не работает!'
   },
   updateDriversListBtn: 'Обновить данные',

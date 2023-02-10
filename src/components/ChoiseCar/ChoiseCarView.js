@@ -28,7 +28,9 @@ function ChoiseCarView(props) {
           onChangeFilter={onChangeFilter}
           filter={filter}
         />
-        <SelectedCar selectedCar={selectedCar} />
+        <SelectedCar 
+          selectedCar={selectedCar} 
+        />
         <CarList
           data={visibleCarItems}
           onDelete={deleteItem}
@@ -72,7 +74,7 @@ ChoiseCarView.defaultProps = {
   deleteItem: () => null,
   filter: 'all',
   onAddItem: () => null,
-  selectedCar: 'Вы пока не выбрали автомобиль',
+  selectedCar: () => null,
   onChangeSelectedCar: () => null, 
   dragStartHadler: () => null, 
   dragEndHandler: () => null,
