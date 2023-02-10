@@ -8,22 +8,35 @@ function SelectedCar({ selectedCar }) {
   const { t } = useTranslation();
   const lng = localStorage.getItem('language');
   const [value, setValue] = useState(selectedCar);
-
-  useEffect(() => {
-    setValue(selectedCar);
-  }, [selectedCar]);
+  const [approved, setApproved] = useState(false);
+  
+  const changeValueBasedOnLng = () => {
+    if (lng === 'ua') {
+      setValue(`Ви обрали ${selectedCar}`);
+    } else if (lng === 'ru') {
+      setValue(`Вы выбрали ${selectedCar}`);
+    }
+  };
 
   const onApproveSelectedCar = () => {
     if (selectedCar === null) {
       alert(t('choiseCar.youNeedSelectAuto')); // eslint-disable-line
     } else if (selectedCar) {
-      if (lng === 'ua') {
-        setValue(`Ви обрали ${selectedCar}`);
-      } else if (lng === 'ru') {
-        setValue(`Ви выбрали ${selectedCar}`);
-      }
+      changeValueBasedOnLng();
+      setApproved(true);
     }
   };
+
+  useEffect(() => {
+    setValue(selectedCar);
+    setApproved(false);
+  }, [selectedCar]);
+
+  useEffect(() => {
+    if (selectedCar && approved) {
+      changeValueBasedOnLng();
+    }
+  }, [lng]);
   
   return (
     <div className="selected-car">
