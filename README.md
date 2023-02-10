@@ -1,3 +1,31 @@
+## Description
+A multi-page React app made with functional components, adapted for all standard mobile device screen sizes. Features dynamically and static rendered elements.
+
+## Features :
+
+- Using REST API for getting elements
+- Routing
+- Selecting theme on the page
+- Selecting lenguage on the page
+
+## Features of the Car selection page:
+
+- Filtering cars cards
+- Selecting car with using Select button
+- You can switch between the buttons with TAB and press Enter for selecting button.
+- You can switch cards with Left/Right arrows on keyboard and when you have used Left/Right buttons, you can press Escape if you want to remove selecting.
+- You can choosing car cards with left button of mouse
+- If you want change focus on cars cards (when you use arrows), you need to click on control right botton on keyboard and if you want to select card (after focusing on him) you need to press Enter. 
+- You can add new car card
+
+## Tools:
+- SCSS
+- React
+- Redux
+- Redux thunk
+- i18next
+- ESlint
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
